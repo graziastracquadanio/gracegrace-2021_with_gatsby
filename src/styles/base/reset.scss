@@ -1,0 +1,67 @@
+//
+// RESET
+//
+
+// 1. Change from `box-sizing: content-box` so that `width` is not affected by `padding` or `border`.
+*,
+*::before,
+*::after {
+  box-sizing: border-box; // 1
+  font-weight: inherit;
+}
+
+// 1. Change the default font family in all browsers.
+// 2. Correct the line height in all browsers.
+// 3. Prevent adjustments of font size after orientation changes in IE on Windows Phone and in iOS.
+html {
+  font-family: sans-serif; // 1
+  line-height: 1.15; // 2
+  -webkit-text-size-adjust: 100%; // 3
+  -ms-text-size-adjust: 100%; // 3
+}
+
+// 1. Remove the margin in all browsers.
+// 2. As a best practice, apply a default `background-color`.
+body {
+  margin: 0; // 1
+  background-color: $color-background-light; // 2
+}
+
+// Suppress the focus outline on elements that cannot be accessed via keyboard.
+// This prevents an unwanted focus outline from appearing around elements that
+// might still respond to pointer events.
+//
+[tabindex='-1']:focus {
+  outline: 0 !important;
+}
+
+// Shim for "new" HTML5 structural elements to display correctly
+// prettier-ignore
+article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
+  display: block;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+table {
+  border-collapse: collapse; // Prevent double borders
+}
+
+// IMAGES AND CONTENT
+img {
+  vertical-align: middle;
+  border-style: none; // Remove the border on images inside links in IE 10-.
+}
+
+svg:not(:root) {
+  overflow: hidden; // Hide the overflow in IE
+}
+
+a,
+button {
+  cursor: pointer;
+}

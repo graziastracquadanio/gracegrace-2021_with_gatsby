@@ -1,0 +1,49 @@
+//
+// MEDIA-QUERIES
+// 
+
+/// Media of at least the minimum breakpoint width. No query for the smallest breakpoint.
+/// Makes the @content apply to the given breakpoint and wider.
+@mixin media-breakpoint-up($breakpoint) {
+  @media (min-width: #{$breakpoint}) {
+    @content;
+  }
+}
+
+/// Media of at most the maximum breakpoint width. No query for the largest breakpoint.
+/// Makes the @content apply to the given breakpoint and narrower.
+@mixin media-breakpoint-down($breakpoint) {
+  @if ($breakpoint != null) {
+    $breakpoint: $breakpoint - 1;
+  }
+
+  @media (max-width: #{$breakpoint}) {
+    @content;
+  }
+}
+
+/// Media of at most the maximum height. No query for the largest breakpoint.
+/// Makes the @content apply to the given breakpoint and shorter.
+@mixin media-height-down($height) {
+  @if ($height != null) {
+    $height: $height - 1;
+  }
+
+  @media (max-height: #{$height}) {
+    @content;
+  }
+}
+
+// Classes to show/hide elements depending on the screen size:
+
+.md-tablet-up {
+  @include media-breakpoint-down($breakpoint-tablet) {
+    display: none;
+  }
+}
+
+.md-tablet-down {
+  @include media-breakpoint-up($breakpoint-tablet) {
+    display: none;
+  }
+}
