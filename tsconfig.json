@@ -2,13 +2,19 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "esnext",
-    "jsx": "preserve",
+    "jsx": "react",
     "lib": ["dom", "esnext"],
     "strict": true,
+    "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "isolatedModules": true,
+    "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "noUnusedLocals": false
+    "noUnusedLocals": false,
+    "skipLibCheck": true,
+    "baseUrl": "src",
+    "noFallthroughCasesInSwitch": true
   },
+  "include": ["src"],
   "exclude": ["node_modules", "public", ".cache"]
 }
