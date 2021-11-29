@@ -7,7 +7,7 @@ const TypographyContainer = styled.div`
   gap: 1rem;
 `;
 
-export default function StyleguidePage() {
+export default function Styleguide() {
   return (
     <TypographyContainer>
       <h1>H1 - Heading one</h1>

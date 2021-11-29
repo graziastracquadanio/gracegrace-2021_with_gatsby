@@ -1,1 +1,2 @@
-import './src/styles/main.scss';
+import '@fontsource/open-sans';
+import '@fontsource/zilla-slab';

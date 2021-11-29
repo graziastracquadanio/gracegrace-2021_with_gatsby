@@ -11,9 +11,11 @@ module.exports = {
     },
   },
   extends: [
+    'airbnb',
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
     'prettier',
+    'prettier/react',
     'plugin:prettier/recommended',
   ],
   plugins: ['react', '@typescript-eslint', 'import', 'react-hooks'],
@@ -27,13 +29,6 @@ module.exports = {
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'error',
     'react/jsx-curly-brace-presence': 'warn',
-    'import/order': [
-      'error',
-      {
-        groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
-      },
-    ],
-    'import/no-duplicates': 'error',
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-empty-interface': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
@@ -57,5 +52,26 @@ module.exports = {
     curly: ['warn', 'all'],
     'consistent-return': 'error',
     'no-restricted-globals': ['error', 'location', 'history'],
+    // import rules
+    'import/no-duplicates': 'error',
+    'import/order': [
+      'error',
+      {
+        groups: ['external', 'builtin', 'internal'],
+        pathGroups: [
+          {
+            pattern: 'react',
+            group: 'external',
+            position: 'before',
+          },
+        ],
+        pathGroupsExcludedImportTypes: ['react'],
+        'newlines-between': 'always',
+        alphabetize: {
+          order: 'asc',
+          caseInsensitive: true,
+        },
+      },
+    ],
   },
 };

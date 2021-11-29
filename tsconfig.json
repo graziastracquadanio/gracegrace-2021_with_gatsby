@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
+    "baseUrl": "src",
     "module": "commonjs",
     "target": "esnext",
+    "moduleResolution": "node",
     "jsx": "react",
     "lib": ["dom", "esnext"],
     "strict": true,
@@ -12,9 +14,8 @@
     "esModuleInterop": true,
     "noUnusedLocals": false,
     "skipLibCheck": true,
-    "baseUrl": "src",
     "noFallthroughCasesInSwitch": true
   },
   "include": ["src"],
-  "exclude": ["node_modules", "public", ".cache"]
+  "exclude": ["node_modules", "public", ".cache"],
 }
