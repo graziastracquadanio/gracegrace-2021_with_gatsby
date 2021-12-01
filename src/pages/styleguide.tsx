@@ -1,4 +1,6 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
+
 import styled from 'styled-components';
 
 const TypographyContainer = styled.div`
@@ -7,7 +9,7 @@ const TypographyContainer = styled.div`
   gap: 1rem;
 `;
 
-export default function Styleguide() {
+const StyleguidePage: React.FC = () => {
   return (
     <TypographyContainer>
       <h1>H1 - Heading one</h1>
@@ -18,8 +20,10 @@ export default function Styleguide() {
       <h6>H6 - Heading six</h6>
       <p>P - Paragraph text</p>
       <p>
-        <a href="#">Link inside a paragraph</a>
+        <a>Link inside a paragraph</a>
       </p>
     </TypographyContainer>
   );
-}
+};
+
+export default StyleguidePage;

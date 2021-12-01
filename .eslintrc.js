@@ -1,63 +1,52 @@
 module.exports = {
-  globals: {
-    __PATH_PREFIX__: true,
-  },
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    ecmaVersion: 2020,
-    sourceType: 'module',
-    ecmaFeatures: {
-      jsx: true,
-    },
+  env: {
+    browser: true,
+    es2021: true,
   },
   extends: [
-    'airbnb',
     'plugin:react/recommended',
-    'plugin:@typescript-eslint/recommended',
+    'airbnb',
+    // 'airbnb-typescript',
+    'plugin:import/errors',
+    'plugin:import/warnings',
+    'plugin:import/typescript',
     'prettier',
-    'prettier/react',
-    'plugin:prettier/recommended',
   ],
-  plugins: ['react', '@typescript-eslint', 'import', 'react-hooks'],
-  settings: {
-    react: {
-      version: 'detect',
-    },
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaFeatures: { jsx: true },
+    ecmaVersion: 13,
+    sourceType: 'module',
+    // project: './tsconfig.json',
   },
+  plugins: ['import', 'react', 'prettier', '@typescript-eslint'],
   rules: {
-    'react/prop-types': 'off',
-    'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'error',
-    'react/jsx-curly-brace-presence': 'warn',
-    '@typescript-eslint/no-explicit-any': 'off',
-    '@typescript-eslint/no-empty-interface': 'off',
-    '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/camelcase': 'off',
-    '@typescript-eslint/no-unused-vars': ['warn', { args: 'all', argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
-    '@typescript-eslint/no-use-before-define': 'off',
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
-    '@typescript-eslint/ban-types': [
-      'error',
+    'prettier/prettier': 'warn',
+    // prevent issues between prettier and eslint
+    'arrow-body-style': 'off',
+    'prefer-arrow-callback': 'off',
+    // more eslint config
+    'no-unused-vars': ['error', { vars: 'local', args: 'none' }],
+    'no-use-before-define': 'off',
+    // react config
+    'react/jsx-filename-extension': [1, { extensions: ['.tsx'] }],
+    'react/function-component-definition': [
+      2,
       {
-        extendDefaults: true,
-        types: {
-          '{}': false,
-          Function: false,
-        },
+        namedComponents: 'arrow-function',
+        unnamedComponents: 'arrow-function',
       },
     ],
-    'arrow-body-style': ['error', 'as-needed'],
-    'object-shorthand': ['error', 'always'],
-    'prettier/prettier': 'warn',
-    curly: ['warn', 'all'],
-    'consistent-return': 'error',
-    'no-restricted-globals': ['error', 'location', 'history'],
-    // import rules
+    // typescript config
+    '@typescript-eslint/no-use-before-define': ['error'],
+    // import config
+    'import/extensions': ['error', 'ignorePackages', { ts: 'never', tsx: 'never' }],
+    'import/prefer-default-export': 'off',
     'import/no-duplicates': 'error',
     'import/order': [
       'error',
       {
-        groups: ['external', 'builtin', 'internal'],
+        groups: ['builtin', 'external', 'internal', ['parent', 'sibling']],
         pathGroups: [
           {
             pattern: 'react',
@@ -65,7 +54,7 @@ module.exports = {
             position: 'before',
           },
         ],
-        pathGroupsExcludedImportTypes: ['react'],
+        pathGroupsExcludedImportTypes: ['builtin'],
         'newlines-between': 'always',
         alphabetize: {
           order: 'asc',
@@ -73,5 +62,11 @@ module.exports = {
         },
       },
     ],
+  },
+  settings: {
+    'import/resolver': {
+      node: { extensions: ['.js', '.jsx', '.ts', '.tsx'], moduleDirectory: ['node_modules', 'src/'] },
+    },
+    react: { version: 'detect' },
   },
 };

@@ -12,6 +12,7 @@
     "build": "gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
+    "lint": "npx eslint src --ext .js,.jsx,.ts,.tsx",
     "type-check": "./node_modules/typescript/bin/tsc --noEmit --skipLibCheck"
   },
   "dependencies": {
@@ -37,20 +38,19 @@
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
     "@types/styled-components": "^5.1.15",
-    "@typescript-eslint/eslint-plugin": "^5.4.0",
-    "@typescript-eslint/parser": "^5.4.0",
+    "@typescript-eslint/eslint-plugin": "^5.5.0",
+    "@typescript-eslint/parser": "^5.5.0",
     "eslint": "^8.3.0",
     "eslint-config-airbnb": "^19.0.1",
+    "eslint-config-airbnb-typescript": "^16.1.0",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-config-react-app": "^6.0.0",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.27.1",
     "eslint-plugin-react-hooks": "^4.3.0",
-    "eslint-webpack-plugin": "^3.1.1",
     "gatsby-plugin-root-import": "^2.0.8",
-    "prettier": "^2.4.1",
+    "prettier": "^2.5.0",
     "typescript": "^4.5.2"
   }
 }

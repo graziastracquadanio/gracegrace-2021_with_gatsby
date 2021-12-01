@@ -1,3 +1,11 @@
+export const BREAKPOINTS = {
+  mobile: 600,
+  tablet: 1024,
+  laptop: 1280,
+  screen: 1440,
+  big: 1920,
+};
+
 export const COLORS = {
   // primary: {
   //   base: '#bf538d',
@@ -9,16 +17,8 @@ export const COLORS = {
   primaryLight: '#e3bcd6',
 };
 
-export const BREAKPOINTS = {
-  mobile: '600px',
-  tablet: '1024px',
-  laptop: '1280px',
-  screen: '1440px',
-  big: '1920px',
-};
-
-export const FONT = {
+export const FONTS = {
   primary: 'Zilla Slab',
   secondary: 'Open Sans',
-  baseFontSize: 1, // rem
+  baseFontSize: '18px',
 };

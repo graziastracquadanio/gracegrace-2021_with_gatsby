@@ -1,10 +1,10 @@
 import React from 'react';
 
-export default function AboutPage() {
+const AboutPage: React.FC = () => {
   return (
     <div>
       <section>
-        <h1>Hi there, I'm Grazia!</h1>
+        <h1>Hi there, I&apos;m Grazia!</h1>
         <h3>
           I am a front-end developer who loves building cool user-friendly web apps, enjoys discover best practices and
           loves learning and experiment new things. I also really like{' '}
@@ -20,7 +20,7 @@ export default function AboutPage() {
       </section>
 
       <section>
-        <h2>But I'm also...</h2>
+        <h2>But I&apos;m also...</h2>
         <ul>
           <li>
             <p>learning how to play guitar</p>
@@ -43,4 +43,5 @@ export default function AboutPage() {
       </section>
     </div>
   );
-}
+};
+export default AboutPage;

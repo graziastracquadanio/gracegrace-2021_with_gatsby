@@ -1,21 +1,26 @@
-import { FONT } from '../../constants';
 import { css } from 'styled-components';
 
+import { BREAKPOINTS, FONTS } from '../../constants';
+
 const sizes = {
-  h1: FONT.baseFontSize * 2.8,
-  h2: FONT.baseFontSize * 2.4,
-  h3: FONT.baseFontSize * 2,
-  h4: FONT.baseFontSize * 1.6,
-  h5: FONT.baseFontSize * 1.3,
-  h6: FONT.baseFontSize * 1.1,
-  p: FONT.baseFontSize * 1,
+  h1: 3,
+  h2: 2.8,
+  h3: 2.4,
+  h4: 2,
+  h5: 1.6,
+  h6: 1.3,
+  p: 1,
 };
 
-const createFontStyle = (fontSize: number, fontFamily: string = FONT.primary) => {
+const createFontStyle = (fontSize: number, fontFamily: string = FONTS.primary) => {
   return css`
     font-family: ${fontFamily};
     font-weight: 400;
-    font-size: ${FONT.baseFontSize * fontSize}rem;
+    font-size: ${fontSize}rem;
+
+    @media (max-width: ${BREAKPOINTS.mobile - 1}px) {
+      font-size: ${fontSize * 0.8}rem;
+    }
   `;
 };
 
@@ -52,7 +57,7 @@ const TypographyStyle = css`
   }
 
   p {
-    ${createFontStyle(sizes.p, FONT.secondary)}
+    ${createFontStyle(sizes.p, FONTS.secondary)}
     margin-bottom: 0.5em;
 
     &:last-child {

@@ -5,7 +5,7 @@
     "target": "esnext",
     "moduleResolution": "node",
     "jsx": "react",
-    "lib": ["dom", "esnext"],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
@@ -14,8 +14,9 @@
     "esModuleInterop": true,
     "noUnusedLocals": false,
     "skipLibCheck": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "resolveJsonModule": true
   },
   "include": ["src"],
-  "exclude": ["node_modules", "public", ".cache"],
+  "exclude": ["node_modules", "public", ".cache"]
 }

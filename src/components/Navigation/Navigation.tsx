@@ -22,20 +22,22 @@ const NavigationList = styled.ul``;
 
 const NavigationItem = styled.li``;
 
-const NavigatiopItemLink = styled(Link)``;
+const NavigationItemLink = styled(Link)``;
 
-export default () => (
+const Navigation: React.FC = () => (
   <NavigationContainer>
     <NavigationList>
       <NavigationItem>
-        <NavigatiopItemLink to="/about" activeClassName="mod-active">
+        <NavigationItemLink to="/about" activeClassName="mod-active">
           About
-        </NavigatiopItemLink>
+        </NavigationItemLink>
 
-        <NavigatiopItemLink to="/styleguide" activeClassName="mod-active">
+        <NavigationItemLink to="/styleguide" activeClassName="mod-active">
           Styleguide
-        </NavigatiopItemLink>
+        </NavigationItemLink>
       </NavigationItem>
     </NavigationList>
   </NavigationContainer>
 );
+
+export default Navigation;

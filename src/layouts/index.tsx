@@ -2,20 +2,20 @@ import React from 'react';
 
 // import styled from 'styled-components';
 
-import Navigation from 'components/Navigation';
-import GlobalStyle from 'components/GlobalStyle';
+import { GlobalStyle } from '../components/GlobalStyle';
+import { Navigation } from '../components/Navigation';
 
-type MainLayoutProps = {
+type Props = {
   children: React.ReactNode;
 };
 
-export default function MainLayout({ children }: MainLayoutProps) {
-  return (
-    <div>
-      <GlobalStyle />
-      <Navigation />
-      this is going to be the main layout
-      {children}
-    </div>
-  );
-}
+const MainLayout: React.FC<Props> = ({ children }) => (
+  <div>
+    <GlobalStyle />
+    <Navigation />
+    this is going to be the main layout
+    {children}
+  </div>
+);
+
+export default MainLayout;
