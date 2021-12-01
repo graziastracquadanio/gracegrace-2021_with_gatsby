@@ -26,7 +26,7 @@ module.exports = {
     'arrow-body-style': 'off',
     'prefer-arrow-callback': 'off',
     // more eslint config
-    'no-unused-vars': ['error', { vars: 'local', args: 'none' }],
+    'no-unused-vars': ['warn', { vars: 'local', args: 'none' }],
     'no-use-before-define': 'off',
     // react config
     'react/jsx-filename-extension': [1, { extensions: ['.tsx'] }],
@@ -37,8 +37,6 @@ module.exports = {
         unnamedComponents: 'arrow-function',
       },
     ],
-    // typescript config
-    '@typescript-eslint/no-use-before-define': ['error'],
     // import config
     'import/extensions': ['error', 'ignorePackages', { ts: 'never', tsx: 'never' }],
     'import/prefer-default-export': 'off',
@@ -46,7 +44,7 @@ module.exports = {
     'import/order': [
       'error',
       {
-        groups: ['builtin', 'external', 'internal', ['parent', 'sibling']],
+        groups: ['builtin', 'external', 'internal'],
         pathGroups: [
           {
             pattern: 'react',
@@ -65,7 +63,7 @@ module.exports = {
   },
   settings: {
     'import/resolver': {
-      node: { extensions: ['.js', '.jsx', '.ts', '.tsx'], moduleDirectory: ['node_modules', 'src/'] },
+      node: { extensions: ['.js', '.jsx', '.ts', '.tsx'], moduleDirectory: ['node_modules', 'src'] },
     },
     react: { version: 'detect' },
   },

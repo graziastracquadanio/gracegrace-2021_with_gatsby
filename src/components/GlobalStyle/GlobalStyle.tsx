@@ -1,6 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
-import { FONTS } from '../../constants';
+import { FONTS } from 'constants/fonts';
+
 import ResetStyle from './ResetStyle';
 import TypographyStyle from './TypographyStyle';
 

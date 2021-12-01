@@ -2,8 +2,8 @@ import React from 'react';
 
 // import styled from 'styled-components';
 
-import { GlobalStyle } from '../components/GlobalStyle';
-import { Navigation } from '../components/Navigation';
+import { GlobalStyle } from 'components/GlobalStyle';
+import { Navigation } from 'components/Navigation';
 
 type Props = {
   children: React.ReactNode;

@@ -3,6 +3,22 @@ import React from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 
+const Navigation: React.FC = () => (
+  <NavigationContainer>
+    <NavigationList>
+      <NavigationItem>
+        <NavigationItemLink to="/about" activeClassName="mod-active">
+          About
+        </NavigationItemLink>
+
+        <NavigationItemLink to="/styleguide" activeClassName="mod-active">
+          Styleguide
+        </NavigationItemLink>
+      </NavigationItem>
+    </NavigationList>
+  </NavigationContainer>
+);
+
 const NavigationContainer = styled.nav`
   width: 100%;
   position: sticky;
@@ -23,21 +39,5 @@ const NavigationList = styled.ul``;
 const NavigationItem = styled.li``;
 
 const NavigationItemLink = styled(Link)``;
-
-const Navigation: React.FC = () => (
-  <NavigationContainer>
-    <NavigationList>
-      <NavigationItem>
-        <NavigationItemLink to="/about" activeClassName="mod-active">
-          About
-        </NavigationItemLink>
-
-        <NavigationItemLink to="/styleguide" activeClassName="mod-active">
-          Styleguide
-        </NavigationItemLink>
-      </NavigationItem>
-    </NavigationList>
-  </NavigationContainer>
-);
 
 export default Navigation;

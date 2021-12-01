@@ -1,6 +1,7 @@
 import { css } from 'styled-components';
 
-import { BREAKPOINTS, FONTS } from '../../constants';
+import { BREAKPOINTS } from 'constants/breakpoints';
+import { FONTS } from 'constants/fonts';
 
 const sizes = {
   h1: 3,

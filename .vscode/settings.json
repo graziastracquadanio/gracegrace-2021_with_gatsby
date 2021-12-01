@@ -21,5 +21,5 @@
   },
   // always show eslint in the statusbar
   "eslint.alwaysShowStatus": true,
-  "cSpell.words": ["Styleguide"]
+  "cSpell.words": ["fontsource", "gracegrace", "Grazia", "Styleguide", "zilla"]
 }
