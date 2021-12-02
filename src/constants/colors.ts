@@ -1,4 +1,9 @@
-export const COLORS = {
+export type Color = {
+  light: string;
+  dark: string;
+};
+
+export const COLORS: { [key: string]: Color } = {
   primary: {
     light: '#bf538d',
     dark: '',
@@ -12,8 +17,8 @@ export const COLORS = {
     dark: '',
   },
   text: {
-    light: '',
-    dark: '',
+    light: 'deeppink',
+    dark: 'green',
   },
   background: {
     light: '',

@@ -4,18 +4,19 @@ import React from 'react';
 
 import { GlobalStyle } from 'components/GlobalStyle';
 import { Navigation } from 'components/Navigation';
+import { ThemeProvider } from 'contexts/ThemeContext';
 
 type Props = {
   children: React.ReactNode;
 };
 
 const MainLayout: React.FC<Props> = ({ children }) => (
-  <div>
+  <ThemeProvider>
     <GlobalStyle />
     <Navigation />
     this is going to be the main layout
     {children}
-  </div>
+  </ThemeProvider>
 );
 
 export default MainLayout;

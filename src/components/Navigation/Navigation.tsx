@@ -3,6 +3,8 @@ import React from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 
+import DarkToggle from './DarkToggle';
+
 const Navigation: React.FC = () => (
   <NavigationContainer>
     <NavigationList>
@@ -15,6 +17,7 @@ const Navigation: React.FC = () => (
           Styleguide
         </NavigationItemLink>
       </NavigationItem>
+      <DarkToggle />
     </NavigationList>
   </NavigationContainer>
 );

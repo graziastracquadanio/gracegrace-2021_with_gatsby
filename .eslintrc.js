@@ -29,7 +29,7 @@ module.exports = {
     'no-unused-vars': ['warn', { vars: 'local', args: 'none' }],
     'no-use-before-define': 'off',
     // react config
-    'react/jsx-filename-extension': [1, { extensions: ['.tsx'] }],
+    'react/jsx-filename-extension': [1, { extensions: ['.tsx', '.js'] }],
     'react/function-component-definition': [
       2,
       {
@@ -38,7 +38,7 @@ module.exports = {
       },
     ],
     // import config
-    'import/extensions': ['error', 'ignorePackages', { ts: 'never', tsx: 'never' }],
+    'import/extensions': ['error', 'ignorePackages', { ts: 'never', tsx: 'never', js: 'never' }],
     'import/prefer-default-export': 'off',
     'import/no-duplicates': 'error',
     'import/order': [

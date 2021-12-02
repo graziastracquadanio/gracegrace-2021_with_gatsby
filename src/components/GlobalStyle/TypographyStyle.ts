@@ -18,6 +18,7 @@ const createFontStyle = (fontSize: number, fontFamily: string = FONTS.primary) =
     font-family: ${fontFamily};
     font-weight: 400;
     font-size: ${fontSize}rem;
+    color: var(--color-text);
 
     @media (max-width: ${BREAKPOINTS.mobile - 1}px) {
       font-size: ${fontSize * 0.8}rem;
