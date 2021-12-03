@@ -41,6 +41,7 @@ module.exports = {
     'import/extensions': ['error', 'ignorePackages', { ts: 'never', tsx: 'never', js: 'never' }],
     'import/prefer-default-export': 'off',
     'import/no-duplicates': 'error',
+    'import/no-useless-path-segments': ['error', { noUselessIndex: true }],
     'import/order': [
       'error',
       {

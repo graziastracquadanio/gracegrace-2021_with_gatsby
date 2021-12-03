@@ -2,8 +2,8 @@ import React from 'react';
 
 // import Terser from 'terser';
 
-import Layout from './src/layouts';
 import { COLOR_MODE_KEY, COLORS, INITIAL_COLOR_MODE_CSS_PROP } from './src/constants/colors';
+import Layout from './src/layouts';
 
 function setColorsByTheme() {
   const colors = '🌈';

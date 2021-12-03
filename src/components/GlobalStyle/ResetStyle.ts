@@ -15,6 +15,7 @@ const ResetStyle = css`
   }
   body {
     margin: 0;
+    background-color: var(--color-background);
   }
   [tabindex='-1']:focus {
     outline: 0 !important;

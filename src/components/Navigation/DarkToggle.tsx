@@ -10,7 +10,7 @@ const DarkToggle: React.FC = () => {
   };
 
   return (
-    <button type="button" onClick={toggleColorMode}>
+    <button type="button" role="button" onClick={toggleColorMode}>
       {colorMode}
     </button>
   );

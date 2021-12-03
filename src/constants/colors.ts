@@ -3,39 +3,44 @@ export type Color = {
   dark: string;
 };
 
+// to use the color variables in css use the prefix `--color` (i.e. `--color-primary`)
+// the colors are based on the theme selected through the ThemeContext
 export const COLORS: { [key: string]: Color } = {
   primary: {
     light: '#bf538d',
-    dark: '',
+    dark: 'hsl(260, 100%, 80%)',
   },
   secondary: {
     light: '',
-    dark: '',
+    dark: 'hsl(290, 100%, 80%)',
   },
   accent: {
     light: '',
-    dark: '',
+    dark: 'hsl(290, 100%, 80%)',
   },
   text: {
-    light: 'deeppink',
-    dark: 'green',
+    light: 'rgba(0,0,0,.5)',
+    dark: 'hsl(210, 50%, 96%)',
   },
   background: {
+    light: '#f3f0f0',
+    dark: 'hsl(230, 25%, 18%)',
+  },
+  muted: {
     light: '',
-    dark: '',
+    dark: 'hsla(230, 20%, 0%, 20%)',
   },
-  // Grays, scaling from least-noticeable to most-noticeable
-  gray300: {
-    light: 'hsl(0deg, 0%, 70%)',
-    dark: 'hsl(0deg, 0%, 30%)',
+  highlight: {
+    light: '',
+    dark: 'hsl(260, 20%, 40%)',
   },
-  gray500: {
-    light: 'hsl(0deg, 0%, 50%)',
-    dark: 'hsl(0deg, 0%, 50%)',
+  darken: {
+    light: '',
+    dark: 'rgba(0, 0, 0, 0.25)',
   },
-  gray700: {
-    light: 'hsl(0deg, 0%, 30%)',
-    dark: 'hsl(0deg, 0%, 70%)',
+  gray: {
+    light: '',
+    dark: 'hsl(210, 50%, 60%)',
   },
 };
 

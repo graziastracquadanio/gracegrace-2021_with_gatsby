@@ -1,7 +1,6 @@
 import { css } from 'styled-components';
 
-import { BREAKPOINTS } from 'constants/breakpoints';
-import { FONTS } from 'constants/fonts';
+import { BREAKPOINTS } from 'constants/css-variables';
 
 const sizes = {
   h1: 3,
@@ -13,53 +12,63 @@ const sizes = {
   p: 1,
 };
 
-const createFontStyle = (fontSize: number, fontFamily: string = FONTS.primary) => {
-  return css`
-    font-family: ${fontFamily};
-    font-weight: 400;
-    font-size: ${fontSize}rem;
+const TypographyStyle = css`
+  body {
+    font-size: var(--font-base-font-size);
     color: var(--color-text);
 
-    @media (max-width: ${BREAKPOINTS.mobile - 1}px) {
-      font-size: ${fontSize * 0.8}rem;
+    @media (min-width: ${BREAKPOINTS.medium}) {
+      font-size: var(--font-base-font-size-m);
     }
-  `;
-};
 
-const TypographyStyle = css`
+    @media (min-width: ${BREAKPOINTS.large}) {
+      font-size: var(--font-base-font-size-l);
+    }
+  }
+
   // prettier-ignore
-  h1, h2, h3, h4, h5, h6, p {
+  h1, h2, h3, h4, h5, h6 {
     display: block;
     margin: 0;
     line-height: 1.2;
+    font-family: var(--fonts-primary);
+    font-weight: 400;
+    color: var(--color-text);
+    transition: color var(--theme-transition);
   }
 
   h1 {
-    ${createFontStyle(sizes.h1)}
+    font-size: ${sizes.h1}em;
   }
 
   h2 {
-    ${createFontStyle(sizes.h2)}
+    font-size: ${sizes.h2}em;
   }
 
   h3 {
-    ${createFontStyle(sizes.h3)}
+    font-size: ${sizes.h3}em;
   }
 
   h4 {
-    ${createFontStyle(sizes.h4)}
+    font-size: ${sizes.h4}em;
   }
 
   h5 {
-    ${createFontStyle(sizes.h5)}
+    font-size: ${sizes.h5}em;
   }
 
   h6 {
-    ${createFontStyle(sizes.h6)}
+    font-size: ${sizes.h6}em;
   }
 
   p {
-    ${createFontStyle(sizes.p, FONTS.secondary)}
+    font-family: var(--fonts-secondary);
+    font-weight: 400;
+    font-size: ${sizes.p}em;
+    color: var(--color-text);
+    transition: color 0.3s ease;
+    line-height: 1.2;
+    margin: 0;
     margin-bottom: 0.5em;
 
     &:last-child {
