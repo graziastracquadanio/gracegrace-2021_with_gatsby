@@ -1,14 +1,9 @@
 import { css } from 'styled-components';
 
-import { BREAKPOINTS } from 'constants/css-variables';
+import { BREAKPOINTS, HEADINGS } from 'constants/css-variables';
 
 const sizes = {
-  h1: 3,
-  h2: 2.8,
-  h3: 2.4,
-  h4: 2,
-  h5: 1.6,
-  h6: 1.3,
+  ...HEADINGS,
   p: 1,
 };
 
@@ -31,8 +26,9 @@ const TypographyStyle = css`
     display: block;
     margin: 0;
     line-height: 1.2;
-    font-family: var(--fonts-primary);
+    font-family: var(--font-primary);
     font-weight: 400;
+    line-height: 1.5;
     color: var(--color-text);
     transition: color var(--theme-transition);
   }
@@ -66,8 +62,8 @@ const TypographyStyle = css`
     font-weight: 400;
     font-size: ${sizes.p}em;
     color: var(--color-text);
-    transition: color 0.3s ease;
-    line-height: 1.2;
+    transition: color var(--theme-transition);
+    line-height: 1.5;
     margin: 0;
     margin-bottom: 0.5em;
 

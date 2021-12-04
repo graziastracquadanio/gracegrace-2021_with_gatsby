@@ -1,26 +1,30 @@
 import React from 'react';
 
+import styled from 'styled-components';
+
+import { TextLink } from 'components/TextLink';
+
 const AboutPage: React.FC = () => {
   return (
     <div>
       <section>
         <h1>Hi there, I&apos;m Grazia!</h1>
-        <h3>
+        <StyledH6>
           I am a front-end developer who loves building cool user-friendly web apps, enjoys discover best practices and
           loves learning and experiment new things. I also really like{' '}
-          <a href="https://codepen.io/graziastrax" target="_blank" rel="noreferrer">
+          <TextLink to="https://codepen.io/graziastrax" target="_blank" rel="noreferrer">
             drawing with code
-          </a>
+          </TextLink>
           .
-        </h3>
-        <h3>
+        </StyledH6>
+        <StyledH6>
           In the last {new Date().getFullYear() - 2012} years have been building web apps using Angular and React and
           many other libraries and tools. I also love animations.
-        </h3>
+        </StyledH6>
       </section>
 
       <section>
-        <h2>But I&apos;m also...</h2>
+        <p>But I&apos;m also...</p>
         <ul>
           <li>
             <p>learning how to play guitar</p>
@@ -36,7 +40,7 @@ const AboutPage: React.FC = () => {
           </li>
           <li>
             <p>
-              in love with <a href="/recipes">healthy vegan food</a>
+              in love with <TextLink to="/recipes">healthy vegan food</TextLink>
             </p>
           </li>
         </ul>
@@ -44,4 +48,9 @@ const AboutPage: React.FC = () => {
     </div>
   );
 };
+
+const StyledH6 = styled.h6`
+  font-family: var(--font-secondary);
+`;
+
 export default AboutPage;

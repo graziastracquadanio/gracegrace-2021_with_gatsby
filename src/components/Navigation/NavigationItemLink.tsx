@@ -12,7 +12,7 @@ const NavigationItemLink: React.FC<Props> = ({ to, children }) => (
 );
 
 const NavigationLink = styled(Link)`
-  --navigation-link-transition-timing: 0.2s;
+  --navigation-link-transition: 0.2s linear 0.15s;
   --navigation-link-color: var(--color-text);
   --navigation-link-color-active: var(--color-primary);
 
@@ -41,8 +41,8 @@ const NavigationLink = styled(Link)`
     height: 3px;
     transform-origin: 50% 50%;
     transform: scaleX(0);
-    transition: background var(--navigation-link-transition-timing) linear,
-      transform var(--navigation-link-transition-timing) linear 0.15s;
+    transition: color var(--theme-transition), background var(--theme-transition),
+      transform var(--navigation-link-transition);
     background-color: var(--navigation-link-color);
   }
 

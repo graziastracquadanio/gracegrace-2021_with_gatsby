@@ -31,7 +31,7 @@ const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--color-background, deeppink);
+  background-color: var(--color-background);
   transition: background var(--theme-transition);
 
   padding: 0 1em;

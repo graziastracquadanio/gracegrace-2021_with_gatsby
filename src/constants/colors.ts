@@ -5,41 +5,43 @@ export type Color = {
 
 // to use the color variables in css use the prefix `--color` (i.e. `--color-primary`)
 // the colors are based on the theme selected through the ThemeContext
+// https://flatuicolors.com/palette/in
 export const COLORS: { [key: string]: Color } = {
   primary: {
-    light: '#bf538d',
+    light: 'rgba(179, 55, 113, 1.0)',
     dark: 'hsl(260, 100%, 80%)',
   },
   secondary: {
-    light: '',
+    light: 'rgba(130, 88, 159, 1.0)',
     dark: 'hsl(290, 100%, 80%)',
   },
   accent: {
-    light: '',
-    dark: 'hsl(290, 100%, 80%)',
+    light: 'rgba(255, 202, 40, 1.0)',
+    dark: 'rgba(154, 236, 219,1.0)',
+  },
+  smooth: {
+    light: '#dcedc8',
+    dark: 'transparent',
   },
   text: {
-    light: 'rgba(0,0,0,.5)',
+    // light: 'rgba(44, 58, 71, 1.0)',
+    light: '#5a5c65',
     dark: 'hsl(210, 50%, 96%)',
   },
   background: {
-    light: '#f3f0f0',
+    light: 'hsl(0, 11%, 95%)',
     dark: 'hsl(230, 25%, 18%)',
   },
   muted: {
-    light: '',
+    light: 'rgba(255, 255, 255, 0.4)',
     dark: 'hsla(230, 20%, 0%, 20%)',
   },
   highlight: {
-    light: '',
+    light: 'rgba(214, 162, 232, 0.6)',
     dark: 'hsl(260, 20%, 40%)',
   },
-  darken: {
-    light: '',
-    dark: 'rgba(0, 0, 0, 0.25)',
-  },
   gray: {
-    light: '',
+    light: 'rgba(209, 216, 224,1.0)',
     dark: 'hsl(210, 50%, 60%)',
   },
 };

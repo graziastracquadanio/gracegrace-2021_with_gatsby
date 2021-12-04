@@ -37,6 +37,7 @@ module.exports = {
         unnamedComponents: 'arrow-function',
       },
     ],
+    'react/jsx-props-no-spreading': 'off',
     // import config
     'import/extensions': ['error', 'ignorePackages', { ts: 'never', tsx: 'never', js: 'never' }],
     'import/prefer-default-export': 'off',

@@ -15,6 +15,9 @@ const Navigation: React.FC = () => (
         <NavigationItemLink to="/styleguide">Styleguide</NavigationItemLink>
       </NavigationItem>
       <NavigationItem>
+        <NavigationItemLink to="/recipe">Recipe test</NavigationItemLink>
+      </NavigationItem>
+      <NavigationItem>
         <DarkToggle />
       </NavigationItem>
     </NavigationList>

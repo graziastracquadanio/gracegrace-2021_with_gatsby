@@ -4,6 +4,11 @@
 
 export { COLORS } from './colors';
 
+export const COLOR_HELPERS = {
+  lighten: 'rgba(255, 255, 255, 0.25)',
+  darken: 'rgba(0, 0, 0, 0.25)',
+};
+
 // use min-width in the media queries
 export const BREAKPOINTS = {
   // small: 0, // Small devices (<688px) DON'T USE THIS because it should be the default
@@ -25,6 +30,15 @@ export const FONTS = {
   baseFontSizeL: '18px',
 };
 
+export const HEADINGS = {
+  h1: 4,
+  h2: 3.4,
+  h3: 2.8,
+  h4: 2.2,
+  h5: 1.8,
+  h6: 1.4,
+};
+
 // prefix `--layout-`
 export const LAYOUT = {
   contentMaxWidth: '1024px',
@@ -38,5 +52,5 @@ export const ZINDEX = {
 };
 
 export const THEME = {
-  transition: '.6s ease-out',
+  transition: '.04s ease-out',
 };

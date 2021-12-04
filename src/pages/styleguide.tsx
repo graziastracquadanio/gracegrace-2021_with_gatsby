@@ -1,50 +1,101 @@
+/* eslint-disable react/no-danger */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 
 import styled from 'styled-components';
 
-import { BREAKPOINTS, COLORS } from 'constants/css-variables';
-
-const TypographyContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-`;
+import { TextLink } from 'components/TextLink';
+import { BREAKPOINTS, COLORS, HEADINGS } from 'constants/css-variables';
 
 const StyleguidePage: React.FC = () => {
   const colors = Object.keys(COLORS).map((color) => (
     <ColorItem key={`color-${color}`}>
       <ColorItemBackground color={color} />
-      <p>{color}</p>
+      <p>
+        <small>{color}</small>
+      </p>
     </ColorItem>
   ));
 
   return (
     <>
-      <SectionContainer>
+      <Section>
+        <Title>Colors</Title>
         <ColorsList>{colors}</ColorsList>
-      </SectionContainer>
+      </Section>
+      <Section>
+        <Title>Headings</Title>
+        <HorizontalList>
+          {Object.entries(HEADINGS).map(([h, size]) => {
+            const heading = `<${h}>${size}em</${h}>`;
+            return <span key={`test-heading-size-${h}`} dangerouslySetInnerHTML={{ __html: heading }} />;
+          })}
+        </HorizontalList>
+        <VerticalList>
+          {Object.entries(HEADINGS).map(([h]) => {
+            const heading = `<${h}>This is a test ${h.toUpperCase()}</${h}>`;
+            return (
+              <div key={`test-heading-${h}`}>
+                <div dangerouslySetInnerHTML={{ __html: heading }} />
+                <p>
+                  Shallots portobello mushrooms black beans salty peanut butter crunch spring thyme peach strawberry
+                  mango cilantro lime vinaigrette dragon fruit.
+                </p>
+              </div>
+            );
+          })}
+        </VerticalList>
+      </Section>
 
-      <SectionContainer>
-        <TypographyContainer>
-          <h1>H1 - Heading one</h1>
-          <h2>H2 - Heading two</h2>
-          <h3>H3 - Heading three</h3>
-          <h4>H4 - Heading four</h4>
-          <h5>H5 - Heading five</h5>
-          <h6>H6 - Heading six</h6>
-          <p>P - Paragraph text</p>
-          <p>
-            <a>Link inside a paragraph</a>
-          </p>
-        </TypographyContainer>
-      </SectionContainer>
+      <Section>
+        <Title>P - Paragraph text</Title>
+        <p>
+          Pinch of yum peanut butter comforting pumpkin spice latte mediterranean luxury bowl green tea lime ginger
+          lemongrass banana <TextLink to="">this is how a link looks between a banana and an avocado</TextLink> avocado
+          dressing drizzle mocha chocolate habanero golden cauliflower eating together grapefruit pumpkin sweet potato
+          black bean burrito kale almonds. Black bean wraps couscous green pepper pineapple salsa a delicious meal
+          Malaysian garlic sriracha noodles dark chocolate chai tea oranges tasty açai picnic jalapeño ginger tofu soy
+          milk rich coconut cream almond milk naga viper chilies farro platter broccoli fall appetizer.
+        </p>
+        <p>
+          Casserole lentils lime mango crisp double dark chocolate spiced peppermint blast mint hazelnut shiitake
+          ultimate winter orange edamame parsley black beans sweet potato bite sized dark and stormy red amazon pepper
+          walnut mushroom tart Thai dragon pepper hemp seeds banana bread bruschetta. dessert.
+        </p>
+        <p>
+          <small>
+            While I test the small text you can check some{' '}
+            <TextLink to="https://www.tastybite.com/2016/04/5-things-you-didnt-know-about-cilantro/" target="_blank">
+              fun facts about cilantro and why you probably like it or not
+            </TextLink>
+            .
+          </small>
+        </p>
+
+        <p>
+          <small>
+            This delicious text was provided by{' '}
+            <TextLink to="https://veganipsum.me/" target="_blank" rel="noreferrer">
+              veganipsum.me
+            </TextLink>
+          </small>
+        </p>
+      </Section>
     </>
   );
 };
 
-const SectionContainer = styled.section`
-  margin-bottom: 2em;
+const Section = styled.section`
+  background-color: var(--color-muted);
+  transition: background var(--theme-transition);
+  padding: 1em;
+`;
+
+const Title = styled.h3`
+  color: var(--color-primary);
+  border-bottom: 2px solid var(--color-primary);
+  margin-bottom: 0.5em;
+  transition: all var(--theme-transition);
 `;
 
 const ColorsList = styled.ul`
@@ -72,6 +123,20 @@ const ColorItemBackground = styled.div`
   width: 100%;
   height: 4rem;
   background-color: var(${(props) => `--color-${props.color}`});
+  transition: background var(--theme-transition);
+`;
+
+const HorizontalList = styled.div`
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 1rem;
+`;
+
+const VerticalList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 `;
 
 export default StyleguidePage;
