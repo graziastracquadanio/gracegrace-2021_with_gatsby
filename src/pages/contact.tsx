@@ -3,7 +3,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { TextLink } from 'components/TextLink';
-import { BREAKPOINTS } from 'constants/css-variables';
 
 const ContactPage: React.FC = () => {
   return (

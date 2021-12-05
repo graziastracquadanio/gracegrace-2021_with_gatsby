@@ -33,13 +33,19 @@ const MainLayout: React.FC<PageProps> = ({ children, path }) => (
         {children}
         {/* </motion.div> */}
       </ContentLimiterContainer>
+      <Footer>
+        <p>
+          <small>
+            This website has been made with <span>&hearts;</span> a lot of it!
+          </small>
+        </p>
+      </Footer>
     </LayoutContainer>
   </ThemeProvider>
 );
 
 const LayoutContainer = styled.div`
   width: 100%;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -56,9 +62,18 @@ const LayoutContainer = styled.div`
 const ContentLimiterContainer = styled.div`
   width: 100%;
   max-width: var(--layout-content-max-width);
-  display: grid;
-  grid-template-columns: 100%;
-  row-gap: 2em;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  padding-bottom: 4em;
+`;
+
+const Footer = styled.footer`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0 0.25em;
 `;
 
 export default MainLayout;
