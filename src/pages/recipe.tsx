@@ -61,7 +61,7 @@ const RecipePage: React.FC = () => {
 
 const Container = styled.div`
   display: grid;
-  grid-gap: 1em;
+  grid-row-gap: 2em;
   grid-template-areas:
     'title'
     'tags'
@@ -71,6 +71,8 @@ const Container = styled.div`
 
   @media (min-width: ${BREAKPOINTS.medium}) {
     grid-template-columns: 14rem auto;
+    grid-row-gap: 1em;
+    grid-column-gap: 2em;
     grid-template-areas:
       'title title'
       'tags tags'
@@ -99,6 +101,9 @@ const Picture = styled.img`
 
 const Ingredients = styled.div`
   grid-area: ingredients;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 `;
 
 const Ingredient = styled.li`
@@ -113,6 +118,9 @@ const Ingredient = styled.li`
 
 const Instructions = styled.div`
   grid-area: instructions;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 `;
 
 const InstructionsList = styled.ul`

@@ -25,10 +25,9 @@ const TypographyStyle = css`
   h1, h2, h3, h4, h5, h6 {
     display: block;
     margin: 0;
-    line-height: 1.2;
     font-family: var(--font-primary);
     font-weight: 400;
-    line-height: 1.5;
+    line-height: 1.2;
     color: var(--color-text);
     transition: color var(--theme-transition);
   }
@@ -75,6 +74,19 @@ const TypographyStyle = css`
   b,
   strong {
     font-weight: bolder; // Add the correct font weight in Chrome, Edge, and Safari
+  }
+
+  mark {
+    color: inherit;
+    background-color: var(--color-smooth, var(--color-highlight));
+  }
+
+  code {
+    padding: 0 0.25em;
+    border-radius: 3px;
+    background-color: var(--color-gray100);
+    color: var(--color-text);
+    transition: background var(--theme-transition);
   }
 `;
 

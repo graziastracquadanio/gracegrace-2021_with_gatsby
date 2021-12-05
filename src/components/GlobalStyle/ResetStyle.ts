@@ -43,6 +43,10 @@ const ResetStyle = css`
     margin: 0;
   }
 
+  li ::marker {
+    font-size: 1.6em;
+  }
+
   table {
     border-collapse: collapse;
   }

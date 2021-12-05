@@ -31,8 +31,10 @@ function setColorsByTheme() {
   Object.entries(colors).forEach((color) => {
     const [name, colorByTheme] = color;
     const cssVarName = `--color-${name}`;
-
-    root.style.setProperty(cssVarName, colorByTheme[colorMode]);
+    const colorValue = colorByTheme[colorMode];
+    if (colorValue) {
+      root.style.setProperty(cssVarName, colorValue);
+    }
   });
 }
 
@@ -68,9 +70,11 @@ const FallbackStyles = () => {
     --color-background: white;`
   */
 
-  const cssVariableString = Object.entries(COLORS).reduce((acc, [name, colorByTheme]) => {
-    return `${acc}\n--color-${name}: ${colorByTheme.light};`;
-  }, '');
+  const cssVariableString = Object.entries(COLORS).reduce(
+    (acc, [name, colorByTheme]) =>
+      colorByTheme.light && colorByTheme.dark && `${acc}\n--color-${name}: ${colorByTheme.light};`,
+    '',
+  );
 
   const wrappedInSelector = `html { ${cssVariableString} }`;
 

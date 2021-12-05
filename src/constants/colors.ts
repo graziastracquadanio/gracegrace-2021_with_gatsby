@@ -1,6 +1,6 @@
 export type Color = {
   light: string;
-  dark: string;
+  dark: string | null;
 };
 
 // to use the color variables in css use the prefix `--color` (i.e. `--color-primary`)
@@ -21,7 +21,7 @@ export const COLORS: { [key: string]: Color } = {
   },
   smooth: {
     light: '#dcedc8',
-    dark: 'transparent',
+    dark: null, // deliberately left empty, use a fallback for specific cases
   },
   text: {
     // light: 'rgba(44, 58, 71, 1.0)',
@@ -41,8 +41,12 @@ export const COLORS: { [key: string]: Color } = {
     dark: 'hsl(260, 20%, 40%)',
   },
   gray: {
-    light: 'rgba(209, 216, 224,1.0)',
+    light: 'rgba(209, 216, 224, 1.0)',
     dark: 'hsl(210, 50%, 60%)',
+  },
+  gray100: {
+    light: 'rgba(223, 228, 234, 1.0)',
+    dark: 'hsl(210, 50%, 30%)',
   },
 };
 

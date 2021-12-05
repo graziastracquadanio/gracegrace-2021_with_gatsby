@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { ThemeProvider as StyledThemeProvider } from 'styled-components';
+
 import { COLOR_MODE_KEY, Color, COLORS, INITIAL_COLOR_MODE_CSS_PROP } from 'constants/colors';
 
 export type ThemeProps = {
@@ -26,7 +28,11 @@ export const ThemeProvider: React.FC = ({ children }) => {
       localStorage.setItem(COLOR_MODE_KEY, newValue);
       Object.entries(COLORS).forEach(([name, colorByTheme]) => {
         const cssVarName = `--color-${name}`;
-        root.style.setProperty(cssVarName, colorByTheme[newValue]);
+        if (colorByTheme[newValue]) {
+          root.style.setProperty(cssVarName, colorByTheme[newValue]);
+        } else {
+          root.style.removeProperty(cssVarName);
+        }
       });
 
       rawSetColorMode(newValue);
@@ -38,5 +44,9 @@ export const ThemeProvider: React.FC = ({ children }) => {
     };
   }, [colorMode, rawSetColorMode]);
 
-  return <ThemeContext.Provider value={contextValue}>{children}</ThemeContext.Provider>;
+  return (
+    <ThemeContext.Provider value={contextValue}>
+      <StyledThemeProvider theme={{ colorMode }}>{children}</StyledThemeProvider>
+    </ThemeContext.Provider>
+  );
 };

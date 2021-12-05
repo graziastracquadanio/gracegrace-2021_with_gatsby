@@ -6,9 +6,11 @@ import { TextLink } from 'components/TextLink';
 
 const AboutPage: React.FC = () => {
   return (
-    <div>
+    <LayoutContainer>
       <section>
         <h1>Hi there, I&apos;m Grazia!</h1>
+      </section>
+      <section>
         <StyledH6>
           I am a front-end developer who loves building cool user-friendly web apps, enjoys discover best practices and
           loves learning and experiment new things. I also really like{' '}
@@ -24,33 +26,44 @@ const AboutPage: React.FC = () => {
       </section>
 
       <section>
-        <p>But I&apos;m also...</p>
-        <ul>
+        <h4>But I&apos;m also...</h4>
+        <StyledList>
           <li>
-            <p>learning how to play guitar</p>
+            <StyledH6>learning to play guitar</StyledH6>
           </li>
           <li>
-            <p>learning surfing</p>
+            <StyledH6>learning surfing in order to be a veeery-small-waves-pro-surfer</StyledH6>
           </li>
           <li>
-            <p>full time travelling around Spain and Portugal</p>
+            <StyledH6>doing lot of running</StyledH6>
           </li>
           <li>
-            <p>doing lot of running</p>
-          </li>
-          <li>
-            <p>
+            <StyledH6>
               in love with <TextLink to="/recipes">healthy vegan food</TextLink>
-            </p>
+            </StyledH6>
           </li>
-        </ul>
+        </StyledList>
       </section>
-    </div>
+    </LayoutContainer>
   );
 };
 
+const LayoutContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+`;
+
+const StyledList = styled.ul`
+  list-style: disc;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  padding-inline-start: 2em;
+`;
+
 const StyledH6 = styled.h6`
   font-family: var(--font-secondary);
+  line-height: 1.5;
 `;
 
 export default AboutPage;

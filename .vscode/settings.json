@@ -21,5 +21,8 @@
   },
   // always show eslint in the statusbar
   "eslint.alwaysShowStatus": true,
-  "cSpell.words": ["fontsource", "gracegrace", "Grazia", "Styleguide", "zilla", "ZINDEX"]
+  "cSpell.words": ["fontsource", "gracegrace", "Grazia", "Styleguide", "zilla", "ZINDEX"],
+  "[xml]": {
+    "editor.defaultFormatter": "DotJoshJohnson.xml"
+  }
 }

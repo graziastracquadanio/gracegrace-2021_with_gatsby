@@ -12,13 +12,17 @@ const StyleguidePage: React.FC = () => {
     <ColorItem key={`color-${color}`}>
       <ColorItemBackground color={color} />
       <p>
-        <small>{color}</small>
+        <small>{color}</small>{' '}
+        <small>
+          <code>{getComputedStyle(document.documentElement).getPropertyValue(`--color-${color}`)}</code>
+        </small>
       </p>
     </ColorItem>
   ));
 
   return (
-    <>
+    <LayoutContainer>
+      <h6>This is a place where I play and test the style and mainly have fun.</h6>
       <Section>
         <Title>Colors</Title>
         <ColorsList>{colors}</ColorsList>
@@ -58,18 +62,29 @@ const StyleguidePage: React.FC = () => {
           milk rich coconut cream almond milk naga viper chilies farro platter broccoli fall appetizer.
         </p>
         <p>
+          Albert Einstein is credited with saying,{' '}
+          <mark>
+            “Nothing will benefit human health and increase the chances for survival of life on Earth as much as the
+            evolution to a vegetarian diet.”
+          </mark>
+        </p>
+        <p>
           Casserole lentils lime mango crisp double dark chocolate spiced peppermint blast mint hazelnut shiitake
           ultimate winter orange edamame parsley black beans sweet potato bite sized dark and stormy red amazon pepper
           walnut mushroom tart Thai dragon pepper hemp seeds banana bread bruschetta. dessert.
         </p>
         <p>
           <small>
-            While I test the small text you can check some{' '}
+            While I test how small text looks like with links and stuff you can check some{' '}
             <TextLink to="https://www.tastybite.com/2016/04/5-things-you-didnt-know-about-cilantro/" target="_blank">
               fun facts about cilantro and why you probably like it or not
             </TextLink>
             .
           </small>
+        </p>
+
+        <p>
+          Also I need to test how the code looks, so.... How great would it be if <code>npm install -g veganism</code>?
         </p>
 
         <p>
@@ -81,9 +96,14 @@ const StyleguidePage: React.FC = () => {
           </small>
         </p>
       </Section>
-    </>
+    </LayoutContainer>
   );
 };
+
+const LayoutContainer = styled.div`
+  display: grid;
+  grid-gap: 1em;
+`;
 
 const Section = styled.section`
   background-color: var(--color-muted);

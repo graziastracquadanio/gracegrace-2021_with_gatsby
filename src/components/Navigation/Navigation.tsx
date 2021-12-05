@@ -1,30 +1,32 @@
 import React from 'react';
 
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
-import DarkToggle from './DarkToggle';
 import NavigationItemLink from './NavigationItemLink';
+import ThemeToggle from './ThemeToggle';
 
 const Navigation: React.FC = () => (
-  <NavigationContainer>
+  <NavigationContainer
+    initial={{ translateY: '-100%' }}
+    animate={{ translateY: 0 }}
+    transition={{
+      ease: 'easeOut',
+      duration: 0.3,
+      delay: 1,
+    }}
+  >
     <NavigationList>
-      <NavigationItem>
-        <NavigationItemLink to="/about">About</NavigationItemLink>
-      </NavigationItem>
-      <NavigationItem>
-        <NavigationItemLink to="/styleguide">Styleguide</NavigationItemLink>
-      </NavigationItem>
-      <NavigationItem>
-        <NavigationItemLink to="/recipe">Recipe test</NavigationItemLink>
-      </NavigationItem>
-      <NavigationItem>
-        <DarkToggle />
-      </NavigationItem>
+      <NavigationItemLink to="/about">About</NavigationItemLink>
+      <NavigationItemLink to="/styleguide">Styleguide</NavigationItemLink>
+      <NavigationItemLink to="/recipe">Recipe test</NavigationItemLink>
+      <NavigationSpacer />
+      <ThemeToggle />
     </NavigationList>
   </NavigationContainer>
 );
 
-const NavigationContainer = styled.nav`
+const NavigationContainer = styled(motion.nav)`
   width: 100%;
   padding: 1em 0;
   position: sticky;
@@ -51,12 +53,14 @@ const NavigationContainer = styled.nav`
   }
 `;
 
-const NavigationList = styled.ul`
+const NavigationList = styled.div`
   width: 100%;
   display: flex;
   gap: 1em;
 `;
 
-const NavigationItem = styled.li``;
+const NavigationSpacer = styled.span`
+  flex: 1;
+`;
 
 export default Navigation;
