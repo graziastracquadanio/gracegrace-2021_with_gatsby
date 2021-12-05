@@ -16,19 +16,18 @@ I am going to redo my website again... OMG again!!!
 
 # Roadmap
 
-- [ ] create configuration and styleguide
+- [x] create configuration and styleguide
   - [x] project configuration (gatsby, webpack, linter, structure, etc...)
   - [x] base style (typography, colors, spacing, etc...)
-  - [ ] navigation
-    - [ ] responsive navigation menu
-    - [ ] add transition between pages
-- [ ] add "/about" page (static)
+- [x] add "/about" page (static)
 - [ ] add "/contact" page with form
-- [ ] add "dark mode" (nice to have)
+- [x] add "dark mode" (nice to have)
   - [x] define dark palette
   - [x] add mechanism
-  - [ ] add toggle animation to button
-- [ ] edit "/about" page from WP
+  - [x] add toggle animation to button
+- [ ] navigation
+  - [ ] responsive navigation menu
+  - [ ] add transition between pages or animate based on content
 - [ ] add "recipes" (ok this is a big one)
   - [ ] recipes list
   - [ ] pagination
