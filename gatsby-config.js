@@ -1,6 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
+require('dotenv').config({ path: '.env' });
+
 const srcDirs = fs.readdirSync(path.resolve(__dirname, 'src'));
 
 const rootDirsConfig = {};
@@ -19,7 +21,7 @@ module.exports = {
     // {
     //   resolve: `gatsby-source-wordpress`,
     //   options: {
-    //     url: `http://gracegrace.me/wp_admin/graphql`,
+    //     url: process.env.WP_URL,
     //     schema: {
     //       requestConcurrency: 100,
     //       timeout: 100000,
