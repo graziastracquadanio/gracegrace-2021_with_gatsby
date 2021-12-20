@@ -14,7 +14,7 @@ const RecipeTemplate: React.FC = () => {
         <Tag>vegan</Tag>
       </Tags>
 
-      <Picture alt="some title" src="http://gracegrace.me/wp_admin/wp-content/uploads/2017/10/veggie-couscous.jpg" />
+      <Picture alt="some title" src="https://gracegrace.me/wp_admin/wp-content/uploads/2017/10/veggie-couscous.jpg" />
 
       <Ingredients>
         <h4>Ingredients</h4>
