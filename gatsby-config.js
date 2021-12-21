@@ -25,6 +25,13 @@ module.exports = {
     'gatsby-plugin-styled-components',
     'gatsby-plugin-layout',
     'gatsby-plugin-typescript',
+    {
+      resolve: 'gatsby-plugin-graphql-codegen',
+      options: {
+        fileName: 'src/generated/graphql-types.ts',
+        documentPaths: ['./src/**/*.{ts,tsx}', './node_modules/gatsby-*/**/*.js'],
+      },
+    },
     // {
     //   resolve: `gatsby-source-wordpress`,
     //   options: {

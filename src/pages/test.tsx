@@ -2,8 +2,10 @@ import React from 'react';
 
 import { graphql, PageProps } from 'gatsby';
 
-const TestPage: React.FC<PageProps<any>> = ({ data }) => {
-  const { description } = data?.site?.siteMetadata || {};
+import { HomePageQuery } from 'generated/graphql-types';
+
+const TestPage: React.FC<PageProps<HomePageQuery>> = ({ data }) => {
+  const { description } = data.site?.siteMetadata || {};
   return <div>{description}</div>;
 };
 
