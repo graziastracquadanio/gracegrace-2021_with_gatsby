@@ -25,18 +25,25 @@ const TextLink: React.FC<Props> = ({ to, activeClassName, partiallyActive, ...ot
 const LinkStyleLightTheme = css`
   color: inherit;
   text-decoration: none;
-  background: linear-gradient(120deg, var(--color-highlight) 0%, var(--color-highlight) 100%);
+  font-weight: bold;
+  /* background: linear-gradient(120deg, var(--color-highlight) 0%, var(--color-highlight) 100%);
   background-repeat: no-repeat;
   background-size: 100% 40%;
-  background-position: 0 90%;
+  background-position: 0 90%; */
+  background: linear-gradient(to bottom, var(--color-accent) 0%, var(--color-accent) 100%);
+  background-position: 0 100%;
+  background-repeat: repeat-x;
+  background-size: 4px 4px;
+  transition: background-size 0.3s ease;
 
   &:hover {
-    transition: background 0.2s linear;
+    background-size: 4px 50px;
+    /* transition: background 0.2s linear;
     color: var(--color-secondary);
     background: linear-gradient(120deg, var(--color-gray) 0%, var(--color-gray) 100%);
     background-repeat: no-repeat;
     background-size: 100% 40%;
-    background-position: 50% 90%;
+    background-position: 50% 90%; */
   }
 
   small & {

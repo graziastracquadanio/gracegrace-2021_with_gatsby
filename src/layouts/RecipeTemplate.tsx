@@ -8,17 +8,51 @@ import { BREAKPOINTS } from 'constants/css-variables';
 const RecipeTemplate: React.FC = () => {
   return (
     <Container>
-      <Title>Couscous with veggies</Title>
-      <Tags>
-        <Tag>main course</Tag>
-        <Tag>vegan</Tag>
-      </Tags>
+      <Header>
+        <Title>Couscous with veggies</Title>
+        <Tags>
+          <Tag>main course</Tag>
+          <Tag>vegan</Tag>
+        </Tags>
+      </Header>
+
+      <Description>
+        <p>
+          Ginger lemongrass agave green tea lentils lemon instant pot pasta apple vinaigrette artichoke hearts cool off
+          double dark chocolate Bolivian rainbow pepper Thai dragon pepper chai tea golden cayenne pepper crumbled
+          lentils banana bread.
+        </p>
+      </Description>
 
       <Picture alt="some title" src="https://gracegrace.me/wp_admin/wp-content/uploads/2017/10/veggie-couscous.jpg" />
 
       <Ingredients>
         <h4>Ingredients</h4>
         <ul>
+          <Ingredient>
+            100 gr <b>couscous</b> wholemeal is healthier
+          </Ingredient>
+          <Ingredient>
+            100 gr <b>couscous</b> wholemeal is healthier
+          </Ingredient>
+          <Ingredient>
+            100 gr <b>couscous</b> wholemeal is healthier
+          </Ingredient>
+          <Ingredient>
+            100 gr <b>couscous</b> wholemeal is healthier
+          </Ingredient>
+          <Ingredient>
+            100 gr <b>couscous</b> wholemeal is healthier
+          </Ingredient>
+          <Ingredient>
+            100 gr <b>couscous</b> wholemeal is healthier
+          </Ingredient>
+          <Ingredient>
+            100 gr <b>couscous</b> wholemeal is healthier
+          </Ingredient>
+          <Ingredient>
+            100 gr <b>couscous</b> wholemeal is healthier
+          </Ingredient>
           <Ingredient>
             100 gr <b>couscous</b> wholemeal is healthier
           </Ingredient>
@@ -53,6 +87,9 @@ const RecipeTemplate: React.FC = () => {
               dressing. The mushrooms will absorb it and get a fabInstructionsListous flavor!
             </p>
           </InstructionsListItem>
+          <InstructionsListItem>
+            <p>Enjoy it! ❤</p>
+          </InstructionsListItem>
         </InstructionsList>
       </Instructions>
     </Container>
@@ -62,21 +99,18 @@ const RecipeTemplate: React.FC = () => {
 const Container = styled.div`
   display: grid;
   grid-row-gap: 2em;
-  grid-template-areas:
-    'title'
-    'tags'
-    'picture'
-    'ingredients'
-    'instructions';
+  grid-template-areas: 'header' 'picture' 'description' 'ingredients' 'instructions';
 
   @media (min-width: ${BREAKPOINTS.medium}) {
-    grid-template-columns: 14rem auto;
+    grid-template-columns: 16rem auto;
     grid-row-gap: 1em;
     grid-column-gap: 2em;
     grid-template-areas:
-      'title title'
-      'tags tags'
-      'picture picture'
+      'picture header'
+      'picture description'
+      'empty-space empty-space'
+      'empty-space empty-space'
+      'empty-space empty-space'
       'ingredients instructions';
   }
 
@@ -85,11 +119,19 @@ const Container = styled.div`
   }
 `;
 
-const Title = styled.h3`
-  grid-area: title;
+const Header = styled.header`
+  grid-area: header;
 `;
 
-const Tags = styled.section`
+const Title = styled.h3`
+  margin-bottom: 1rem;
+`;
+
+const Description = styled.section`
+  grid-area: description;
+`;
+
+const Tags = styled.div`
   grid-area: tags;
   display: flex;
   gap: 1em;
@@ -110,7 +152,6 @@ const Ingredient = styled.li`
   font-family: var(--font-primary);
   padding: 0.5em 0;
   border-bottom: 1px dashed var(--color-gray);
-
   b {
     text-decoration: underline;
   }

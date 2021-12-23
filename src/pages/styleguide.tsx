@@ -13,9 +13,6 @@ const StyleguidePage: React.FC = () => {
       <ColorItemBackground color={color} />
       <p>
         <small>{color}</small>{' '}
-        <small>
-          <code>{getComputedStyle(document.documentElement).getPropertyValue(`--color-${color}`)}</code>
-        </small>
       </p>
     </ColorItem>
   ));

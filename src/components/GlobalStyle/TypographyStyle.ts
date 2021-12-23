@@ -62,7 +62,7 @@ const TypographyStyle = css`
     font-size: ${sizes.p}em;
     color: var(--color-text);
     transition: color var(--theme-transition);
-    line-height: 1.5;
+    line-height: 1.75;
     margin: 0;
     margin-bottom: 0.5em;
 

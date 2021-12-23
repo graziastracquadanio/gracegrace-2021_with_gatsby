@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { RecipeTemplate } from 'components/RecipeTemplate';
+import RecipeTemplate from 'layouts/RecipeTemplate';
 
 const RecipePage: React.FC = () => {
   return <RecipeTemplate />;
