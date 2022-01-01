@@ -4,12 +4,13 @@ import styled from 'styled-components';
 
 import { Tag } from 'components/Tag';
 import { BREAKPOINTS } from 'constants/css-variables';
+import { Recipe } from 'types/recipe';
 
-const RecipeTemplate: React.FC = () => {
+const RecipeLayout: React.FC<Recipe> = ({ title, description }) => {
   return (
     <Container>
       <Header>
-        <Title>Couscous with veggies</Title>
+        <Title>{title}</Title>
         <Tags>
           <Tag>main course</Tag>
           <Tag>vegan</Tag>
@@ -17,11 +18,7 @@ const RecipeTemplate: React.FC = () => {
       </Header>
 
       <Description>
-        <p>
-          Ginger lemongrass agave green tea lentils lemon instant pot pasta apple vinaigrette artichoke hearts cool off
-          double dark chocolate Bolivian rainbow pepper Thai dragon pepper chai tea golden cayenne pepper crumbled
-          lentils banana bread.
-        </p>
+        <p>{description}</p>
       </Description>
 
       <Picture alt="some title" src="https://gracegrace.me/wp_admin/wp-content/uploads/2017/10/veggie-couscous.jpg" />
@@ -178,4 +175,4 @@ const InstructionsListItem = styled.li`
   }
 `;
 
-export default RecipeTemplate;
+export default RecipeLayout;

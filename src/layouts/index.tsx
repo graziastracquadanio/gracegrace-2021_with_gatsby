@@ -1,6 +1,5 @@
 import React from 'react';
 
-// import { motion } from 'framer-motion';
 import { PageProps } from 'gatsby';
 import styled from 'styled-components';
 
@@ -8,6 +7,8 @@ import { GlobalStyle } from 'components/GlobalStyle';
 import { Navigation } from 'components/Navigation';
 import { BREAKPOINTS } from 'constants/css-variables';
 import { ThemeProvider } from 'contexts/ThemeContext';
+
+// import { motion } from 'framer-motion';
 
 const MainLayout: React.FC<PageProps> = ({ children, path }) => (
   <ThemeProvider>
