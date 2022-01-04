@@ -1,18 +1,46 @@
-import { makeAutoObservable } from 'mobx';
+import { collection, Firestore, getDocs, getFirestore } from 'firebase/firestore';
+import { configure, makeAutoObservable, runInAction } from 'mobx';
 
-interface IRecipesStore {
-  title?: string;
-  recipes: any[];
-}
+import { Recipe } from 'types/recipe';
 
-class RecipesStore implements IRecipesStore {
-  title = 'this is the test recipes tittle';
+configure({ enforceActions: 'observed' });
 
-  recipes = [];
+export class RecipesStore {
+  recipes: Recipe[] | null = null;
+  loading = false;
+  error: string | null = null;
+  db;
 
-  constructor() {
+  constructor(db: Firestore) {
     makeAutoObservable(this);
+    this.db = db;
+    console.log('init recipes store');
+  }
+
+  init() {
+    this.fetch();
+  }
+
+  async fetch() {
+    console.log('fetch recipes');
+
+    this.loading = true;
+    try {
+      // const database = getFirestore();
+      const ref = collection(this.db, 'recipes');
+      const querySnapshot = await getDocs(ref);
+      const data = querySnapshot.docs.map((doc) => {
+        return doc.data() as Recipe;
+      });
+      runInAction(() => {
+        this.recipes = data;
+        this.loading = false;
+      });
+    } catch (error) {
+      runInAction(() => {
+        this.error = 'Something went wrong fetching the data';
+        this.loading = false;
+      });
+    }
   }
 }
-
-export const recipesStore = new RecipesStore();

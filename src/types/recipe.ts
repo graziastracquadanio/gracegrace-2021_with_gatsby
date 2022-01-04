@@ -1,9 +1,11 @@
 export interface RecipeBase {
   id: string;
   title?: string;
+  published?: boolean;
   images?: {
     thumb?: string;
   };
+  createdAt?: number;
 }
 
 export interface Recipe extends RecipeBase {

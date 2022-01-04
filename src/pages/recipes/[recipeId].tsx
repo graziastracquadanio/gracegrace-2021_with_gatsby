@@ -4,11 +4,14 @@ import { PageProps } from 'gatsby';
 import { observer } from 'mobx-react-lite';
 
 import RecipeLayout from 'layouts/RecipeLayout';
-import { recipeStore } from 'stores/RecipeStore';
 
 const RecipePage: React.FC<PageProps> = observer(function RecipePage(props) {
-  console.log(props);
-  const { recipe } = recipeStore;
+  const recipe = null;
+
+  if (!recipe) {
+    return <>Is loading...</>;
+  }
+
   return <RecipeLayout {...recipe} />;
 });
 

@@ -28,6 +28,7 @@ module.exports = {
     // more eslint config
     'no-unused-vars': ['warn', { vars: 'local', args: 'none' }],
     'no-use-before-define': 'off',
+    'lines-between-class-members': 'off',
     // react config
     'react/jsx-filename-extension': [1, { extensions: ['.tsx', '.js'] }],
     'react/function-component-definition': [
