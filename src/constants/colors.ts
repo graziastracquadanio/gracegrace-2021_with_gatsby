@@ -33,7 +33,7 @@ export const COLORS: { [key: string]: Color } = {
     dark: 'hsl(230, 25%, 18%)',
   },
   muted: {
-    light: 'rgba(255, 255, 255, 0.4)',
+    light: 'rgba(255, 250, 250, 0.4)',
     dark: 'hsla(230, 20%, 0%, 20%)',
   },
   highlight: {

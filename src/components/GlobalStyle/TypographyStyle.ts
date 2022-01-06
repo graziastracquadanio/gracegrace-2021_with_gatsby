@@ -28,7 +28,6 @@ const TypographyStyle = css`
     font-family: var(--font-primary);
     font-weight: 400;
     line-height: 1.2;
-    color: var(--color-text);
     transition: color var(--theme-transition);
   }
 
@@ -58,9 +57,9 @@ const TypographyStyle = css`
 
   p {
     font-family: var(--fonts-secondary);
-    font-weight: 400;
+    font-weight: 300;
     font-size: ${sizes.p}em;
-    color: var(--color-text);
+    color: inherit;
     transition: color var(--theme-transition);
     line-height: 1.75;
     margin: 0;

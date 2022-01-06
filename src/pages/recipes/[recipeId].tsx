@@ -1,18 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { PageProps } from 'gatsby';
 import { observer } from 'mobx-react-lite';
 
+import { useRootStore } from 'contexts/RootStoreContext';
 import RecipeLayout from 'layouts/RecipeLayout';
 
-const RecipePage: React.FC<PageProps> = observer(function RecipePage(props) {
-  const recipe = null;
+export default observer(function RecipePage(props: PageProps) {
+  const id = props.params.recipeId;
+  const { recipeStore } = useRootStore();
 
-  if (!recipe) {
-    return <>Is loading...</>;
-  }
+  useEffect(() => {
+    if (id) {
+      recipeStore.getRecipe(id);
+    }
+  }, [id, recipeStore.getRecipe]);
 
-  return <RecipeLayout {...recipe} />;
+  return recipeStore.recipe && <RecipeLayout {...recipeStore.recipe} />;
 });
-
-export default RecipePage;

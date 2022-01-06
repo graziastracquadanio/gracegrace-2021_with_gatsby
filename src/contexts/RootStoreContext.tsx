@@ -15,7 +15,7 @@ export function useRootStore() {
   return context;
 }
 
-export const RootStoreProvider: React.FC<RootStoreProps> = ({ db, children }) => {
-  const root = useMemo(() => store ?? new RootStore(db), []);
+export const RootStoreProvider: React.FC<RootStoreProps> = ({ db, storage, children }) => {
+  const root = useMemo(() => store ?? new RootStore(db, storage), []);
   return <StoreContext.Provider value={root}>{children}</StoreContext.Provider>;
 };

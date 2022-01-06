@@ -19,7 +19,6 @@ const Navigation: React.FC = () => (
     <NavigationList>
       <NavigationItemLink to="/about">About</NavigationItemLink>
       <NavigationItemLink to="/styleguide">Styleguide</NavigationItemLink>
-      <NavigationItemLink to="/recipes/some-id">Recipe test</NavigationItemLink>
       <NavigationItemLink to="/recipes">Recipes</NavigationItemLink>
       <NavigationItemLink to="/contact">Contact</NavigationItemLink>
       <NavigationSpacer />

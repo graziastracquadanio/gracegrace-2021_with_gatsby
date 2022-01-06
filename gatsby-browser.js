@@ -5,6 +5,7 @@ import React from 'react';
 
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
+import { getStorage } from 'firebase/storage';
 // import { AnimatePresence } from 'framer-motion';
 
 import { RootStoreProvider } from './src/contexts/RootStoreContext';
@@ -24,9 +25,12 @@ const firebaseApp = initializeApp(firebaseCredentials);
 
 export const wrapRootElement = ({ element }) => {
   const db = getFirestore(firebaseApp);
+  const storage = getStorage(firebaseApp);
   return (
     <ThemeProvider>
-      <RootStoreProvider db={db}>{element}</RootStoreProvider>
+      <RootStoreProvider db={db} storage={storage}>
+        {element}
+      </RootStoreProvider>
     </ThemeProvider>
   );
 };

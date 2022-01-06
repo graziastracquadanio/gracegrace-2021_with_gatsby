@@ -1,36 +1,33 @@
-import { collection, Firestore, getDocs, getFirestore } from 'firebase/firestore';
-import { configure, makeAutoObservable, runInAction } from 'mobx';
+import { collection, Firestore, getDocs } from 'firebase/firestore';
+import { FirebaseStorage } from 'firebase/storage';
+import { makeAutoObservable, runInAction } from 'mobx';
 
-import { Recipe } from 'types/recipe';
-
-configure({ enforceActions: 'observed' });
+import { RecipeBase } from 'types/recipe';
 
 export class RecipesStore {
-  recipes: Recipe[] | null = null;
+  recipes: RecipeBase[] | null = null;
   loading = false;
   error: string | null = null;
-  db;
 
-  constructor(db: Firestore) {
+  private db;
+  private storage;
+
+  constructor(db: Firestore, storage: FirebaseStorage) {
     makeAutoObservable(this);
     this.db = db;
-    console.log('init recipes store');
+    this.storage = storage;
   }
 
   init() {
-    this.fetch();
+    this.fetchRecipes();
   }
 
-  async fetch() {
-    console.log('fetch recipes');
-
+  async fetchRecipes() {
     this.loading = true;
     try {
-      // const database = getFirestore();
-      const ref = collection(this.db, 'recipes');
-      const querySnapshot = await getDocs(ref);
-      const data = querySnapshot.docs.map((doc) => {
-        return doc.data() as Recipe;
+      const querySnap = await getDocs(collection(this.db, 'recipes'));
+      const data = querySnap.docs.map((docSnap) => {
+        return docSnap.data() as RecipeBase;
       });
       runInAction(() => {
         this.recipes = data;
