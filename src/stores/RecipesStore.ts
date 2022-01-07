@@ -18,11 +18,11 @@ export class RecipesStore {
     this.storage = storage;
   }
 
-  init() {
+  init = () => {
     this.fetchRecipes();
-  }
+  };
 
-  async fetchRecipes() {
+  fetchRecipes = async () => {
     this.loading = true;
     try {
       const querySnap = await getDocs(collection(this.db, 'recipes'));
@@ -39,5 +39,5 @@ export class RecipesStore {
         this.loading = false;
       });
     }
-  }
+  };
 }

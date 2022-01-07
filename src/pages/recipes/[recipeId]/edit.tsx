@@ -14,8 +14,8 @@ export default observer(function RecipeEditPage(props: PageProps) {
     if (id) {
       recipeStore.getRecipe(id);
     }
-  }, [id, recipeStore.getRecipe]);
+  }, [id, recipeStore]);
 
   const recipe = recipeStore.recipe ? { ...recipeStore.recipe } : null;
-  return <RecipeEditLayout recipe={recipe} />;
+  return <RecipeEditLayout recipe={recipe} saveRecipe={recipeStore.setRecipe} />;
 });

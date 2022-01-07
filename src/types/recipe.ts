@@ -4,12 +4,16 @@ export interface RecipeBase {
   published?: boolean;
   createdAt?: number;
 }
-export interface RawRecipe extends RecipeBase {
+export interface RecipeDetails {
+  id: string;
   description?: string;
   ingredients?: string[];
   instructions?: string[];
 }
 
-export interface Recipe extends RawRecipe {
+export interface Recipe extends RecipeBase {
   image?: string;
+  description?: string;
+  ingredients?: string[];
+  instructions?: string[];
 }

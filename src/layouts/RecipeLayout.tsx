@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { Link } from 'gatsby';
 import styled from 'styled-components';
 
 import { Tag } from 'components/Tag';
@@ -7,7 +8,6 @@ import { BREAKPOINTS } from 'constants/css-variables';
 import { Recipe } from 'types/recipe';
 
 export const RecipeLayout: React.FC<Recipe> = ({ title, description, image, ingredients, instructions, ...recipe }) => {
-  console.log(recipe);
   return (
     <Container>
       <Header>
@@ -18,7 +18,7 @@ export const RecipeLayout: React.FC<Recipe> = ({ title, description, image, ingr
         <Tag>vegan</Tag>
       </Tags> */}
 
-      <Picture alt={title} src={image} />
+      {image && <Picture alt={title} src={image} />}
 
       <Description>
         <p>{description}</p>
@@ -50,10 +50,16 @@ export const RecipeLayout: React.FC<Recipe> = ({ title, description, image, ingr
                 )}
               </InstructionsListItem>
             ))}
-            <InstructionsListItem>Enjoy it! ❤</InstructionsListItem>
+            <InstructionsListItem>
+              <p>Enjoy it! ❤</p>
+            </InstructionsListItem>
           </InstructionsList>
         </Instructions>
       )}
+
+      <Footer>
+        <Link to="edit">Edit recipe</Link>
+      </Footer>
     </Container>
   );
 };
@@ -61,7 +67,7 @@ export const RecipeLayout: React.FC<Recipe> = ({ title, description, image, ingr
 const Container = styled.div`
   display: grid;
   grid-row-gap: 2em;
-  grid-template-areas: 'header' 'tags' 'picture' 'description' 'ingredients' 'instructions';
+  grid-template-areas: 'header' 'tags' 'picture' 'description' 'ingredients' 'instructions' 'footer';
 
   @media (min-width: ${BREAKPOINTS.medium}) {
     grid-template-columns: 16rem auto 16rem;
@@ -71,7 +77,8 @@ const Container = styled.div`
       'header header picture'
       'description description picture'
       'tags tags picture'
-      'ingredients instructions instructions';
+      'ingredients instructions instructions'
+      'footer footer footer';
   }
 
   @media (min-width: ${BREAKPOINTS.large}) {
@@ -143,4 +150,10 @@ const InstructionTip = styled.div`
   border: 1px dashed var(--color-primary);
   background-color: var(--color-background);
   transition: background var(--theme-transition);
+`;
+
+const Footer = styled.div`
+  grid-area: footer;
+  display: flex;
+  justify-content: center;
 `;

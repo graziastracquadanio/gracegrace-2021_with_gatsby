@@ -4,12 +4,9 @@ import '@fontsource/zilla-slab';
 import React from 'react';
 
 import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
-import { getStorage } from 'firebase/storage';
-// import { AnimatePresence } from 'framer-motion';
 
-import { RootStoreProvider } from './src/contexts/RootStoreContext';
-import { ThemeProvider } from './src/contexts/ThemeContext';
+import { App } from './src/app';
+// import { AnimatePresence } from 'framer-motion';
 
 const firebaseCredentials = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -23,17 +20,7 @@ const firebaseCredentials = {
 
 const firebaseApp = initializeApp(firebaseCredentials);
 
-export const wrapRootElement = ({ element }) => {
-  const db = getFirestore(firebaseApp);
-  const storage = getStorage(firebaseApp);
-  return (
-    <ThemeProvider>
-      <RootStoreProvider db={db} storage={storage}>
-        {element}
-      </RootStoreProvider>
-    </ThemeProvider>
-  );
-};
+export const wrapPageElement = ({ element }) => <App>{element}</App>;
 
 // export function wrapPageElement({ element }) {
 //   return <AnimatePresence exitBeforeEnter>{element}</AnimatePresence>;
