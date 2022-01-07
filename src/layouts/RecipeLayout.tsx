@@ -7,22 +7,21 @@ import { BREAKPOINTS } from 'constants/css-variables';
 import { Recipe } from 'types/recipe';
 
 const RecipeLayout: React.FC<Recipe> = ({ title, description, image, ingredients, instructions, ...recipe }) => {
-  console.log(image);
   return (
     <Container>
       <Header>
         <Title>{title}</Title>
-        {/* <Tags>
-          <Tag>main course</Tag>
-          <Tag>vegan</Tag>
-        </Tags> */}
       </Header>
+      {/* <Tags>
+        <Tag>main course</Tag>
+        <Tag>vegan</Tag>
+      </Tags> */}
+
+      <Picture alt={title} src={image} />
 
       <Description>
         <p>{description}</p>
       </Description>
-
-      <Picture alt={title} src={image} />
 
       {ingredients && (
         <Ingredients>
@@ -61,23 +60,21 @@ const RecipeLayout: React.FC<Recipe> = ({ title, description, image, ingredients
 const Container = styled.div`
   display: grid;
   grid-row-gap: 2em;
-  grid-template-areas: 'header' 'picture' 'description' 'ingredients' 'instructions';
+  grid-template-areas: 'header' 'tags' 'picture' 'description' 'ingredients' 'instructions';
 
   @media (min-width: ${BREAKPOINTS.medium}) {
-    grid-template-columns: 16rem auto;
+    grid-template-columns: 16rem auto 16rem;
     grid-row-gap: 1em;
     grid-column-gap: 2em;
     grid-template-areas:
-      'picture header'
-      'picture description'
-      'empty-space empty-space'
-      'empty-space empty-space'
-      'empty-space empty-space'
-      'ingredients instructions';
+      'header header picture'
+      'description description picture'
+      'tags tags picture'
+      'ingredients instructions instructions';
   }
 
   @media (min-width: ${BREAKPOINTS.large}) {
-    grid-template-columns: 20rem auto;
+    grid-template-columns: 20rem auto 20rem;
   }
 `;
 
@@ -85,9 +82,7 @@ const Header = styled.header`
   grid-area: header;
 `;
 
-const Title = styled.h3`
-  margin-bottom: 1rem;
-`;
+const Title = styled.h3``;
 
 const Description = styled.section`
   grid-area: description;
@@ -96,6 +91,7 @@ const Description = styled.section`
 const Tags = styled.div`
   grid-area: tags;
   display: flex;
+  align-items: flex-start;
   gap: 1em;
 `;
 
@@ -142,8 +138,8 @@ const InstructionsListItem = styled.li`
 
 const InstructionTip = styled.div`
   padding: 0.5em;
-  color: var(--color-secondary);
-  border: 1px dashed var(--color-secondary);
+  color: var(--color-primary);
+  border: 1px dashed var(--color-primary);
   background-color: var(--color-background);
   transition: background var(--theme-transition);
 `;
