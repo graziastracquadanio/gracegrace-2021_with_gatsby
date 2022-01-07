@@ -2,7 +2,7 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-const Tag: React.FC = ({ children }) => {
+export const Tag: React.FC = ({ children }) => {
   return <StyledTag>{children}</StyledTag>;
 };
 
@@ -14,5 +14,3 @@ const StyledTag = styled.span`
   text-transform: uppercase;
   padding: 0.25em 0.5em;
 `;
-
-export default Tag;

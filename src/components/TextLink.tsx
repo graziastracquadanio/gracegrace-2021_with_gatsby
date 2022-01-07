@@ -9,7 +9,7 @@ type Props = Omit<GatsbyLinkProps<{}>, 'ref'>;
 // Since DOM elements <a> cannot receive activeClassName
 // and partiallyActive, destructure the prop here and
 // pass it only to GatsbyLink
-const TextLink: React.FC<Props> = ({ to, activeClassName, partiallyActive, ...other }) => {
+export const TextLink: React.FC<Props> = ({ to, activeClassName, partiallyActive, ...other }) => {
   // Tailor the following test to your environment.
   // This example assumes that any internal link (intended for Gatsby)
   // will start with exactly one slash, and that anything else is external.
@@ -69,5 +69,3 @@ const StyledLink = styled(Link)`
 const StyledAnchor = styled.a`
   ${(props) => (props.theme.colorMode === 'dark' ? LinkStyleDarkTheme : LinkStyleLightTheme)}
 `;
-
-export default TextLink;

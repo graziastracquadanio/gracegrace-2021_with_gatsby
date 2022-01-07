@@ -39,6 +39,8 @@ module.exports = {
       },
     ],
     'react/jsx-props-no-spreading': 'off',
+    'react/prop-types': 'off',
+    'react/require-default-props': 'off',
     // import config
     'import/extensions': ['error', 'ignorePackages', { ts: 'never', tsx: 'never', js: 'never' }],
     'import/prefer-default-export': 'off',

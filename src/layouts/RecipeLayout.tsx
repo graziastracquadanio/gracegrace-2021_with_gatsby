@@ -6,7 +6,8 @@ import { Tag } from 'components/Tag';
 import { BREAKPOINTS } from 'constants/css-variables';
 import { Recipe } from 'types/recipe';
 
-const RecipeLayout: React.FC<Recipe> = ({ title, description, image, ingredients, instructions, ...recipe }) => {
+export const RecipeLayout: React.FC<Recipe> = ({ title, description, image, ingredients, instructions, ...recipe }) => {
+  console.log(recipe);
   return (
     <Container>
       <Header>
@@ -143,5 +144,3 @@ const InstructionTip = styled.div`
   background-color: var(--color-background);
   transition: background var(--theme-transition);
 `;
-
-export default RecipeLayout;
