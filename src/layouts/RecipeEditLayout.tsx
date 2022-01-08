@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo } from 'react';
 
 import { useFormik } from 'formik';
+import { navigate } from 'gatsby';
 import styled from 'styled-components';
 
 import { Button } from 'components/Button';
@@ -11,7 +12,7 @@ import { useFormikArray } from 'utils/formik';
 
 interface Props {
   recipe?: Recipe | null;
-  saveRecipe: (data: Recipe) => Promise<void>;
+  saveRecipe: (data: Recipe) => Promise<string | null>;
 }
 
 export const RecipeEditLayout: React.FC<Props> = ({ recipe, saveRecipe }) => {
@@ -42,9 +43,12 @@ export const RecipeEditLayout: React.FC<Props> = ({ recipe, saveRecipe }) => {
   const { add: addIngredient, remove: removeIngredient } = useFormikArray(formikProps, 'ingredients');
   const { add: addInstruction, remove: removeInstruction } = useFormikArray(formikProps, 'instructions');
 
-  const onSave = () => {
+  const onSave = async () => {
     if (formikProps.values) {
-      saveRecipe(formikProps.values);
+      const id = await saveRecipe(formikProps.values);
+      if (id) {
+        navigate(`/recipes/${id}`);
+      }
     }
   };
 
@@ -168,7 +172,7 @@ const SaveButton = styled(Button)`
   background-color: var(--color-primary);
   font-size: 1rem;
 
-  &:hover  {
+  &:hover {
     background-color: var(--color-primary);
   }
 `;

@@ -5,6 +5,7 @@ import { observer } from 'mobx-react-lite';
 import styled from 'styled-components';
 
 import { GlobalStyle } from 'components/GlobalStyle';
+import { LoadingIndicator } from 'components/LoadingIndicator';
 import { Navigation } from 'components/Navigation';
 import { BREAKPOINTS } from 'constants/css-variables';
 
@@ -13,6 +14,8 @@ import { BREAKPOINTS } from 'constants/css-variables';
 const MainLayout: React.FC<PageProps> = ({ children, path }) => (
   <>
     <GlobalStyle />
+
+    <LoadingIndicator />
 
     <LayoutContainer>
       <ContentLimiterContainer>

@@ -18,6 +18,9 @@ export default observer(function RecipesPage() {
           </Link>
         </li>
       ))}
+      <Link to="/recipes/this-is-a-fake-recipe">
+        <h3>This is a fake recipe</h3>
+      </Link>
     </ul>
   );
 });

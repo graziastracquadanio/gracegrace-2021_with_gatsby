@@ -19,7 +19,7 @@ const StyleguidePage: React.FC = () => {
 
   return (
     <LayoutContainer>
-      <h6>This is a place where I play and test the style and mainly have fun.</h6>
+      <h6>This is a place where I play and test the style and have fun.</h6>
       <Section>
         <Title>Colors</Title>
         <ColorsList>{colors}</ColorsList>
@@ -34,7 +34,7 @@ const StyleguidePage: React.FC = () => {
         </HorizontalList>
         <VerticalList>
           {Object.entries(HEADINGS).map(([h]) => {
-            const heading = `<${h}>This is a test ${h.toUpperCase()}</${h}>`;
+            const heading = `<${h}>Broccoli ${h.toUpperCase()}</${h}>`;
             return (
               <div key={`test-heading-${h}`}>
                 <div dangerouslySetInnerHTML={{ __html: heading }} />

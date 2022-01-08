@@ -1,9 +1,8 @@
 import { createGlobalStyle } from 'styled-components';
 
-import { COLOR_HELPERS, FONTS, LAYOUT, THEME, ZINDEX } from 'constants/css-variables';
-
 import ResetStyle from './ResetStyle';
 import TypographyStyle from './TypographyStyle';
+import { COLOR_HELPERS, FONTS, LAYOUT, THEME, ZINDEX } from 'constants/css-variables';
 
 const GlobalStyle = createGlobalStyle`
   // variables (except colors which are dynamically updated in the ThemeContext)

@@ -8,13 +8,18 @@ import { RecipeLayout } from 'layouts/RecipeLayout';
 
 export default observer(function RecipePage(props: PageProps) {
   const id = props.params.recipeId;
-  const { recipeStore } = useRootStore();
+  const {
+    recipeStore: { recipe, getRecipe },
+  } = useRootStore();
 
   useEffect(() => {
     if (id) {
-      recipeStore.getRecipe(id);
+      getRecipe(id);
     }
-  }, [id, recipeStore.getRecipe]);
+  }, [id, getRecipe]);
 
-  return recipeStore.recipe && <RecipeLayout {...recipeStore.recipe} />;
+  if (recipe && recipe.id === id) {
+    return <RecipeLayout {...recipe} />;
+  }
+  return null;
 });

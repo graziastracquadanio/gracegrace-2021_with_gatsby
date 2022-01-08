@@ -2,20 +2,22 @@ import { collection, Firestore, getDocs } from 'firebase/firestore';
 import { FirebaseStorage } from 'firebase/storage';
 import { makeAutoObservable, runInAction } from 'mobx';
 
+import { UiStore } from './UiStore';
 import { RecipeBase } from 'types/recipe';
 
 export class RecipesStore {
   recipes: RecipeBase[] | null = null;
-  loading = false;
   error: string | null = null;
 
   private db;
   private storage;
+  private uiStore;
 
-  constructor(db: Firestore, storage: FirebaseStorage) {
+  constructor(db: Firestore, storage: FirebaseStorage, uiStore: UiStore) {
     makeAutoObservable(this);
     this.db = db;
     this.storage = storage;
+    this.uiStore = uiStore;
   }
 
   init = () => {
@@ -23,7 +25,7 @@ export class RecipesStore {
   };
 
   fetchRecipes = async () => {
-    this.loading = true;
+    this.uiStore.loading = true;
     try {
       const querySnap = await getDocs(collection(this.db, 'recipes'));
       const data = querySnap.docs.map((docSnap) => {
@@ -31,12 +33,12 @@ export class RecipesStore {
       });
       runInAction(() => {
         this.recipes = data;
-        this.loading = false;
+        this.uiStore.loading = false;
       });
     } catch (error) {
       runInAction(() => {
         this.error = 'Something went wrong fetching the data';
-        this.loading = false;
+        this.uiStore.loading = false;
       });
     }
   };
