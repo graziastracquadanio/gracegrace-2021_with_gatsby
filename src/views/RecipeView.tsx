@@ -7,7 +7,9 @@ import { Tag } from 'components/Tag';
 import { BREAKPOINTS } from 'constants/css-variables';
 import { Recipe } from 'types/recipe';
 
-export const RecipeView: React.FC<Recipe> = ({ title, description, image, ingredients, instructions, ...recipe }) => {
+const ingredientsRegex = /^\[(.*)\]$/g;
+
+export const RecipeView: React.FC<Recipe> = ({ title, description, image, ingredients, instructions }) => {
   return (
     <Container>
       <Header>
@@ -29,7 +31,13 @@ export const RecipeView: React.FC<Recipe> = ({ title, description, image, ingred
           <h4>Ingredients</h4>
           <ul>
             {ingredients.map((ingredient) => (
-              <Ingredient key={ingredient.slice(5)}>{ingredient}</Ingredient>
+              <Ingredient key={ingredient.slice(5)}>
+                {ingredientsRegex.test(ingredient) ? (
+                  <IngredientGroup>{ingredient.replace(/^\[|\]$/g, '')}</IngredientGroup>
+                ) : (
+                  ingredient
+                )}
+              </Ingredient>
             ))}
           </ul>
         </Ingredients>
@@ -121,6 +129,11 @@ const Ingredient = styled.li`
   b {
     text-decoration: underline;
   }
+`;
+
+const IngredientGroup = styled.h6`
+  text-transform: capitalize;
+  margin-top: 1rem;
 `;
 
 const Instructions = styled.div`

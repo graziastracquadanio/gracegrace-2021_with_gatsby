@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 import { useFormik } from 'formik';
 import { navigate } from 'gatsby';
@@ -17,13 +17,15 @@ interface Props {
 }
 
 export const RecipeEditView: React.FC<Props> = ({ recipe, saveRecipe, deleteRecipe }) => {
+  const [ingredientsString, setIngredientsString] = useState('');
+
   const initialValues = useMemo(
     () => ({
       id: '',
       title: '',
       description: '',
       ingredients: [],
-      instructions: [],
+      instructions: [''],
     }),
     [],
   );
@@ -45,10 +47,13 @@ export const RecipeEditView: React.FC<Props> = ({ recipe, saveRecipe, deleteReci
   useEffect(() => {
     if (recipe) {
       setValues(recipe);
+      if (recipe.ingredients) {
+        console.log(`- ${recipe.ingredients.join('\n- ')}`);
+        setIngredientsString(`- ${recipe.ingredients.join('\n- ')}`);
+      }
     }
-  }, [recipe, setValues]);
+  }, [recipe, setValues, setIngredientsString]);
 
-  const { add: addIngredient, remove: removeIngredient } = useFormikArray(formikProps, 'ingredients');
   const { add: addInstruction, remove: removeInstruction } = useFormikArray(formikProps, 'instructions');
 
   const onDelete = async () => {
@@ -59,12 +64,28 @@ export const RecipeEditView: React.FC<Props> = ({ recipe, saveRecipe, deleteReci
     navigate('/recipes');
   };
 
+  const onChangeIngredients = (e: React.ChangeEvent<any>) => {
+    const { value } = e.target;
+    const ingredients = value
+      .replace(/(\r\n|\n|\r)/gm, '')
+      .split('- ')
+      .filter((s: string) => s.length);
+    formikProps.setFieldValue('ingredients', ingredients);
+    setIngredientsString(value);
+  };
+
   return (
     <Container>
       <Header>
         <FormControl>
           <Label htmlFor="title">Title</Label>
-          <Input id="title" name="title" value={formikProps.values.title} onChange={formikProps.handleChange} />
+          <Input
+            id="title"
+            name="title"
+            value={formikProps.values.title}
+            onChange={formikProps.handleChange}
+            placeholder="How do we call the goodness?"
+          />
         </FormControl>
       </Header>
       <Description>
@@ -74,20 +95,24 @@ export const RecipeEditView: React.FC<Props> = ({ recipe, saveRecipe, deleteReci
             id="description"
             name="description"
             value={formikProps.values.description}
-            rows={2}
+            rows={4}
             onChange={formikProps.handleChange}
+            placeholder="What is this recipe good for? Some notes about the benefits of some ingredients? Season notes?"
           />
         </FormControl>
       </Description>
       <Ingredients>
         <FormControl>
           <Label htmlFor="ingredients">Ingredients</Label>
-          <DraggableList
-            name="ingredients"
-            values={formikProps.values.ingredients}
-            handleChange={formikProps.handleChange}
-            onAddItem={addIngredient}
-            onRemoveItem={removeIngredient}
+          <Tip>
+            Ingredients must be separated by new line and prefixed with <code>- </code>. <br />
+            To specify a group use <code>- [group title]</code> for the name of the group
+          </Tip>
+          <Textarea
+            rows={20}
+            placeholder="Ingredients separated by new line"
+            value={ingredientsString}
+            onChange={onChangeIngredients}
           />
         </FormControl>
       </Ingredients>
@@ -102,6 +127,7 @@ export const RecipeEditView: React.FC<Props> = ({ recipe, saveRecipe, deleteReci
             handleChange={formikProps.handleChange}
             onAddItem={addInstruction}
             onRemoveItem={removeInstruction}
+            placeholder="Step to create magic here..."
           />
         </FormControl>
       </Instructions>
@@ -179,4 +205,8 @@ const Footer = styled.div`
   display: flex;
   justify-content: center;
   gap: 2rem;
+`;
+
+const Tip = styled.span`
+  font-size: small;
 `;

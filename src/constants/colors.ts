@@ -6,17 +6,18 @@ export type Color = {
 // to use the color variables in css use the prefix `--color` (i.e. `--color-primary`)
 // the colors are based on the theme selected through the ThemeContext
 // https://flatuicolors.com/palette/in
+// https://coolors.co/
 export const COLORS: { [key: string]: Color } = {
   primary: {
-    light: 'rgba(179, 55, 113, 1.0)',
+    light: 'rgba(179, 55, 113, 1.0)', // #b33771
     dark: 'hsl(290, 100%, 80%)',
   },
   secondary: {
-    light: 'rgba(130, 88, 159, 1.0)',
+    light: 'rgba(130, 88, 159, 1.0)', // #82589f
     dark: 'hsl(260, 100%, 80%)',
   },
   accent: {
-    light: 'rgba(255, 202, 40, 1.0)',
+    light: 'rgba(246, 185, 59, 1.0)', // F6B93B
     dark: 'rgba(154, 236, 219,1.0)',
   },
   smooth: {
@@ -45,19 +46,19 @@ export const COLORS: { [key: string]: Color } = {
     dark: 'hsl(210, 50%, 60%)',
   },
   gray100: {
-    light: '#CFD8DC',
+    light: '#E9ECEF',
     dark: '#C5CAE9',
   },
-  gray300: {
-    light: '#90A4AE',
+  gray200: {
+    light: '#CED4DA',
     dark: '#7986CB',
   },
-  gray500: {
-    light: '#607D8B',
+  gray300: {
+    light: '#6C757D',
     dark: '#3F51B5',
   },
-  gray700: {
-    light: '#455A64',
+  gray400: {
+    light: '#343A40',
     dark: '#303F9F',
   },
 };

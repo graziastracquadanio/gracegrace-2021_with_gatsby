@@ -6,7 +6,7 @@ import { TextLink } from 'components/TextLink';
 
 const AboutPage: React.FC = () => {
   return (
-    <LayoutContainer>
+    <Container>
       <section>
         <h1>Hi there, I&apos;m Grazia!</h1>
       </section>
@@ -44,11 +44,11 @@ const AboutPage: React.FC = () => {
           </li>
         </StyledList>
       </section>
-    </LayoutContainer>
+    </Container>
   );
 };
 
-const LayoutContainer = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1em;

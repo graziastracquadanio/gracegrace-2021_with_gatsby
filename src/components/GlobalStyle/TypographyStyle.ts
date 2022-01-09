@@ -83,7 +83,7 @@ const TypographyStyle = css`
   code {
     padding: 0 0.25em;
     border-radius: 3px;
-    background-color: var(--color-gray100);
+    background-color: var(--color-highlight);
     color: var(--color-text);
     transition: background var(--theme-transition);
   }

@@ -22,9 +22,9 @@ export const RecipesListView: React.FC<Props> = ({ recipes }) => {
     <div>
       <List>
         {[...recipes, fakeRecipe].map((recipe: Recipe) => (
-          <li key={recipe.id}>
+          <ListItem key={recipe.id}>
             <RecipesListItem {...recipe} />
-          </li>
+          </ListItem>
         ))}
       </List>
     </div>
@@ -32,7 +32,13 @@ export const RecipesListView: React.FC<Props> = ({ recipes }) => {
 };
 
 const List = styled.ul`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  column-width: 18rem;
+  column-gap: 1rem;
+`;
+
+const ListItem = styled.li`
+  display: inline-block;
+  width: 100%;
+  padding-bottom: 1rem;
+  break-inside: avoid;
 `;

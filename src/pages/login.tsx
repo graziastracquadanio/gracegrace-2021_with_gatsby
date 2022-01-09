@@ -66,6 +66,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 2rem;
 `;
 
 const Form = styled.div`
@@ -75,6 +76,7 @@ const Form = styled.div`
   gap: 2rem;
   padding: 2rem;
   max-width: 20rem;
+  width: 100%;
   background-color: var(--color-muted);
   transition: background var(--theme-transition);
 `;

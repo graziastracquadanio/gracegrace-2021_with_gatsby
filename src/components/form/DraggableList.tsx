@@ -11,12 +11,21 @@ interface Props {
   name: string;
   values: string[] | undefined;
   rows?: number;
+  placeholder?: string;
   handleChange: ChangeEventHandler | undefined;
   onRemoveItem: (index: number) => void;
   onAddItem: (value: any) => void;
 }
 
-export const DraggableList: React.FC<Props> = ({ name, values, rows = 1, handleChange, onAddItem, onRemoveItem }) => {
+export const DraggableList: React.FC<Props> = ({
+  name,
+  values,
+  rows = 1,
+  placeholder,
+  handleChange,
+  onAddItem,
+  onRemoveItem,
+}) => {
   const Control = rows > 1 ? Textarea : Input;
 
   return (
@@ -25,7 +34,13 @@ export const DraggableList: React.FC<Props> = ({ name, values, rows = 1, handleC
         values.map((value, index) => (
           // eslint-disable-next-line react/no-array-index-key
           <ControlListItem key={`${name}-${index}`}>
-            <Control name={`${name}.${index}`} value={value} {...(rows > 1 && { rows })} onChange={handleChange} />
+            <Control
+              name={`${name}.${index}`}
+              value={value}
+              {...(rows > 1 && { rows })}
+              onChange={handleChange}
+              placeholder={placeholder}
+            />
             <StyledTrashButton color="var(--color-text)" onClick={() => onRemoveItem(index)} />
           </ControlListItem>
         ))}
