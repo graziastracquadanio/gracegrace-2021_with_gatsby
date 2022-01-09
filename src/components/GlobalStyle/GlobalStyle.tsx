@@ -2,15 +2,11 @@ import { createGlobalStyle } from 'styled-components';
 
 import ResetStyle from './ResetStyle';
 import TypographyStyle from './TypographyStyle';
-import { COLOR_HELPERS, FONTS, LAYOUT, THEME, ZINDEX } from 'constants/css-variables';
+import { FONTS, LAYOUT, THEME, ZINDEX } from 'constants/css-variables';
 
 const GlobalStyle = createGlobalStyle`
   // variables (except colors which are dynamically updated in the ThemeContext)
   :root {
-    // COLOR HELPERS
-    --color-lighten: ${COLOR_HELPERS.lighten};
-    --color-darken: ${COLOR_HELPERS.darken};
-
     // FONTS
     --font-primary: ${FONTS.primary};
     --font-secondary: ${FONTS.secondary};
@@ -32,9 +28,9 @@ const GlobalStyle = createGlobalStyle`
   ${ResetStyle}
   ${TypographyStyle}
 
-  /* * {
-    border: 1px dashed rgba(255, 255, 255, 0.1);
-  } */
+  body {
+    border: 8px solid var(--color-primary);
+  }
 
   ::-moz-selection {
     background: var(--color-highlight);

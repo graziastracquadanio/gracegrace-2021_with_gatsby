@@ -2,7 +2,7 @@ import React from 'react';
 
 // import Terser from 'terser';
 
-import { COLOR_MODE_KEY, COLORS, INITIAL_COLOR_MODE_CSS_PROP } from './src/constants/colors';
+import { COLOR_MODE_KEY, COLORS_ALL, INITIAL_COLOR_MODE_CSS_PROP } from './src/constants/colors';
 
 function setColorsByTheme() {
   const colors = '🌈';
@@ -42,7 +42,7 @@ export const MagicScriptTag = () => {
   // We need to stringify it as JSON so that it isn't
   // inserted as [object Object].
   const functionString = String(setColorsByTheme)
-    .replace("'🌈'", JSON.stringify(COLORS))
+    .replace("'🌈'", JSON.stringify(COLORS_ALL))
     .replace('🔑', COLOR_MODE_KEY)
     .replace('⚡️', INITIAL_COLOR_MODE_CSS_PROP);
 
@@ -69,7 +69,7 @@ export const FallbackStyles = () => {
     --color-background: white;`
   */
 
-  const cssVariableString = Object.entries(COLORS).reduce(
+  const cssVariableString = Object.entries(COLORS_ALL).reduce(
     (acc, [name, colorByTheme]) =>
       colorByTheme.light && colorByTheme.dark && `${acc}\n--color-${name}: ${colorByTheme.light};`,
     '',

@@ -2,12 +2,7 @@
 // - prefixed with the name of the group
 // - kebab-case
 
-export { COLORS } from './colors';
-
-export const COLOR_HELPERS = {
-  lighten: 'rgba(255, 255, 255, 0.25)',
-  darken: 'rgba(0, 0, 0, 0.25)',
-};
+export { COLORS, PALETTE } from './colors';
 
 // use min-width in the media queries
 export const BREAKPOINTS = {

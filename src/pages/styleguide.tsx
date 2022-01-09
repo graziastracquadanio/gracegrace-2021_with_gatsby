@@ -5,24 +5,28 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { TextLink } from 'components/TextLink';
-import { BREAKPOINTS, COLORS, HEADINGS } from 'constants/css-variables';
+import { BREAKPOINTS, COLORS, PALETTE, HEADINGS } from 'constants/css-variables';
 
 const StyleguidePage: React.FC = () => {
-  const colors = Object.keys(COLORS).map((color) => (
-    <ColorItem key={`color-${color}`}>
-      <ColorItemBackground color={color} />
-      <p>
-        <small>{color}</small>{' '}
-      </p>
-    </ColorItem>
-  ));
+  const colors = (colorSet: any) =>
+    Object.keys(colorSet).map((color) => (
+      <ColorItem key={`color-${color}`}>
+        <ColorItemBackground color={color} />
+        <p>
+          <small>{color}</small>{' '}
+        </p>
+      </ColorItem>
+    ));
 
   return (
     <LayoutContainer>
       <h6>This is a place where I play and test the style and have fun.</h6>
       <Section>
         <Title>Colors</Title>
-        <ColorsList>{colors}</ColorsList>
+        <h5>Palette</h5>
+        <ColorsList>{colors(PALETTE)}</ColorsList>
+        <h5>Uses</h5>
+        <ColorsList>{colors(COLORS)}</ColorsList>
       </Section>
       <Section>
         <Title>Headings</Title>
@@ -117,17 +121,13 @@ const Title = styled.h3`
 
 const ColorsList = styled.ul`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto;
   column-gap: 1em;
   row-gap: 1em;
 
-  @media (min-width: ${BREAKPOINTS.medium}) {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-
   @media (min-width: ${BREAKPOINTS.large}) {
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   }
 `;
 
@@ -138,9 +138,13 @@ const ColorItem = styled.li`
 
 const ColorItemBackground = styled.div`
   width: 100%;
-  height: 4rem;
+  height: 2rem;
   background-color: var(${(props) => `--color-${props.color}`});
   transition: background var(--theme-transition);
+
+  @media (min-width: ${BREAKPOINTS.large}) {
+    height: 4rem;
+  }
 `;
 
 const HorizontalList = styled.div`

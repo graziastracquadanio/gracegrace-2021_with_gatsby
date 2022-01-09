@@ -32,7 +32,8 @@ export class RecipesStore {
       const querySnap = await getDocs(collection(this.db, 'recipes'));
       const images = await Promise.all(
         querySnap.docs.map((docSnap) => {
-          const thumbRef = ref(this.storage, `recipes/${docSnap.data().id}-thumb.jpg`);
+          const { id, imageName } = docSnap.data() as RecipeBase;
+          const thumbRef = ref(this.storage, `recipes/${imageName || id}-thumb.jpg`);
           return imageFetcher(thumbRef);
         }),
       );

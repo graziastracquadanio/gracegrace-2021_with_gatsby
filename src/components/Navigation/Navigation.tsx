@@ -27,12 +27,12 @@ const Navigation: React.FC = observer(() => {
         <NavigationItemLink to="/styleguide">Styleguide</NavigationItemLink>
         <NavigationItemLink to="/recipes">Recipes</NavigationItemLink>
         <NavigationItemLink to="/contact">Contact</NavigationItemLink>
-        <NavigationSpacer />
         {authStore.isLoggedIn && (
           <Button variant="primary" size="small" onClick={authStore.logout}>
             Logout
           </Button>
         )}
+        <NavigationSpacer />
         <ThemeToggle />
       </NavigationList>
     </NavigationContainer>

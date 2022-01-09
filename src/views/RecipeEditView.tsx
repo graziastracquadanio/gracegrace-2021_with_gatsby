@@ -5,7 +5,7 @@ import { navigate } from 'gatsby';
 import styled from 'styled-components';
 
 import { Button } from 'components/Button';
-import { DraggableList, Input, Textarea } from 'components/form';
+import { Checkbox, DraggableList, Input, Textarea } from 'components/form';
 import { BREAKPOINTS } from 'constants/css-variables';
 import { Recipe } from 'types/recipe';
 import { useFormikArray } from 'utils/formik';
@@ -18,14 +18,17 @@ interface Props {
 
 export const RecipeEditView: React.FC<Props> = ({ recipe, saveRecipe, deleteRecipe }) => {
   const [ingredientsString, setIngredientsString] = useState('');
+  const [details, setDetails] = useState<Pick<Recipe, 'createdAt' | 'lastEdit'> | undefined>();
 
   const initialValues = useMemo(
     () => ({
       id: '',
       title: '',
       description: '',
+      imageName: '',
       ingredients: [],
       instructions: [''],
+      published: false,
     }),
     [],
   );
@@ -48,11 +51,15 @@ export const RecipeEditView: React.FC<Props> = ({ recipe, saveRecipe, deleteReci
     if (recipe) {
       setValues(recipe);
       if (recipe.ingredients) {
-        console.log(`- ${recipe.ingredients.join('\n- ')}`);
         setIngredientsString(`- ${recipe.ingredients.join('\n- ')}`);
       }
+      const { createdAt, lastEdit } = recipe;
+      setDetails({
+        createdAt,
+        lastEdit,
+      });
     }
-  }, [recipe, setValues, setIngredientsString]);
+  }, [recipe, setValues, setIngredientsString, setDetails]);
 
   const { add: addInstruction, remove: removeInstruction } = useFormikArray(formikProps, 'instructions');
 
@@ -76,6 +83,7 @@ export const RecipeEditView: React.FC<Props> = ({ recipe, saveRecipe, deleteReci
 
   return (
     <Container>
+      {formikProps.values.published}
       <Header>
         <FormControl>
           <Label htmlFor="title">Title</Label>
@@ -101,6 +109,33 @@ export const RecipeEditView: React.FC<Props> = ({ recipe, saveRecipe, deleteReci
           />
         </FormControl>
       </Description>
+      <Details>
+        <Checkbox
+          id="published"
+          name="published"
+          type="checkbox"
+          checked={formikProps.values.published}
+          onChange={formikProps.handleChange}
+          label="published"
+        />
+        <div>
+          {formikProps.values.id && <p>id: {formikProps.values.id}</p>}
+          {details?.createdAt && <p>Created: {new Date(details.createdAt).toLocaleString()}</p>}
+          {details?.lastEdit && <p>Last edit: {new Date(details.lastEdit).toLocaleString()}</p>}
+        </div>
+      </Details>
+      <Picture>
+        <FormControl>
+          <Label htmlFor="image-name">Image name</Label>
+          <Input
+            id="image-name"
+            name="imageName"
+            value={formikProps.values.imageName}
+            onChange={formikProps.handleChange}
+            placeholder="Name of the picture"
+          />
+        </FormControl>
+      </Picture>
       <Ingredients>
         <FormControl>
           <Label htmlFor="ingredients">Ingredients</Label>
@@ -160,16 +195,16 @@ const Label = styled.label`
 const Container = styled.div`
   display: grid;
   grid-row-gap: 2em;
-  grid-template-areas: 'header' 'tags' 'picture' 'description' 'ingredients' 'instructions' 'footer';
+  grid-template-areas: 'header' 'picture' 'description' 'ingredients' 'instructions' 'details' 'footer';
 
   @media (min-width: ${BREAKPOINTS.medium}) {
     grid-template-columns: 16rem auto 16rem;
     grid-row-gap: 1em;
     grid-column-gap: 2em;
     grid-template-areas:
-      'header header picture'
-      'description description picture'
-      'tags tags picture'
+      'header header details'
+      'picture picture details'
+      'description description description'
       'ingredients instructions instructions'
       'footer footer footer';
   }
@@ -191,6 +226,21 @@ const Ingredients = styled.div`
   grid-area: ingredients;
 `;
 
+const Details = styled.div`
+  grid-area: details;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 1rem;
+  height: 100%;
+  background-color: var(--color-gray);
+  padding: 2rem;
+`;
+
+const Picture = styled.div`
+  grid-area: picture;
+`;
+
 const Instructions = styled.div`
   grid-area: instructions;
 `;
@@ -209,4 +259,5 @@ const Footer = styled.div`
 
 const Tip = styled.span`
   font-size: small;
+  opacity: 0.8;
 `;

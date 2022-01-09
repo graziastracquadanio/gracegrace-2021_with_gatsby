@@ -27,18 +27,19 @@ export class RecipeStore {
     if (id !== this.recipe?.id) {
       this.uiStore.loading = true;
       try {
-        const [recipeBase, recipeDetails] = await Promise.all([
+        const [recipeBaseSnap, recipeDetailsSnap] = await Promise.all([
           getDoc(doc(this.db, 'recipes', id)),
           getDoc(doc(this.db, 'recipes-with-details', id)),
         ]);
-        if (recipeBase.exists() && recipeDetails.exists()) {
-          const imageRef = ref(this.storage, `recipes/${id}.jpg`);
-          const image = await imageFetcher(imageRef);
+        if (recipeBaseSnap.exists() && recipeDetailsSnap.exists()) {
+          const recipeBase = recipeBaseSnap.data() as RecipeBase;
+          const imageRef = ref(this.storage, `recipes/${recipeBase.imageName || id}.jpg`);
+          const cover = await imageFetcher(imageRef);
           runInAction(() => {
             this.recipe = {
-              ...(recipeBase.data() as RecipeBase),
-              ...(recipeDetails.data() as RecipeDetails),
-              image,
+              ...recipeBase,
+              ...(recipeDetailsSnap.data() as RecipeDetails),
+              cover,
             };
             this.uiStore.loading = false;
           });

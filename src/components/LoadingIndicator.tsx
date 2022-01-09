@@ -19,7 +19,7 @@ const ProgressBar = styled.div<{ isLoading: boolean }>`
   width: 100%;
   height: ${(props) => (props.isLoading ? '0.3rem' : 0)};
   transition: height 0.2s ease-in;
-  background-color: var(--color-highlight);
+  background-color: var(--color-secondary-light);
   z-index: ${ZINDEX.progressBar};
 
   &:before,

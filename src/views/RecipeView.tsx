@@ -3,24 +3,19 @@ import React from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 
-import { Tag } from 'components/Tag';
 import { BREAKPOINTS } from 'constants/css-variables';
 import { Recipe } from 'types/recipe';
 
 const ingredientsRegex = /^\[(.*)\]$/g;
 
-export const RecipeView: React.FC<Recipe> = ({ title, description, image, ingredients, instructions }) => {
+export const RecipeView: React.FC<Recipe> = ({ title, description, cover, ingredients, instructions }) => {
   return (
     <Container>
       <Header>
         <Title>{title}</Title>
       </Header>
-      {/* <Tags>
-        <Tag>main course</Tag>
-        <Tag>vegan</Tag>
-      </Tags> */}
 
-      {image && <Picture alt={title} src={image} />}
+      {cover && <Picture alt={title} src={cover} />}
 
       <Description>
         <p>{description}</p>
@@ -144,7 +139,7 @@ const Instructions = styled.div`
 `;
 
 const InstructionsList = styled.ul`
-  background-color: var(--color-smooth);
+  background-color: var(--color-accent-light);
   transition: background var(--theme-transition);
 `;
 

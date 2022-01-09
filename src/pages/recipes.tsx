@@ -13,7 +13,7 @@ export default observer(function RecipesPage() {
     <>
       <h5>This is a collection of my favorite recipes. Work in progress!</h5>
       {authStore.isLoggedIn && <Link to="new">Add new recipe</Link>}
-      <RecipesListView recipes={recipesStore.recipes} />
+      <RecipesListView recipes={recipesStore.recipes} superMode={authStore.isLoggedIn} />
     </>
   );
 });

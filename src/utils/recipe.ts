@@ -11,14 +11,15 @@ export const imageFetcher = async (ref: StorageReference): Promise<string | null
   }
 };
 
-const filterUnvalidItems = (values: string[]) => values.filter((value) => value.length > 0);
+const filterInvalidItems = (values: string[]) => values.filter((value) => value.length > 0);
 
 export const getRecipeForSaving = ({
   id: originalId,
   title,
+  description,
+  imageName,
   published = false,
   createdAt = Date.now(),
-  description,
   ingredients: originalIngredients,
   instructions: originalInstructions,
 }: Recipe): { base: RecipeBase; details: RecipeDetails } | null => {
@@ -28,15 +29,17 @@ export const getRecipeForSaving = ({
     return null;
   }
 
-  const ingredients = originalIngredients && filterUnvalidItems(originalIngredients);
-  const instructions = originalInstructions && filterUnvalidItems(originalInstructions);
+  const ingredients = originalIngredients && filterInvalidItems(originalIngredients);
+  const instructions = originalInstructions && filterInvalidItems(originalInstructions);
 
   return {
     base: {
       id,
       title,
+      imageName: imageName || id,
       published,
       createdAt,
+      lastEdit: Date.now(),
     },
     details: {
       id,
