@@ -24,7 +24,7 @@ const NavigationLink = styled(Link)`
   text-transform: uppercase;
   letter-spacing: 2px;
   user-select: none;
-  padding-bottom: 0.5rem;
+  padding: 0.5rem 0.2rem;
   color: var(--navigation-link-color);
 
   &:hover,

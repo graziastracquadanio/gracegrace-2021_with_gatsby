@@ -1,31 +1,43 @@
 import React from 'react';
 
 import { motion } from 'framer-motion';
+import { observer } from 'mobx-react-lite';
 import styled from 'styled-components';
 
 import NavigationItemLink from './NavigationItemLink';
 import ThemeToggle from './ThemeToggle';
+import { Button } from 'components/Button';
+import { useRootStore } from 'contexts/RootStoreContext';
 
-const Navigation: React.FC = () => (
-  <NavigationContainer
-    initial={{ translateY: '-100%' }}
-    animate={{ translateY: 0 }}
-    transition={{
-      ease: 'easeOut',
-      duration: 0.3,
-      delay: 1,
-    }}
-  >
-    <NavigationList>
-      <NavigationItemLink to="/about">About</NavigationItemLink>
-      <NavigationItemLink to="/styleguide">Styleguide</NavigationItemLink>
-      <NavigationItemLink to="/recipes">Recipes</NavigationItemLink>
-      <NavigationItemLink to="/contact">Contact</NavigationItemLink>
-      <NavigationSpacer />
-      <ThemeToggle />
-    </NavigationList>
-  </NavigationContainer>
-);
+const Navigation: React.FC = observer(() => {
+  const { authStore } = useRootStore();
+
+  return (
+    <NavigationContainer
+      initial={{ translateY: '-100%' }}
+      animate={{ translateY: 0 }}
+      transition={{
+        ease: 'easeOut',
+        duration: 0.3,
+        delay: 1,
+      }}
+    >
+      <NavigationList>
+        <NavigationItemLink to="/about">About</NavigationItemLink>
+        <NavigationItemLink to="/styleguide">Styleguide</NavigationItemLink>
+        <NavigationItemLink to="/recipes">Recipes</NavigationItemLink>
+        <NavigationItemLink to="/contact">Contact</NavigationItemLink>
+        <NavigationSpacer />
+        <ThemeToggle />
+        {authStore.isLoggedIn && (
+          <Button variant="primary" size="small" onClick={authStore.logout}>
+            Logout
+          </Button>
+        )}
+      </NavigationList>
+    </NavigationContainer>
+  );
+});
 
 const NavigationContainer = styled(motion.nav)`
   width: 100%;
@@ -35,10 +47,6 @@ const NavigationContainer = styled(motion.nav)`
   display: flex;
   justify-content: center;
   z-index: var(--zindex-navigation-menu);
-
-  /* animation: mainNavbarTopAnimation 0.3s ease-out;
-  animation-fill-mode: both;
-  animation-delay: 1.5s; */
 
   &:before {
     content: '';
@@ -57,6 +65,7 @@ const NavigationContainer = styled(motion.nav)`
 const NavigationList = styled.div`
   width: 100%;
   display: flex;
+  align-items: center;
   gap: 1em;
 `;
 

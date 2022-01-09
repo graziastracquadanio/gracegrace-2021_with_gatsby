@@ -30,7 +30,9 @@ export const DraggableList: React.FC<Props> = ({ name, values, rows = 1, handleC
           </ControlListItem>
         ))}
       <ActionContainer>
-        <Button onClick={() => onAddItem('')}>Add new item</Button>
+        <Button onClick={() => onAddItem('')} size="small">
+          Add new item
+        </Button>
       </ActionContainer>
     </ControlList>
   );

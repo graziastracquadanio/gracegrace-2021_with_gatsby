@@ -45,8 +45,20 @@ export const COLORS: { [key: string]: Color } = {
     dark: 'hsl(210, 50%, 60%)',
   },
   gray100: {
-    light: 'rgba(223, 228, 234, 1.0)',
-    dark: 'hsl(210, 50%, 30%)',
+    light: '#CFD8DC',
+    dark: '#C5CAE9',
+  },
+  gray300: {
+    light: '#90A4AE',
+    dark: '#7986CB',
+  },
+  gray500: {
+    light: '#607D8B',
+    dark: '#3F51B5',
+  },
+  gray700: {
+    light: '#455A64',
+    dark: '#303F9F',
   },
 };
 

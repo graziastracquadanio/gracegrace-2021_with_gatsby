@@ -3,6 +3,8 @@ export interface RecipeBase {
   title?: string;
   published?: boolean;
   createdAt?: number;
+  // added
+  thumb?: string | null;
 }
 export interface RecipeDetails {
   id: string;
@@ -12,8 +14,9 @@ export interface RecipeDetails {
 }
 
 export interface Recipe extends RecipeBase {
-  image?: string;
   description?: string;
   ingredients?: string[];
   instructions?: string[];
+  // added
+  image?: string | null;
 }

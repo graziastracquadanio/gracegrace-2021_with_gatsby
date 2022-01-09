@@ -52,5 +52,5 @@ export const ZINDEX = {
 };
 
 export const THEME = {
-  transition: '.04s ease-out',
+  transition: '.3s ease-out',
 };

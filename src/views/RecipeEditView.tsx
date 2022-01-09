@@ -13,9 +13,10 @@ import { useFormikArray } from 'utils/formik';
 interface Props {
   recipe?: Recipe | null;
   saveRecipe: (data: Recipe) => Promise<string | null>;
+  deleteRecipe: (id: string) => Promise<void>;
 }
 
-export const RecipeEditLayout: React.FC<Props> = ({ recipe, saveRecipe }) => {
+export const RecipeEditView: React.FC<Props> = ({ recipe, saveRecipe, deleteRecipe }) => {
   const initialValues = useMemo(
     () => ({
       id: '',
@@ -29,7 +30,14 @@ export const RecipeEditLayout: React.FC<Props> = ({ recipe, saveRecipe }) => {
 
   const formikProps = useFormik<Recipe>({
     initialValues,
-    onSubmit: () => {},
+    onSubmit: async (values) => {
+      if (values) {
+        const id = await saveRecipe(values);
+        if (id) {
+          navigate(`/recipes/${id}`);
+        }
+      }
+    },
   });
 
   const { setValues } = formikProps;
@@ -43,13 +51,12 @@ export const RecipeEditLayout: React.FC<Props> = ({ recipe, saveRecipe }) => {
   const { add: addIngredient, remove: removeIngredient } = useFormikArray(formikProps, 'ingredients');
   const { add: addInstruction, remove: removeInstruction } = useFormikArray(formikProps, 'instructions');
 
-  const onSave = async () => {
-    if (formikProps.values) {
-      const id = await saveRecipe(formikProps.values);
-      if (id) {
-        navigate(`/recipes/${id}`);
-      }
+  const onDelete = async () => {
+    const { id } = formikProps.values;
+    if (id) {
+      await deleteRecipe(id);
     }
+    navigate('/recipes');
   };
 
   return (
@@ -100,7 +107,12 @@ export const RecipeEditLayout: React.FC<Props> = ({ recipe, saveRecipe }) => {
       </Instructions>
 
       <Footer>
-        <SaveButton onClick={onSave}>Save recipe</SaveButton>
+        <Button onClick={formikProps.submitForm} variant="primary" size="medium">
+          Save recipe
+        </Button>
+        <Button onClick={onDelete} variant="gray500" size="medium">
+          Delete recipe
+        </Button>
       </Footer>
     </Container>
   );
@@ -166,13 +178,5 @@ const Footer = styled.div`
   bottom: 0;
   display: flex;
   justify-content: center;
-`;
-
-const SaveButton = styled(Button)`
-  background-color: var(--color-primary);
-  font-size: 1rem;
-
-  &:hover {
-    background-color: var(--color-primary);
-  }
+  gap: 2rem;
 `;

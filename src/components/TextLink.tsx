@@ -25,7 +25,7 @@ export const TextLink: React.FC<Props> = ({ to, activeClassName, partiallyActive
 const LinkStyleLightTheme = css`
   color: inherit;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 500;
   /* background: linear-gradient(120deg, var(--color-highlight) 0%, var(--color-highlight) 100%);
   background-repeat: no-repeat;
   background-size: 100% 40%;

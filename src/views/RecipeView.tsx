@@ -7,7 +7,7 @@ import { Tag } from 'components/Tag';
 import { BREAKPOINTS } from 'constants/css-variables';
 import { Recipe } from 'types/recipe';
 
-export const RecipeLayout: React.FC<Recipe> = ({ title, description, image, ingredients, instructions, ...recipe }) => {
+export const RecipeView: React.FC<Recipe> = ({ title, description, image, ingredients, instructions, ...recipe }) => {
   return (
     <Container>
       <Header>

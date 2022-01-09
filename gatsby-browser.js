@@ -18,7 +18,7 @@ const firebaseCredentials = {
   appId: process.env.FIREBASE_APP_ID,
 };
 
-const firebaseApp = initializeApp(firebaseCredentials);
+initializeApp(firebaseCredentials);
 
 export const wrapPageElement = ({ element }) => <App>{element}</App>;
 

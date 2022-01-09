@@ -25,7 +25,6 @@ module.exports = {
       options: rootDirsConfig,
     },
     'gatsby-plugin-styled-components',
-    'gatsby-plugin-layout',
     'gatsby-plugin-typescript',
   ],
 };

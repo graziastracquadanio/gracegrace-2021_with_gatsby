@@ -72,7 +72,7 @@ const TypographyStyle = css`
 
   b,
   strong {
-    font-weight: bolder; // Add the correct font weight in Chrome, Edge, and Safari
+    font-weight: 500; // Add the correct font weight in Chrome, Edge, and Safari
   }
 
   mark {

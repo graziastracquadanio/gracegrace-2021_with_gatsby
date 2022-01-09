@@ -4,7 +4,7 @@ import { PageProps } from 'gatsby';
 import { observer } from 'mobx-react-lite';
 
 import { useRootStore } from 'contexts/RootStoreContext';
-import { RecipeEditLayout } from 'layouts/RecipeEditLayout';
+import { RecipeEditView } from 'views/RecipeEditView';
 
 export default observer(function RecipeEditPage(props: PageProps) {
   const id = props.params.recipeId;
@@ -17,5 +17,6 @@ export default observer(function RecipeEditPage(props: PageProps) {
   }, [id, recipeStore]);
 
   const recipe = recipeStore.recipe ? { ...recipeStore.recipe } : null;
-  return <RecipeEditLayout recipe={recipe} saveRecipe={recipeStore.setRecipe} />;
+
+  return <RecipeEditView recipe={recipe} saveRecipe={recipeStore.setRecipe} deleteRecipe={recipeStore.removeRecipe} />;
 });

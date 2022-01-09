@@ -1,9 +1,11 @@
 import { collection, Firestore, getDocs } from 'firebase/firestore';
-import { FirebaseStorage } from 'firebase/storage';
+import { FirebaseStorage, ref } from 'firebase/storage';
 import { makeAutoObservable, runInAction } from 'mobx';
 
+import { imageFetcher } from '../utils/recipe';
 import { UiStore } from './UiStore';
 import { RecipeBase } from 'types/recipe';
+import { printError } from 'utils/others';
 
 export class RecipesStore {
   recipes: RecipeBase[] | null = null;
@@ -28,14 +30,24 @@ export class RecipesStore {
     this.uiStore.loading = true;
     try {
       const querySnap = await getDocs(collection(this.db, 'recipes'));
-      const data = querySnap.docs.map((docSnap) => {
-        return docSnap.data() as RecipeBase;
-      });
+      const images = await Promise.all(
+        querySnap.docs.map((docSnap) => {
+          const thumbRef = ref(this.storage, `recipes/${docSnap.data().id}-thumb.jpg`);
+          return imageFetcher(thumbRef);
+        }),
+      );
+
+      const data = querySnap.docs.map((docSnap, index) => ({
+        ...(docSnap.data() as RecipeBase),
+        thumb: images[index],
+      }));
+
       runInAction(() => {
         this.recipes = data;
         this.uiStore.loading = false;
       });
     } catch (error) {
+      printError(error);
       runInAction(() => {
         this.error = 'Something went wrong fetching the data';
         this.uiStore.loading = false;

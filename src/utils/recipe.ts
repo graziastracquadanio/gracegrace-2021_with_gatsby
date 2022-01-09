@@ -1,4 +1,15 @@
+import { StorageReference, getDownloadURL } from 'firebase/storage';
+
 import { Recipe, RecipeBase, RecipeDetails } from 'types/recipe';
+
+export const imageFetcher = async (ref: StorageReference): Promise<string | null> => {
+  try {
+    const image = await getDownloadURL(ref);
+    return image;
+  } catch {
+    return null;
+  }
+};
 
 const filterUnvalidItems = (values: string[]) => values.filter((value) => value.length > 0);
 
