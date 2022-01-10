@@ -6,39 +6,42 @@ import styled from 'styled-components';
 import { TextLink } from 'components/TextLink';
 import { Recipe } from 'types/recipe';
 
-export const RecipesListItem: React.FC<Recipe> = ({ id, title, thumb }) => {
-  return (
-    <StyledLink to={`/recipes/${id}`}>
-      <div>
-        <Thumb alt={title} src={thumb || 'assets/fallback.png'} isFallback={!thumb} />
-      </div>
-      <Title>
-        <TextLink to={`/recipes/${id}`}>{title}</TextLink>
-      </Title>
-    </StyledLink>
-  );
-};
+export const RecipesListItem: React.FC<Recipe> = ({ id, title, thumb }) => (
+  <Container>
+    <ThumbContainer to={`/recipes/${id}`}>
+      <Thumb alt={title} src={thumb || '/assets/fallback.png'} loading="lazy" />
+    </ThumbContainer>
+    <Title>
+      <TextLink to={`/recipes/${id}`}>{title}</TextLink>
+    </Title>
+  </Container>
+);
 
-const StyledLink = styled(Link)`
+const Container = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
   width: 100%;
 `;
 
-const Thumb = styled.img<{ isFallback: boolean }>`
+const ThumbContainer = styled(Link)`
   width: 5rem;
   height: 5rem;
-  padding: ${(props) => (props.isFallback ? '0.75rem' : 0)};
-  opacity: ${(props) => (props.isFallback ? 0.7 : 1)};
-  background-color: var(--color-gray);
+  background-color: var(--color-gray-light);
+  background-image: url('/assets/fallback.png');
+  background-size: contain;
 `;
 
-const Title = styled.p`
-  /* font-family: var(--font-primary); */
+const Thumb = styled.img`
+  display: block;
+  width: 100%;
+`;
+
+const Title = styled.h6`
+  flex: 1;
+  font-family: var(--font-primary);
   text-decoration: none;
   line-height: 1.2;
-
   color: var(--color-text);
 `;
 

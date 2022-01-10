@@ -4,11 +4,14 @@ import { Link } from 'gatsby';
 import styled from 'styled-components';
 
 import { BREAKPOINTS } from 'constants/css-variables';
+import { useThemeContext } from 'contexts/ThemeContext';
 import { Recipe } from 'types/recipe';
 
 const ingredientsRegex = /^\[(.*)\]$/g;
 
 export const RecipeView: React.FC<Recipe> = ({ title, description, cover, ingredients, instructions }) => {
+  const { colorMode } = useThemeContext();
+
   return (
     <Container>
       <Header>
@@ -41,7 +44,7 @@ export const RecipeView: React.FC<Recipe> = ({ title, description, cover, ingred
       {instructions && (
         <Instructions>
           <h4>Instructions</h4>
-          <InstructionsList>
+          <InstructionsList colorMode={colorMode}>
             {instructions.map((instruction, i) => (
               <InstructionsListItem key={`instruction-${instruction.slice(5)}`}>
                 {instruction.startsWith('TIP: ') ? (
@@ -138,8 +141,8 @@ const Instructions = styled.div`
   gap: 1em;
 `;
 
-const InstructionsList = styled.ul`
-  background-color: var(--color-accent-light);
+const InstructionsList = styled.ul<{ colorMode: string }>`
+  background-color: ${(props) => (props.colorMode === 'light' ? 'var(--color-gray-light);' : 'transparent')};
   transition: background var(--theme-transition);
 `;
 

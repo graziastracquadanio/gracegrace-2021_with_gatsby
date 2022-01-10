@@ -1,32 +1,76 @@
 /* eslint-disable react/no-danger */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
+import { AnimatePresence, motion } from 'framer-motion';
 import styled from 'styled-components';
 
 import { TextLink } from 'components/TextLink';
 import { BREAKPOINTS, COLORS, PALETTE, HEADINGS } from 'constants/css-variables';
+import { useThemeContext } from 'contexts/ThemeContext';
+import { copyToClipboard } from 'utils/others';
 
 const StyleguidePage: React.FC = () => {
-  const colors = (colorSet: any) =>
-    Object.keys(colorSet).map((color) => (
-      <ColorItem key={`color-${color}`}>
-        <ColorItemBackground color={color} />
-        <p>
-          <small>{color}</small>{' '}
-        </p>
-      </ColorItem>
-    ));
+  const { colorMode } = useThemeContext();
+  const [message, setMessage] = useState<string | null>(null);
+
+  const onCopy = (value: string) => {
+    setMessage(value);
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setMessage(null);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, [message, setMessage]);
+
+  const colors = useMemo(
+    () => (colorSet: any) =>
+      Object.keys(colorSet).map((color) => (
+        <ColorItem key={`color-${color}`} onClick={() => copyToClipboard(`var(--color-${color})`, onCopy)}>
+          <ColorItemBackground color={color} />
+          <ColorItemsText>
+            <small>{color}</small>
+            {colorMode && <small>{colorSet[color][colorMode]}</small>}
+          </ColorItemsText>
+        </ColorItem>
+      )),
+    [colorMode],
+  );
+
+  const steps = {
+    hidden: { opacity: 0, y: 100 },
+    visible: { opacity: 1, y: 0 },
+  };
 
   return (
     <LayoutContainer>
+      <AnimatePresence>
+        {message && (
+          <Message initial="hidden" animate="visible" exit="hidden" variants={steps}>
+            {message} copied to clipboard!
+          </Message>
+        )}
+      </AnimatePresence>
       <h6>This is a place where I play and test the style and have fun.</h6>
       <Section>
         <Title>Colors</Title>
-        <h5>Palette</h5>
-        <ColorsList>{colors(PALETTE)}</ColorsList>
-        <h5>Uses</h5>
-        <ColorsList>{colors(COLORS)}</ColorsList>
+        <p>
+          Use <code>var(--color-name)</code> as CSS variable. Updated automatically on switching theme.
+        </p>
+        <Subsection>
+          <h5>Palette</h5>
+          <p>
+            Where possible avoid using directly the palette. Prefer the use cases or adjust the color using the theme
+            context.
+          </p>
+          <ColorsList>{colors(PALETTE)}</ColorsList>
+        </Subsection>
+        <Subsection>
+          <h5>Uses</h5>
+          <ColorsList>{colors(COLORS)}</ColorsList>
+        </Subsection>
       </Section>
       <Section>
         <Title>Headings</Title>
@@ -112,6 +156,14 @@ const Section = styled.section`
   padding: 1em;
 `;
 
+const Subsection = styled.div`
+  margin-bottom: 1rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+`;
+
 const Title = styled.h3`
   color: var(--color-primary);
   border-bottom: 2px solid var(--color-primary);
@@ -134,6 +186,7 @@ const ColorsList = styled.ul`
 const ColorItem = styled.li`
   display: flex;
   flex-direction: column;
+  cursor: pointer;
 `;
 
 const ColorItemBackground = styled.div`
@@ -147,6 +200,11 @@ const ColorItemBackground = styled.div`
   }
 `;
 
+const ColorItemsText = styled.p`
+  display: flex;
+  flex-direction: column;
+`;
+
 const HorizontalList = styled.div`
   display: flex;
   align-items: baseline;
@@ -158,6 +216,16 @@ const VerticalList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+`;
+
+const Message = styled(motion.p)`
+  position: fixed;
+  bottom: 0;
+  right: 3rem;
+  background-color: var(--color-highlight);
+  border-radius: 5px;
+  color: var(--color-text);
+  padding: 0 1rem;
 `;
 
 export default StyleguidePage;

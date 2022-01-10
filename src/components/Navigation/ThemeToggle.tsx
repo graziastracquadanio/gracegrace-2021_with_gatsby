@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
-import { ThemeContext } from 'contexts/ThemeContext';
+import { useThemeContext } from 'contexts/ThemeContext';
 
 interface Properties {
   r: number;
@@ -49,8 +49,8 @@ const sunPathTransition = {
 };
 
 const ThemeToggle: React.FC = () => {
-  const { colorMode, setColorMode } = React.useContext(ThemeContext);
-  const [properties, setProperties] = React.useState<Properties>(propertiesByTheme.light);
+  const { colorMode, setColorMode } = useThemeContext();
+  const [properties, setProperties] = useState<Properties>(propertiesByTheme.light);
 
   const toggleColorMode = () => {
     setColorMode(colorMode === 'light' ? 'dark' : 'light');
@@ -66,7 +66,7 @@ const ThemeToggle: React.FC = () => {
 
   return (
     <ToggleButton onClick={toggleColorMode}>
-      <motion.svg
+      <StyledSvg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
         height="24"
@@ -149,7 +149,7 @@ const ThemeToggle: React.FC = () => {
             transition={{ ...sunPathTransition, delay: delay * 8 }}
           />
         </g>
-      </motion.svg>
+      </StyledSvg>
     </ToggleButton>
   );
 };
@@ -161,13 +161,26 @@ const ToggleButton = styled.button`
   padding: 0;
 `;
 
+const StyledSvg = styled(motion.svg)`
+  height: 100%;
+  width: auto;
+`;
+
 const SunCircle = styled(motion.circle)`
-  fill: var(--color-primary);
+  fill: var(--color-text);
+
+  svg:hover & {
+    fill: var(--color-primary);
+  }
 `;
 
 const SunLine = styled(motion.line)`
   transform-origin: center;
-  stroke: var(--color-primary);
+  stroke: var(--color-text);
+
+  svg:hover & {
+    stroke: var(--color-primary);
+  }
 `;
 
 export default ThemeToggle;

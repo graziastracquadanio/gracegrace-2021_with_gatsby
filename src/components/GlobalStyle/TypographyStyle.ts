@@ -29,6 +29,7 @@ const TypographyStyle = css`
     font-weight: 400;
     line-height: 1.2;
     transition: color var(--theme-transition);
+    margin-bottom: 0.5rem;
   }
 
   h1 {
@@ -61,7 +62,7 @@ const TypographyStyle = css`
     font-size: ${sizes.p}em;
     color: inherit;
     transition: color var(--theme-transition);
-    line-height: 1.75;
+    line-height: 1.5;
     margin: 0;
     margin-bottom: 0.5em;
 
@@ -77,11 +78,12 @@ const TypographyStyle = css`
 
   mark {
     color: inherit;
-    background-color: var(--color-smooth, var(--color-highlight));
+    background-color: var(--color-highlight);
+    transition: background var(--theme-transition);
   }
 
   code {
-    padding: 0 0.25em;
+    padding: 0.1rem 0.25em;
     border-radius: 3px;
     background-color: var(--color-highlight);
     color: var(--color-text);

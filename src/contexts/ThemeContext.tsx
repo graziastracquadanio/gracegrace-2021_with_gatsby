@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
 import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 
@@ -9,10 +9,12 @@ export type ThemeProps = {
   setColorMode: (newValue: keyof Color) => void;
 };
 
-export const ThemeContext = React.createContext({} as ThemeProps);
+export const ThemeContext = createContext({} as ThemeProps);
+
+export const useThemeContext = () => useContext(ThemeContext);
 
 export const ThemeProvider: React.FC = ({ children }) => {
-  const [colorMode, rawSetColorMode] = React.useState<string | undefined>(undefined);
+  const [colorMode, rawSetColorMode] = useState<string | undefined>(undefined);
 
   React.useEffect(() => {
     const root = window.document.documentElement;

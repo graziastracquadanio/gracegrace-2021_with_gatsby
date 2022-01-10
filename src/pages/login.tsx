@@ -26,23 +26,21 @@ export default observer(function LoginPage() {
     }
   }, [authStore.isLoggedIn]);
 
-  const onSubmit = async ({ email, password }: LoginForm) => {
-    if (email.length && password.length) {
-      await authStore.login(email, password);
-    }
-  };
-
-  const { values, handleChange, submitForm } = useFormik<LoginForm>({
+  const { values, handleChange, handleSubmit } = useFormik<LoginForm>({
     initialValues: {
       email: '',
       password: '',
     },
-    onSubmit,
+    onSubmit: async ({ email, password }: LoginForm) => {
+      if (email.length && password.length) {
+        await authStore.login(email, password);
+      }
+    },
   });
 
   return (
     <Container>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <h5>{cheer}!!!</h5>
         <StyledInput name="email" value={values.email} type="email" onChange={handleChange} placeholder="Email" />
         <StyledInput
@@ -52,7 +50,7 @@ export default observer(function LoginPage() {
           onChange={handleChange}
           placeholder="Password"
         />
-        <Button variant="primary" size="medium" onClick={submitForm}>
+        <Button type="submit" variant="primary" size="medium">
           Login
         </Button>
         {authStore.error && <Error>{authStore.error.replace('Firebase: ', '')}</Error>}
@@ -69,7 +67,7 @@ const Container = styled.div`
   padding: 2rem;
 `;
 
-const Form = styled.div`
+const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;

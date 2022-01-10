@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import { Button } from 'components/Button';
 import { Checkbox, DraggableList, Input, Textarea } from 'components/form';
 import { BREAKPOINTS } from 'constants/css-variables';
+import { useThemeContext } from 'contexts/ThemeContext';
 import { Recipe } from 'types/recipe';
 import { useFormikArray } from 'utils/formik';
 
@@ -17,6 +18,7 @@ interface Props {
 }
 
 export const RecipeEditView: React.FC<Props> = ({ recipe, saveRecipe, deleteRecipe }) => {
+  const { colorMode } = useThemeContext();
   const [ingredientsString, setIngredientsString] = useState('');
   const [details, setDetails] = useState<Pick<Recipe, 'createdAt' | 'lastEdit'> | undefined>();
 
@@ -64,11 +66,13 @@ export const RecipeEditView: React.FC<Props> = ({ recipe, saveRecipe, deleteReci
   const { add: addInstruction, remove: removeInstruction } = useFormikArray(formikProps, 'instructions');
 
   const onDelete = async () => {
-    const { id } = formikProps.values;
-    if (id) {
-      await deleteRecipe(id);
+    if (window.confirm('Are you sure you want to delete this recipe?') === true) {
+      const { id } = formikProps.values;
+      if (id) {
+        await deleteRecipe(id);
+      }
+      navigate('/recipes');
     }
-    navigate('/recipes');
   };
 
   const onChangeIngredients = (e: React.ChangeEvent<any>) => {
@@ -109,7 +113,7 @@ export const RecipeEditView: React.FC<Props> = ({ recipe, saveRecipe, deleteReci
           />
         </FormControl>
       </Description>
-      <Details>
+      <Details colorMode={colorMode}>
         <Checkbox
           id="published"
           name="published"
@@ -171,7 +175,7 @@ export const RecipeEditView: React.FC<Props> = ({ recipe, saveRecipe, deleteReci
         <Button onClick={formikProps.submitForm} variant="primary" size="medium">
           Save recipe
         </Button>
-        <Button onClick={onDelete} variant="gray500" size="medium">
+        <Button onClick={onDelete} variant="gray" size="medium">
           Delete recipe
         </Button>
       </Footer>
@@ -226,14 +230,14 @@ const Ingredients = styled.div`
   grid-area: ingredients;
 `;
 
-const Details = styled.div`
+const Details = styled.div<{ colorMode: string }>`
   grid-area: details;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   gap: 1rem;
   height: 100%;
-  background-color: var(--color-gray);
+  background-color: var(--color-${(props) => (props.colorMode === 'light' ? 'gray-light' : 'muted')});
   padding: 2rem;
 `;
 
@@ -248,13 +252,25 @@ const Instructions = styled.div`
 const Footer = styled.div`
   grid-area: footer;
   padding: 0.5rem;
-  background-color: var(--color-background);
   width: 100%;
   position: sticky;
   bottom: 0;
   display: flex;
   justify-content: center;
   gap: 2rem;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-background);
+    transition: background var(--theme-transition);
+    opacity: 0.8;
+    z-index: -1;
+  }
 `;
 
 const Tip = styled.span`

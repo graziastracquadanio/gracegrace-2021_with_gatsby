@@ -4,9 +4,9 @@ import { motion } from 'framer-motion';
 import { observer } from 'mobx-react-lite';
 import styled from 'styled-components';
 
+import { LogoutButton } from './LogoutButton';
 import NavigationItemLink from './NavigationItemLink';
 import ThemeToggle from './ThemeToggle';
-import { Button } from 'components/Button';
 import { useRootStore } from 'contexts/RootStoreContext';
 
 const Navigation: React.FC = observer(() => {
@@ -27,13 +27,9 @@ const Navigation: React.FC = observer(() => {
         <NavigationItemLink to="/styleguide">Styleguide</NavigationItemLink>
         <NavigationItemLink to="/recipes">Recipes</NavigationItemLink>
         <NavigationItemLink to="/contact">Contact</NavigationItemLink>
-        {authStore.isLoggedIn && (
-          <Button variant="primary" size="small" onClick={authStore.logout}>
-            Logout
-          </Button>
-        )}
         <NavigationSpacer />
-        <ThemeToggle />
+        {authStore.isLoggedIn && <StyledLogoutButton onClick={authStore.logout} />}
+        <StyledThemeToggle />
       </NavigationList>
     </NavigationContainer>
   );
@@ -57,7 +53,7 @@ const NavigationContainer = styled(motion.nav)`
     height: 100%;
     background-color: var(--color-background);
     transition: background var(--theme-transition);
-    opacity: 0.9;
+    opacity: 0.8;
     z-index: -1;
   }
 `;
@@ -71,6 +67,14 @@ const NavigationList = styled.div`
 
 const NavigationSpacer = styled.span`
   flex: 1;
+`;
+
+const StyledLogoutButton = styled(LogoutButton)`
+  height: 2rem;
+`;
+
+const StyledThemeToggle = styled(ThemeToggle)`
+  height: 2rem;
 `;
 
 export default Navigation;

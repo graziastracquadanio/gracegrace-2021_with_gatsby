@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 
 type Size = 'small' | 'medium' | undefined;
 
-interface Props extends HTMLAttributes<HTMLButtonElement> {
+interface Props extends React.ComponentPropsWithoutRef<'button'> {
   variant?: string;
   size?: Size;
 }
@@ -37,12 +37,10 @@ const StyledButton = styled.button<Props>`
   border: none;
   border-radius: 3rem;
   color: var(--color-background);
-  background-color: var(--color-${(props) => (props.variant ? props.variant : 'gray500')});
+  background-color: var(--color-${(props) => (props.variant ? props.variant : 'primary')});
   transition: background var(--theme-transition);
-  opacity: 0.8;
 
   &:hover {
-    background-color: var(--color-${(props) => (props.variant ? props.variant : 'secondary')});
-    opacity: 1;
+    background-color: var(--color-primary-dark);
   }
 `;

@@ -22,6 +22,11 @@ export const TextLink: React.FC<Props> = ({ to, activeClassName, partiallyActive
   );
 };
 
+const LinkStyle = css`
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+`;
+
 const LinkStyleLightTheme = css`
   color: inherit;
   text-decoration: none;
@@ -54,19 +59,26 @@ const LinkStyleLightTheme = css`
 `;
 
 const LinkStyleDarkTheme = css`
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
   color: var(--color-primary);
-  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  font-weight: 500;
+  transition: all 0s linear;
 
   &:hover {
     color: var(--color-background);
     background-color: var(--color-primary);
+    transition: all 0.1s linear 0.05s;
   }
 `;
 
 const StyledLink = styled(Link)`
+  ${LinkStyle};
   ${(props) => (props.theme.colorMode === 'dark' ? LinkStyleDarkTheme : LinkStyleLightTheme)}
 `;
 
 const StyledAnchor = styled.a`
+  ${LinkStyle};
   ${(props) => (props.theme.colorMode === 'dark' ? LinkStyleDarkTheme : LinkStyleLightTheme)}
 `;

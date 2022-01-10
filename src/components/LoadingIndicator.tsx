@@ -8,18 +8,19 @@ import { useRootStore } from 'contexts/RootStoreContext';
 
 export const LoadingIndicator: React.FC = observer(function LoadingIndicator() {
   const { uiStore } = useRootStore();
-  return <ProgressBar isLoading={uiStore.loading} />;
+  return uiStore.loading ? <ProgressBar /> : null;
 });
 
-const ProgressBar = styled.div<{ isLoading: boolean }>`
+const ProgressBar = styled.div`
   position: fixed;
   z-index: 100;
   top: 0;
   left: 0;
   width: 100%;
-  height: ${(props) => (props.isLoading ? '0.3rem' : 0)};
-  transition: height 0.2s ease-in;
-  background-color: var(--color-secondary-light);
+  height: 8px;
+  /* height: ${(props) => (props.isLoading ? '8px' : 0)}; */
+  /* transition: height 0.2s ease-in; */
+  background-color: var(--color-primary);
   z-index: ${ZINDEX.progressBar};
 
   &:before,
@@ -29,7 +30,7 @@ const ProgressBar = styled.div<{ isLoading: boolean }>`
     top: 0;
     left: 0;
     bottom: 0;
-    background-color: var(--color-secondary);
+    background-color: var(--color-primary-light);
     border-radius: 5px;
   }
 
