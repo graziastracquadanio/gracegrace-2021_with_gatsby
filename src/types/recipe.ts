@@ -5,20 +5,22 @@ export interface RecipeBase {
   createdAt?: number;
   lastEdit?: number;
   imageName?: string;
+
   // added
   thumb?: string | null;
 }
 export interface RecipeDetails {
   id: string;
   description?: string;
-  ingredients?: string[];
+  ingredients?: string;
   instructions?: string[];
 }
 
 export interface Recipe extends RecipeBase {
   description?: string;
-  ingredients?: string[];
+  ingredients?: string;
   instructions?: string[];
+
   // added
   cover?: string | null;
 }

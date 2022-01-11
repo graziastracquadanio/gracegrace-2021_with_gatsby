@@ -1,13 +1,15 @@
 import React from 'react';
 
 import { Link } from 'gatsby';
+import ReactMarkdown from 'react-markdown';
 import styled from 'styled-components';
 
+import { IngredientsListCss } from 'components/recipe';
 import { BREAKPOINTS } from 'constants/css-variables';
 import { useThemeContext } from 'contexts/ThemeContext';
 import { Recipe } from 'types/recipe';
 
-const ingredientsRegex = /^\[(.*)\]$/g;
+// const ingredientsRegex = /^\[(.*)\]$/g;
 
 export const RecipeView: React.FC<Recipe> = ({ title, description, cover, ingredients, instructions }) => {
   const { colorMode } = useThemeContext();
@@ -27,17 +29,7 @@ export const RecipeView: React.FC<Recipe> = ({ title, description, cover, ingred
       {ingredients && (
         <Ingredients>
           <h4>Ingredients</h4>
-          <ul>
-            {ingredients.map((ingredient) => (
-              <Ingredient key={ingredient.slice(5)}>
-                {ingredientsRegex.test(ingredient) ? (
-                  <IngredientGroup>{ingredient.replace(/^\[|\]$/g, '')}</IngredientGroup>
-                ) : (
-                  ingredient
-                )}
-              </Ingredient>
-            ))}
-          </ul>
+          <IngredientsList>{ingredients}</IngredientsList>
         </Ingredients>
       )}
 
@@ -73,7 +65,7 @@ export const RecipeView: React.FC<Recipe> = ({ title, description, cover, ingred
 const Container = styled.div`
   display: grid;
   grid-row-gap: 2em;
-  grid-template-areas: 'header' 'tags' 'picture' 'description' 'ingredients' 'instructions' 'footer';
+  grid-template-areas: 'header' 'picture' 'description' 'ingredients' 'instructions' 'footer';
 
   @media (min-width: ${BREAKPOINTS.medium}) {
     grid-template-columns: 16rem auto 16rem;
@@ -82,7 +74,6 @@ const Container = styled.div`
     grid-template-areas:
       'header header picture'
       'description description picture'
-      'tags tags picture'
       'ingredients instructions instructions'
       'footer footer footer';
   }
@@ -102,13 +93,6 @@ const Description = styled.section`
   grid-area: description;
 `;
 
-const Tags = styled.div`
-  grid-area: tags;
-  display: flex;
-  align-items: flex-start;
-  gap: 1em;
-`;
-
 const Picture = styled.img`
   grid-area: picture;
 `;
@@ -120,18 +104,8 @@ const Ingredients = styled.div`
   gap: 1em;
 `;
 
-const Ingredient = styled.li`
-  font-family: var(--font-primary);
-  padding: 0.5em 0;
-  border-bottom: 1px dashed var(--color-gray);
-  b {
-    text-decoration: underline;
-  }
-`;
-
-const IngredientGroup = styled.h6`
-  text-transform: capitalize;
-  margin-top: 1rem;
+const IngredientsList = styled(ReactMarkdown)`
+  ${IngredientsListCss}
 `;
 
 const Instructions = styled.div`
@@ -141,7 +115,7 @@ const Instructions = styled.div`
   gap: 1em;
 `;
 
-const InstructionsList = styled.ul<{ colorMode: string }>`
+const InstructionsList = styled.ul<{ colorMode?: string | null }>`
   background-color: ${(props) => (props.colorMode === 'light' ? 'var(--color-gray-light);' : 'transparent')};
   transition: background var(--theme-transition);
 `;

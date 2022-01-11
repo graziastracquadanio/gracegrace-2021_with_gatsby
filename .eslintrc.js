@@ -47,6 +47,7 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'import/no-duplicates': 'error',
     'import/no-useless-path-segments': ['error', { noUselessIndex: true }],
+    'import/no-cycle': [2, { maxDepth: 1 }],
     'import/order': [
       'error',
       {

@@ -30,8 +30,8 @@ export const HEADINGS = {
   h2: 3.4,
   h3: 2.8,
   h4: 2.2,
-  h5: 1.8,
-  h6: 1.4,
+  h5: 1.6,
+  h6: 1.2,
 };
 
 // prefix `--layout-`

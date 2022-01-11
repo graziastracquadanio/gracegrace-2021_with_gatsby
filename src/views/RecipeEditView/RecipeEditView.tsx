@@ -6,6 +6,8 @@ import styled from 'styled-components';
 
 import { Button } from 'components/Button';
 import { Checkbox, DraggableList, Input, Textarea } from 'components/form';
+import { MarkdownEditor } from 'components/form/MarkdownEditor';
+import { IngredientsListCss } from 'components/recipe';
 import { BREAKPOINTS } from 'constants/css-variables';
 import { useThemeContext } from 'contexts/ThemeContext';
 import { Recipe } from 'types/recipe';
@@ -19,7 +21,6 @@ interface Props {
 
 export const RecipeEditView: React.FC<Props> = ({ recipe, saveRecipe, deleteRecipe }) => {
   const { colorMode } = useThemeContext();
-  const [ingredientsString, setIngredientsString] = useState('');
   const [details, setDetails] = useState<Pick<Recipe, 'createdAt' | 'lastEdit'> | undefined>();
 
   const initialValues = useMemo(
@@ -28,7 +29,7 @@ export const RecipeEditView: React.FC<Props> = ({ recipe, saveRecipe, deleteReci
       title: '',
       description: '',
       imageName: '',
-      ingredients: [],
+      ingredients: '',
       instructions: [''],
       published: false,
     }),
@@ -52,20 +53,18 @@ export const RecipeEditView: React.FC<Props> = ({ recipe, saveRecipe, deleteReci
   useEffect(() => {
     if (recipe) {
       setValues(recipe);
-      if (recipe.ingredients) {
-        setIngredientsString(`- ${recipe.ingredients.join('\n- ')}`);
-      }
       const { createdAt, lastEdit } = recipe;
       setDetails({
         createdAt,
         lastEdit,
       });
     }
-  }, [recipe, setValues, setIngredientsString, setDetails]);
+  }, [recipe, setValues, setDetails]);
 
   const { add: addInstruction, remove: removeInstruction } = useFormikArray(formikProps, 'instructions');
 
   const onDelete = async () => {
+    // eslint-disable-next-line no-alert
     if (window.confirm('Are you sure you want to delete this recipe?') === true) {
       const { id } = formikProps.values;
       if (id) {
@@ -73,16 +72,6 @@ export const RecipeEditView: React.FC<Props> = ({ recipe, saveRecipe, deleteReci
       }
       navigate('/recipes');
     }
-  };
-
-  const onChangeIngredients = (e: React.ChangeEvent<any>) => {
-    const { value } = e.target;
-    const ingredients = value
-      .replace(/(\r\n|\n|\r)/gm, '')
-      .split('- ')
-      .filter((s: string) => s.length);
-    formikProps.setFieldValue('ingredients', ingredients);
-    setIngredientsString(value);
   };
 
   return (
@@ -142,20 +131,16 @@ export const RecipeEditView: React.FC<Props> = ({ recipe, saveRecipe, deleteReci
       </Picture>
       <Ingredients>
         <FormControl>
-          <Label htmlFor="ingredients">Ingredients</Label>
-          <Tip>
-            Ingredients must be separated by new line and prefixed with <code>- </code>. <br />
-            To specify a group use <code>- [group title]</code> for the name of the group
-          </Tip>
-          <Textarea
-            rows={20}
-            placeholder="Ingredients separated by new line"
-            value={ingredientsString}
-            onChange={onChangeIngredients}
+          <MarkdownEditor
+            label={<Label htmlFor="ingredients">Ingredients</Label>}
+            id="ingredients"
+            value={formikProps.values.ingredients}
+            onChange={formikProps.handleChange}
+            customCSS={IngredientsListCss}
           />
         </FormControl>
       </Ingredients>
-
+      {formikProps.values.ingredients};
       <Instructions>
         <FormControl>
           <Label htmlFor="instructions">Instructions</Label>
@@ -170,7 +155,6 @@ export const RecipeEditView: React.FC<Props> = ({ recipe, saveRecipe, deleteReci
           />
         </FormControl>
       </Instructions>
-
       <Footer>
         <Button onClick={formikProps.submitForm} variant="primary" size="medium">
           Save recipe
@@ -208,8 +192,9 @@ const Container = styled.div`
     grid-template-areas:
       'header header details'
       'picture picture details'
-      'description description description'
-      'ingredients instructions instructions'
+      'description description .'
+      'ingredients ingredients .'
+      'instructions instructions instructions'
       'footer footer footer';
   }
 
@@ -230,7 +215,7 @@ const Ingredients = styled.div`
   grid-area: ingredients;
 `;
 
-const Details = styled.div<{ colorMode: string }>`
+const Details = styled.div<{ colorMode?: string | null }>`
   grid-area: details;
   display: flex;
   flex-direction: column;

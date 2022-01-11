@@ -20,7 +20,7 @@ export const getRecipeForSaving = ({
   imageName,
   published = false,
   createdAt = Date.now(),
-  ingredients: originalIngredients,
+  ingredients,
   instructions: originalInstructions,
 }: Recipe): { base: RecipeBase; details: RecipeDetails } | null => {
   const id = originalId || title?.trim().toLowerCase().replaceAll(' ', '-');
@@ -29,7 +29,6 @@ export const getRecipeForSaving = ({
     return null;
   }
 
-  const ingredients = originalIngredients && filterInvalidItems(originalIngredients);
   const instructions = originalInstructions && filterInvalidItems(originalInstructions);
 
   return {

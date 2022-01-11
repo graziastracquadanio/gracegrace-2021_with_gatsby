@@ -10,6 +10,8 @@ const sizes = {
 const TypographyStyle = css`
   body {
     font-size: var(--font-base-font-size);
+    font-weight: 300;
+    line-height: 1.3;
     color: var(--color-text);
 
     @media (min-width: ${BREAKPOINTS.medium}) {
@@ -21,13 +23,28 @@ const TypographyStyle = css`
     }
   }
 
+  p {
+    font-family: var(--fonts-secondary);
+    font-weight: 300;
+    font-size: ${sizes.p}em;
+    color: inherit;
+    transition: color var(--theme-transition);
+    line-height: 1.5;
+    margin: 0;
+    margin-bottom: 0.5em;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
   // prettier-ignore
   h1, h2, h3, h4, h5, h6 {
     display: block;
     margin: 0;
     font-family: var(--font-primary);
     font-weight: 400;
-    line-height: 1.2;
+    line-height: 1;
     transition: color var(--theme-transition);
     margin-bottom: 0.5rem;
   }
@@ -54,21 +71,6 @@ const TypographyStyle = css`
 
   h6 {
     font-size: ${sizes.h6}em;
-  }
-
-  p {
-    font-family: var(--fonts-secondary);
-    font-weight: 300;
-    font-size: ${sizes.p}em;
-    color: inherit;
-    transition: color var(--theme-transition);
-    line-height: 1.5;
-    margin: 0;
-    margin-bottom: 0.5em;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
   }
 
   b,

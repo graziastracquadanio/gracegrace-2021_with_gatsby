@@ -5,7 +5,6 @@ const ResetStyle = css`
   *::before,
   *::after {
     box-sizing: border-box;
-    font-weight: inherit;
   }
 
   html {
@@ -20,6 +19,7 @@ const ResetStyle = css`
     background-color: var(--color-background);
     transition: background var(--theme-transition);
   }
+
   [tabindex='-1']:focus {
     outline: 0 !important;
   }
