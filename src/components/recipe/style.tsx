@@ -5,6 +5,10 @@ export const IngredientsListCss = css`
     font-family: var(--font-primary);
     padding: 0.5em 0;
     border-bottom: 1px dashed var(--color-gray);
+
+    &:last-child {
+      border-bottom: none;
+    }
   }
 
   b {

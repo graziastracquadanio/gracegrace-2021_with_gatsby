@@ -1,25 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+import { css } from 'styled-components';
 
 import { Section } from './Section';
 import { MarkdownEditor } from 'components/form';
+import { IngredientsListCss } from 'components/recipe';
 
-const preview = `
-  ### This is a preview
+const preview = `#### Peanut butter vibes
 
-  Black beans cozy butternut cinnamon cumin tasty lavender
-  lemonade **Caribbean** red habanero orange ginger tofu farro
-  platter _red lentil curry_ vitamin glow vegan lemon cashew
-  balsamic vinaigrette Southern Italian. Lentils alfalfa sprouts
-  paprika açai ghost pepper instant pot blueberry pops
-  strawberry
-  - 1/2 cup of _mango_ smoothie
-  - **arugula** salad
-  - udon noodles crispy
-  - iceberg lettuce
+###### You will need:
+- dates
+- peanut butter
+- a knife
+
+###### Instructions
+- Cut the date
+- Remove the pit
+- Put peanut butter inside
+- Eat and touch heaven!
 `;
 
-export const MarkdownSection = () => (
-  <Section title="Markdown tester">
-    <MarkdownEditor value={preview} />
-  </Section>
-);
+export const MarkdownSection = () => {
+  const [value, setValue] = useState(preview);
+  return (
+    <Section title="Markdown tester">
+      <MarkdownEditor
+        value={value}
+        onChange={(e) => {
+          setValue(e.target.value);
+        }}
+        customCSS={MarkdownEditoCss}
+      />
+    </Section>
+  );
+};
+
+const MarkdownEditoCss = css`
+  ${IngredientsListCss}
+
+  h1, h2, h3, h4, h5 {
+    margin-bottom: 1rem;
+  }
+`;
