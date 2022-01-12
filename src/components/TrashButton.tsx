@@ -61,7 +61,7 @@ const StyledButton = styled.button`
 `;
 
 const StyledSvg = styled(motion.svg)`
-  fill: var(--color-text);
+  fill: var(--color-gray);
   width: 100%;
   height: auto;
 

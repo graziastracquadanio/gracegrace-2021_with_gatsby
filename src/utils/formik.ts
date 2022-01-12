@@ -8,8 +8,17 @@ export type GenericFormikConfig = ReturnType<typeof useGenericFormik>;
 
 export const useFormikArray = (formikProps: GenericFormikConfig, key: string) => {
   const add = useCallback(
-    (value: any) => {
-      formikProps.setFieldValue(`${key}.${get(formikProps.values, key).length}`, value);
+    (value: any, index?: number) => {
+      const currentValues = get(formikProps.values, key);
+      if (index) {
+        if (index < currentValues.length) {
+          const nextValues = [...currentValues];
+          nextValues.splice(index, 0, value);
+          formikProps.setFieldValue(`${key}`, nextValues);
+        }
+      } else {
+        formikProps.setFieldValue(`${key}.${currentValues.length}`, value);
+      }
     },
     [formikProps, key],
   );
