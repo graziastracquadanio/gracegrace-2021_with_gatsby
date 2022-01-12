@@ -8,5 +8,5 @@ import { RecipeEditView } from 'views/RecipeEditView';
 export default observer(function NewRecipePage() {
   const { recipeStore } = useRootStore();
 
-  return <RecipeEditView recipe={null} saveRecipe={recipeStore.setRecipe} deleteRecipe={recipeStore.removeRecipe} />;
+  return <RecipeEditView recipe={null} saveRecipe={recipeStore.saveRecipe} deleteRecipe={recipeStore.deleteRecipe} />;
 });

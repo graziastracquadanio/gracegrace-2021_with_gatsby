@@ -1,25 +1,31 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { PageProps } from 'gatsby';
-import { observer } from 'mobx-react-lite';
 
 import { useRootStore } from 'contexts/RootStoreContext';
+import { Recipe } from 'types/recipe';
 import { RecipeView } from 'views/RecipeView';
 
-export default observer(function RecipePage(props: PageProps) {
-  const id = props.params.recipeId;
+const RecipePage: React.FC<PageProps> = ({ params }) => {
+  const id = params.recipeId;
+  const [recipe, saveRecipe] = useState<Recipe | null>(null);
   const {
-    recipeStore: { recipe, getRecipe },
+    recipeStore: { getRecipe },
   } = useRootStore();
 
   useEffect(() => {
-    if (id) {
-      getRecipe(id);
-    }
-  }, [id, getRecipe]);
+    const fetchRecipe = async () => {
+      const data = await getRecipe(id);
+      saveRecipe(data);
+    };
+
+    fetchRecipe();
+  }, [id, getRecipe, saveRecipe]);
 
   if (recipe && recipe.id === id) {
     return <RecipeView {...recipe} />;
   }
   return null;
-});
+};
+
+export default RecipePage;

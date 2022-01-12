@@ -2,7 +2,7 @@ import { browserSessionPersistence, getAuth, setPersistence, signInWithEmailAndP
 import { navigate } from 'gatsby';
 import { makeAutoObservable, runInAction } from 'mobx';
 
-import { UiStore } from './UiStore';
+import type { RootStore } from './RootStore';
 import { printError } from 'utils/others';
 
 export class AuthStore {
@@ -11,7 +11,7 @@ export class AuthStore {
 
   private uiStore;
 
-  constructor(uiStore: UiStore) {
+  constructor({ uiStore }: RootStore) {
     makeAutoObservable(this);
     this.uiStore = uiStore;
   }

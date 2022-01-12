@@ -1,9 +1,9 @@
-import { collection, Firestore, getDocs } from 'firebase/firestore';
-import { FirebaseStorage, ref } from 'firebase/storage';
+import { collection, getDocs } from 'firebase/firestore';
+import { ref } from 'firebase/storage';
 import { makeAutoObservable, runInAction } from 'mobx';
 
 import { imageFetcher } from '../utils/recipe';
-import { UiStore } from './UiStore';
+import type { RootStore } from './RootStore';
 import { RecipeBase } from 'types/recipe';
 import { printError } from 'utils/others';
 
@@ -15,7 +15,7 @@ export class RecipesStore {
   private storage;
   private uiStore;
 
-  constructor(db: Firestore, storage: FirebaseStorage, uiStore: UiStore) {
+  constructor({ db, storage, uiStore }: RootStore) {
     makeAutoObservable(this);
     this.db = db;
     this.storage = storage;
