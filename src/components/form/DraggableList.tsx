@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler } from 'react';
+import React, { ChangeEventHandler, useEffect } from 'react';
 
 import styled from 'styled-components';
 
@@ -28,6 +28,12 @@ export const DraggableList: React.FC<Props> = ({
 }) => {
   const Control = rows > 1 ? Textarea : Input;
 
+  useEffect(() => {
+    if (values?.length === 0) {
+      onAddItem('');
+    }
+  }, [onAddItem, values]);
+
   return (
     <ControlList>
       {values &&
@@ -41,7 +47,7 @@ export const DraggableList: React.FC<Props> = ({
               onChange={handleChange}
               placeholder={placeholder}
             />
-            <StyledTrashButton color="var(--color-text)" onClick={() => onRemoveItem(index)} />
+            {values.length > 1 && <StyledTrashButton color="var(--color-text)" onClick={() => onRemoveItem(index)} />}
           </ControlListItem>
         ))}
       <ActionContainer>

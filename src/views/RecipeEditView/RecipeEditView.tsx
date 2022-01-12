@@ -76,7 +76,6 @@ export const RecipeEditView: React.FC<Props> = ({ recipe, saveRecipe, deleteReci
 
   return (
     <Container>
-      {formikProps.values.published}
       <Header>
         <FormControl>
           <Label htmlFor="title">Title</Label>
@@ -140,7 +139,6 @@ export const RecipeEditView: React.FC<Props> = ({ recipe, saveRecipe, deleteReci
           />
         </FormControl>
       </Ingredients>
-      {formikProps.values.ingredients};
       <Instructions>
         <FormControl>
           <Label htmlFor="instructions">Instructions</Label>
@@ -256,9 +254,4 @@ const Footer = styled.div`
     opacity: 0.8;
     z-index: -1;
   }
-`;
-
-const Tip = styled.span`
-  font-size: small;
-  opacity: 0.8;
 `;
