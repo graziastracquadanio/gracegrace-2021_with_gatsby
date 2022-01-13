@@ -1,38 +1,50 @@
-import { deleteDoc, doc, setDoc } from 'firebase/firestore';
 import { makeAutoObservable, runInAction } from 'mobx';
 
 import type { RootStore } from './RootStore';
 import { RecipeService } from 'services/RecipeService';
-import { Recipe } from 'types/recipe';
+import { Recipe, RecipeBase } from 'types/recipe';
 import { printError } from 'utils/others';
 
 export class RecipeStore {
-  recipe: Recipe | null = null;
+  recipes: RecipeBase[] | null = null;
   error: string | null = null;
 
-  private db;
-  private storage;
   private uiStore;
   private recipeService;
 
   constructor({ db, storage, uiStore }: RootStore) {
     makeAutoObservable(this);
     this.recipeService = new RecipeService(db, storage);
-    this.db = db;
-    this.storage = storage;
     this.uiStore = uiStore;
   }
+
+  init = () => {
+    this.fetchRecipes();
+  };
+
+  fetchRecipes = async () => {
+    this.uiStore.loading = true;
+    let data: RecipeBase[] = [];
+    try {
+      data = await this.recipeService.getAll();
+    } catch (error) {
+      printError(error);
+      runInAction(() => {
+        this.error = 'Something went wrong fetching the data';
+      });
+    } finally {
+      runInAction(() => {
+        this.recipes = data;
+        this.uiStore.loading = false;
+      });
+    }
+  };
 
   getRecipe = async (id: string): Promise<Recipe | null> => {
     this.uiStore.loading = true;
     let data: Recipe | null = null;
     try {
       data = await this.recipeService.get(id);
-      if (data) {
-        runInAction(() => {
-          this.recipe = data;
-        });
-      }
     } catch (error) {
       runInAction(() => {
         printError(error);

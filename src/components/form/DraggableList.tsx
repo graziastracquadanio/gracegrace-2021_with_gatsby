@@ -89,6 +89,7 @@ const InsertButton = styled.button`
   outline: none;
   height: 1.5rem;
   width: 100%;
+  background-color: transparent;
   transition: height 0.1s linear 0.1s;
 
   &:after {

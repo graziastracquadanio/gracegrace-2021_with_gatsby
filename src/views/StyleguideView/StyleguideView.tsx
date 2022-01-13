@@ -2,6 +2,7 @@ import React from 'react';
 
 import styled from 'styled-components';
 
+import { ButtonsSection } from './ButtonsSection';
 import { ColorsSection } from './ColorsSection';
 import { MarkdownSection } from './MarkdownSection';
 import { TypographySection } from './TypographySection';
@@ -13,6 +14,7 @@ export const StyleguideView: React.FC = () => {
       <ColorsSection />
       <TypographySection />
       <MarkdownSection />
+      <ButtonsSection />
     </LayoutContainer>
   );
 };

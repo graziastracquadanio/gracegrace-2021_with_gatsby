@@ -4,6 +4,7 @@ import { useFormik } from 'formik';
 import { navigate } from 'gatsby';
 import styled from 'styled-components';
 
+import { TagsEditor } from './TagsEditor';
 import { Button } from 'components/Button';
 import { Checkbox, DraggableList, Input, Textarea } from 'components/form';
 import { MarkdownEditor } from 'components/form/MarkdownEditor';
@@ -21,6 +22,7 @@ interface Props {
 
 export const RecipeEditView: React.FC<Props> = ({ recipe, saveRecipe, deleteRecipe }) => {
   const { colorMode } = useThemeContext();
+
   const [details, setDetails] = useState<Pick<Recipe, 'createdAt' | 'lastEdit'> | undefined>();
 
   const initialValues = useMemo(
@@ -116,6 +118,9 @@ export const RecipeEditView: React.FC<Props> = ({ recipe, saveRecipe, deleteReci
           {details?.lastEdit && <p>Last edit: {new Date(details.lastEdit).toLocaleString()}</p>}
         </div>
       </Details>
+      <Tags colorMode={colorMode}>
+        <TagsEditor />
+      </Tags>
       <Picture>
         <FormControl>
           <Label htmlFor="image-name">Image name</Label>
@@ -190,8 +195,8 @@ const Container = styled.div`
     grid-template-areas:
       'header header details'
       'picture picture details'
-      'description description .'
-      'ingredients ingredients .'
+      'description description tags'
+      'ingredients ingredients tags'
       'instructions instructions instructions'
       'footer footer footer';
   }
@@ -220,6 +225,12 @@ const Details = styled.div<{ colorMode?: string | null }>`
   justify-content: space-around;
   gap: 1rem;
   height: 100%;
+  background-color: var(--color-${(props) => (props.colorMode === 'light' ? 'gray-light' : 'muted')});
+  padding: 2rem;
+`;
+
+const Tags = styled.div<{ colorMode?: string | null }>`
+  grid-area: tags;
   background-color: var(--color-${(props) => (props.colorMode === 'light' ? 'gray-light' : 'muted')});
   padding: 2rem;
 `;

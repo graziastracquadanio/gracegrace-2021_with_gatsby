@@ -43,4 +43,9 @@ const StyledButton = styled.button<Props>`
   &:hover {
     background-color: var(--color-primary-dark);
   }
+
+  &:disabled {
+    opacity: 0.7;
+    pointer-events: none;
+  }
 `;

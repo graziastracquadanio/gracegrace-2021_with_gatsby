@@ -1,4 +1,4 @@
-import { deleteDoc, doc, Firestore, getDoc, setDoc } from 'firebase/firestore';
+import { deleteDoc, doc, Firestore, getDoc, setDoc, collection, getDocs } from 'firebase/firestore';
 import { FirebaseStorage, ref } from 'firebase/storage';
 
 import { getRecipeForSaving, imageFetcher } from '../utils/recipe';
@@ -12,6 +12,24 @@ export class RecipeService {
     this.db = db;
     this.storage = storage;
   }
+
+  getAll = async (): Promise<Recipe[]> => {
+    const querySnap = await getDocs(collection(this.db, 'recipes'));
+    const images = await Promise.all(
+      querySnap.docs.map((docSnap) => {
+        const { id, imageName } = docSnap.data() as RecipeBase;
+        const thumbRef = ref(this.storage, `recipes/${imageName || id}-thumb.jpg`);
+        return imageFetcher(thumbRef);
+      }),
+    );
+
+    const data = querySnap.docs.map((docSnap, index) => ({
+      ...(docSnap.data() as RecipeBase),
+      thumb: images[index],
+    }));
+
+    return Promise.resolve(data);
+  };
 
   get = async (id: string): Promise<Recipe | null> => {
     let data = null;
