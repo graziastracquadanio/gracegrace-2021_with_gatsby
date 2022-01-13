@@ -5,6 +5,7 @@ export interface RecipeBase {
   createdAt?: number;
   lastEdit?: number;
   imageName?: string;
+  tags?: string[];
 
   // added
   thumb?: string | null;

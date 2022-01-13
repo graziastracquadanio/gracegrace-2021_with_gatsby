@@ -64,7 +64,6 @@ export const Icecream: React.FC = () => {
 
 const StyledContainer = styled.div`
   /* TODO animate this colors :) */
-  --icecream-background-color: white;
   --icecream-color: #ffa5a5;
   --icecream-darker-color: #eb918e;
   --icecream-tongue-color: #f9bcbb;

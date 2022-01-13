@@ -12,6 +12,7 @@ import { IngredientsListCss } from 'components/recipe';
 import { BREAKPOINTS } from 'constants/css-variables';
 import { useThemeContext } from 'contexts/ThemeContext';
 import { Recipe } from 'types/recipe';
+import { Tag } from 'types/tag';
 import { useFormikArray } from 'utils/formik';
 
 interface Props {
@@ -34,6 +35,7 @@ export const RecipeEditView: React.FC<Props> = ({ recipe, saveRecipe, deleteReci
       ingredients: '',
       instructions: [''],
       published: false,
+      tags: [],
     }),
     [],
   );
@@ -119,7 +121,12 @@ export const RecipeEditView: React.FC<Props> = ({ recipe, saveRecipe, deleteReci
         </div>
       </Details>
       <Tags colorMode={colorMode}>
-        <TagsEditor />
+        <TagsEditor
+          initialSelection={recipe?.tags}
+          onChange={(selection: string[]) => {
+            formikProps.setFieldValue('tags', selection);
+          }}
+        />
       </Tags>
       <Picture>
         <FormControl>
@@ -158,6 +165,7 @@ export const RecipeEditView: React.FC<Props> = ({ recipe, saveRecipe, deleteReci
           />
         </FormControl>
       </Instructions>
+      {JSON.stringify(formikProps.values)}
       <Footer>
         <Button onClick={formikProps.submitForm} variant="primary" size="medium">
           Save recipe

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { ChangeEventHandler, useEffect, useMemo, useState } from 'react';
 
 import { observer } from 'mobx-react-lite';
 import styled from 'styled-components';
@@ -9,12 +9,24 @@ import { Tag as TagButton } from 'components/Tag';
 import { useRootStore } from 'contexts/RootStoreContext';
 import { Tag } from 'types/tag';
 
-export const TagsEditor = observer(function TagsEditor() {
+interface Props {
+  initialSelection?: string[];
+  onChange?: (selection: string[]) => void;
+}
+
+export const TagsEditor: React.FC<Props> = observer(function TagsEditor({ initialSelection, onChange }) {
   const { tagsStore } = useRootStore();
   const [newTagName, setNewTagName] = useState<string>('');
-  const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
+  const [selection, setSelection] = useState<Tag[]>([]);
 
-  const tags = useMemo(() => tagsStore.tags, [tagsStore.tags]);
+  const tags = useMemo(() => tagsStore.tags || [], [tagsStore.tags]);
+
+  useEffect(() => {
+    if (initialSelection?.length) {
+      const nextSelection: Tag[] = tags.filter((tag) => initialSelection.includes(tag.id));
+      setSelection(nextSelection);
+    }
+  }, [initialSelection, setSelection, tags]);
 
   const saveTag = async () => {
     if (newTagName) {
@@ -28,11 +40,11 @@ export const TagsEditor = observer(function TagsEditor() {
   };
 
   const toggleTag = (tag: Tag) => {
-    const isSelected = selectedTags.includes(tag);
-    if (isSelected) {
-      setSelectedTags(selectedTags.filter((t) => t.id !== tag.id));
-    } else {
-      setSelectedTags([...selectedTags, tag]);
+    const isSelected = selection.includes(tag);
+    const nextSelection = isSelected ? selection.filter((t) => t.id !== tag.id) : [...selection, tag];
+    setSelection(nextSelection);
+    if (onChange) {
+      onChange(nextSelection.map(({ id }) => id));
     }
   };
 
@@ -47,14 +59,12 @@ export const TagsEditor = observer(function TagsEditor() {
               onClick={() => {
                 toggleTag(tag);
               }}
-              selected={selectedTags.includes(tag)}
+              variant={selection.includes(tag) ? 'primary' : 'gray'}
             >
               {tag.name}
             </StyledTag>
           ))}
       </TagsList>
-
-      {selectedTags.map((tag) => tag.name)}
 
       <TagControl>
         <StyledInput
@@ -76,10 +86,10 @@ const TagsList = styled.div`
   display: inline-block;
 `;
 
-const StyledTag = styled(TagButton)<{ selected?: boolean }>`
-  background-color: var(--color-${(props) => (props.selected ? 'primary' : 'gray')});
+const StyledTag = styled(TagButton)`
   margin-right: 0.5rem;
   margin-bottom: 0.5rem;
+  color: var(--color-background);
 `;
 
 const TagControl = styled.div`

@@ -1,18 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Link } from 'gatsby';
 import ReactMarkdown from 'react-markdown';
 import styled from 'styled-components';
 
 import { IngredientsListCss } from 'components/recipe';
+import { Tag } from 'components/Tag';
 import { BREAKPOINTS } from 'constants/css-variables';
+import { useRootStore } from 'contexts/RootStoreContext';
 import { useThemeContext } from 'contexts/ThemeContext';
 import { Recipe } from 'types/recipe';
+import { Tag as TagType } from 'types/tag';
 
 // const ingredientsRegex = /^\[(.*)\]$/g;
 
-export const RecipeView: React.FC<Recipe> = ({ title, description, cover, ingredients, instructions }) => {
+export const RecipeView: React.FC<Recipe> = ({
+  title,
+  description,
+  cover,
+  ingredients,
+  instructions,
+  tags: tagIds,
+}) => {
   const { colorMode } = useThemeContext();
+  const { tagsStore } = useRootStore();
+  const [tags, setTags] = useState<TagType[] | null | undefined>();
+
+  useEffect(() => {
+    if (tagIds) {
+      setTags(tagsStore.getTags(tagIds));
+    }
+  }, [tagIds, tagsStore, setTags]);
 
   return (
     <Container>
@@ -25,6 +43,14 @@ export const RecipeView: React.FC<Recipe> = ({ title, description, cover, ingred
       <Description>
         <p>{description}</p>
       </Description>
+
+      {tags && (
+        <Tags>
+          {tags.map((tag) => (
+            <Tag key={tag.id} tag={tag} linkTo={`/ingredients/${tag.id}`} />
+          ))}
+        </Tags>
+      )}
 
       {ingredients && (
         <Ingredients>
@@ -65,7 +91,7 @@ export const RecipeView: React.FC<Recipe> = ({ title, description, cover, ingred
 const Container = styled.div`
   display: grid;
   grid-row-gap: 2em;
-  grid-template-areas: 'header' 'picture' 'description' 'ingredients' 'instructions' 'footer';
+  grid-template-areas: 'header' 'tags' 'picture' 'description' 'ingredients' 'instructions' 'footer';
 
   @media (min-width: ${BREAKPOINTS.medium}) {
     grid-template-columns: 16rem auto 16rem;
@@ -74,6 +100,7 @@ const Container = styled.div`
     grid-template-areas:
       'header header picture'
       'description description picture'
+      'tags tags picture'
       'ingredients instructions instructions'
       'footer footer footer';
   }
@@ -91,6 +118,13 @@ const Title = styled.h3``;
 
 const Description = styled.section`
   grid-area: description;
+`;
+
+const Tags = styled.section`
+  grid-area: tags;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
 `;
 
 const Picture = styled.img`

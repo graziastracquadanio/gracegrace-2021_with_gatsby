@@ -10,31 +10,56 @@ interface Props {
   tag: TagType;
   linkTo?: string;
   onClick?: () => void;
+  variant?: string;
 }
 
-export const Tag: React.FC<Props> = ({ linkTo, tag, onClick, className }) => {
+export const Tag: React.FC<Props> = ({ linkTo, tag, onClick, className, variant }) => {
   if (linkTo) {
     return (
-      <TagLink to={linkTo} className={className}>
-        # {tag.name}
+      <TagLink to={linkTo} className={className} variant={variant}>
+        {tag.name}
       </TagLink>
     );
   }
   return (
-    <TagButton onClick={onClick} className={className}>
-      # {tag.name}
+    <TagButton onClick={onClick} className={className} variant={variant}>
+      {tag.name}
     </TagButton>
   );
 };
 
-const TagStyle = css`
+const TagStyle = css<{ variant?: string }>`
   font-family: var(--font-secondary);
   font-size: 0.8rem;
-  background-color: var(--color-primary-dark);
-  color: var(--color-background);
+  background-color: var(--color-${(props) => (props.variant ? props.variant : 'highlight')});
+  color: var(--color-text);
   text-transform: uppercase;
-  padding: 0.5em 0.75em;
-  border-radius: 3rem;
+  padding: 0.35em 0.75em;
+  border-radius: 3px;
+  transition: background var(--theme-transition);
+  position: relative;
+
+  &:before {
+    content: '#';
+    margin-right: 0.25rem;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    border-radius: 3px;
+    box-shadow: var(--color-${(props) => (props.variant ? props.variant : 'highlight')}) 0px 0px 0px 2px;
+    transition: all 0.1s ease-out;
+    opacity: 0;
+  }
+
+  &:hover:after {
+    opacity: 0.5;
+  }
 `;
 
 const TagButton = styled.button`

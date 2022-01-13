@@ -1,15 +1,12 @@
-import { deleteDoc, doc, Firestore, getDoc, setDoc, collection, getDocs } from 'firebase/firestore';
-import { FirebaseStorage, ref } from 'firebase/storage';
+import { doc, Firestore, getDoc, setDoc, collection, getDocs } from 'firebase/firestore';
 
 import { Tag } from 'types/tag';
 
 export class TagService {
   private db;
-  private storage;
 
-  constructor(db: Firestore, storage: FirebaseStorage) {
+  constructor(db: Firestore) {
     this.db = db;
-    this.storage = storage;
   }
 
   getAll = async (): Promise<Tag[]> => {
@@ -29,7 +26,6 @@ export class TagService {
 
   add = async (data: Tag): Promise<string | null> => {
     const result = await setDoc(doc(this.db, 'tags', data.id), data);
-    console.log(result);
     return Promise.resolve(data.id);
   };
 }

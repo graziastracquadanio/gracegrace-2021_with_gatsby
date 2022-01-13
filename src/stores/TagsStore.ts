@@ -12,9 +12,9 @@ export class TagsStore {
   private uiStore;
   private tagService;
 
-  constructor({ db, storage, uiStore }: RootStore) {
+  constructor({ db, uiStore }: RootStore) {
     makeAutoObservable(this);
-    this.tagService = new TagService(db, storage);
+    this.tagService = new TagService(db);
     this.uiStore = uiStore;
   }
 
@@ -22,7 +22,7 @@ export class TagsStore {
     this.fetchTags();
   };
 
-  fetchTags = async () => {
+  private fetchTags = async () => {
     this.uiStore.loading = true;
     let data: Tag[] = [];
     try {
@@ -79,4 +79,8 @@ export class TagsStore {
     }
     return Promise.resolve(data.id);
   };
+
+  getTags(ids: string[]): Tag[] | null | undefined {
+    return ids ? this.tags?.filter((tag) => ids.includes(tag.id)) : this.tags;
+  }
 }

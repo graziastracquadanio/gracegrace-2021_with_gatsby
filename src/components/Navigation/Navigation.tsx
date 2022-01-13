@@ -13,16 +13,16 @@ const Navigation: React.FC = observer(() => {
   const { authStore } = useRootStore();
 
   return (
-    <NavigationContainer
-      initial={{ translateY: '-100%' }}
-      animate={{ translateY: 0 }}
-      transition={{
-        ease: 'easeOut',
-        duration: 0.3,
-        delay: 1,
-      }}
-    >
-      <NavigationList>
+    <NavigationContainer>
+      <NavigationList
+        initial={{ translateY: '-200%' }}
+        animate={{ translateY: 0 }}
+        transition={{
+          ease: 'easeOut',
+          duration: 0.3,
+          delay: 1,
+        }}
+      >
         <NavigationItemLink to="/about">About</NavigationItemLink>
         <NavigationItemLink to="/styleguide">Styleguide</NavigationItemLink>
         <NavigationItemLink to="/recipes">Recipes</NavigationItemLink>
@@ -35,14 +35,16 @@ const Navigation: React.FC = observer(() => {
   );
 });
 
-const NavigationContainer = styled(motion.nav)`
+const NavigationContainer = styled.nav`
   width: 100%;
-  padding: 1em 0;
+  padding: 0.75em 0 1rem;
+  margin-top: 8px;
   position: sticky;
   top: 0;
   display: flex;
   justify-content: center;
   z-index: var(--zindex-navigation-menu);
+  overflow: hidden;
 
   &:before {
     content: '';
@@ -58,7 +60,7 @@ const NavigationContainer = styled(motion.nav)`
   }
 `;
 
-const NavigationList = styled.div`
+const NavigationList = styled(motion.div)`
   width: 100%;
   display: flex;
   align-items: center;

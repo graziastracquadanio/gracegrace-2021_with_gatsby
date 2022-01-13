@@ -33,15 +33,28 @@ const getCssBySize = (size: Size) => {
 
 const StyledButton = styled.button<Props>`
   ${(props) => getCssBySize(props.size)};
-
   border: none;
   border-radius: 3rem;
   color: var(--color-background);
   background-color: var(--color-${(props) => (props.variant ? props.variant : 'primary')});
   transition: background var(--theme-transition);
+  position: relative;
 
-  &:hover {
-    background-color: var(--color-primary-dark);
+  &:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    border-radius: 3rem;
+    box-shadow: var(--color-${(props) => (props.variant ? props.variant : 'primary')}) 0px 0px 0px 2px;
+    transition: all 0.1s ease-out;
+    opacity: 0;
+  }
+
+  &:hover:after {
+    opacity: 0.5;
   }
 
   &:disabled {
