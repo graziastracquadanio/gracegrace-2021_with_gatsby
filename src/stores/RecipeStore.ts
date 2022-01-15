@@ -7,7 +7,6 @@ import { printError } from 'utils/others';
 
 export class RecipeStore {
   recipes: RecipeBase[] | null = null;
-  error: string | null = null;
 
   private uiStore;
   private recipeService;
@@ -27,11 +26,14 @@ export class RecipeStore {
     let data: RecipeBase[] = [];
     try {
       data = await this.recipeService.getAll();
+      if (!data) {
+        runInAction(() => {
+          const message = 'Something went wrong fetching the data';
+          this.uiStore.addNotification(message, 'danger', 5000);
+        });
+      }
     } catch (error) {
       printError(error);
-      runInAction(() => {
-        this.error = 'Something went wrong fetching the data';
-      });
     } finally {
       runInAction(() => {
         this.recipes = data;
@@ -46,10 +48,9 @@ export class RecipeStore {
     try {
       data = await this.recipeService.get(id);
     } catch (error) {
+      printError(error);
       runInAction(() => {
-        printError(error);
-        this.error = 'Something went wrong fetching the data';
-        this.uiStore.loading = false;
+        this.uiStore.addFailNotification('Something went wrong fetching the data');
       });
     } finally {
       runInAction(() => {
@@ -68,7 +69,7 @@ export class RecipeStore {
     } catch (error) {
       printError(error);
       runInAction(() => {
-        this.error = 'Something went wrong saving the data';
+        this.uiStore.addFailNotification('Something went wrong saving the data');
       });
     } finally {
       runInAction(() => {
@@ -85,7 +86,7 @@ export class RecipeStore {
     } catch (error) {
       printError(error);
       runInAction(() => {
-        this.error = 'Something went wrong deleting the data';
+        this.uiStore.addFailNotification('Something went wrong deleting the data');
       });
     } finally {
       runInAction(() => {

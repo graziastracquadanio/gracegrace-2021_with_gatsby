@@ -53,7 +53,6 @@ export default observer(function LoginPage() {
         <Button type="submit" variant="primary" size="medium">
           Login
         </Button>
-        {authStore.error && <Error>{authStore.error.replace('Firebase: ', '')}</Error>}
       </Form>
     </Container>
   );
@@ -81,9 +80,4 @@ const Form = styled.form`
 
 const StyledInput = styled(Input)`
   text-align: center;
-`;
-
-const Error = styled.p`
-  font-size: small;
-  color: deeppink;
 `;

@@ -12,7 +12,6 @@ import { IngredientsListCss } from 'components/recipe';
 import { BREAKPOINTS } from 'constants/css-variables';
 import { useThemeContext } from 'contexts/ThemeContext';
 import { Recipe } from 'types/recipe';
-import { Tag } from 'types/tag';
 import { useFormikArray } from 'utils/formik';
 
 interface Props {

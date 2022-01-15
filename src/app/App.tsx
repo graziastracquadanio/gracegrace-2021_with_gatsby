@@ -2,12 +2,12 @@ import React from 'react';
 
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
-import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
 import { GlobalStyle } from 'components/GlobalStyle';
 import { LoadingIndicator } from 'components/LoadingIndicator';
 import { Navigation } from 'components/Navigation';
+import { Notificator } from 'components/Notificator';
 import { BREAKPOINTS } from 'constants/css-variables';
 import { RootStoreProvider } from 'contexts/RootStoreContext';
 import { ThemeProvider } from 'contexts/ThemeContext';
@@ -26,6 +26,8 @@ export const App: React.FC = ({ children }) => {
           <LayoutContainer>
             <ContentLimiterContainer>
               <Navigation />
+              <Notificator />
+
               {/* <motion.div
           key={path}
           initial={{ opacity: 0, y: '0px', scale: 0.95 }}

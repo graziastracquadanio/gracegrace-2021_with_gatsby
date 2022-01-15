@@ -7,7 +7,6 @@ import { printError } from 'utils/others';
 
 export class AuthStore {
   isLoggedIn = false;
-  error: string | null = null;
 
   private uiStore;
 
@@ -31,13 +30,12 @@ export class AuthStore {
 
       runInAction(() => {
         this.uiStore.loading = false;
-        this.error = null;
       });
     } catch (error: any) {
       printError(error);
       runInAction(() => {
         this.uiStore.loading = false;
-        this.error = error.message;
+        this.uiStore.addFailNotification(error.message);
       });
     }
   };
@@ -49,14 +47,13 @@ export class AuthStore {
       await signOut(auth);
       runInAction(() => {
         this.uiStore.loading = false;
-        this.error = null;
       });
       navigate('/login');
     } catch (error: any) {
       printError(error);
       runInAction(() => {
         this.uiStore.loading = false;
-        this.error = error.message;
+        this.uiStore.addFailNotification(error.message);
       });
     }
   };

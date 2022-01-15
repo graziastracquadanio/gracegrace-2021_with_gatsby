@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 
-import { Link } from 'gatsby';
 import ReactMarkdown from 'react-markdown';
 import styled from 'styled-components';
 
@@ -80,10 +79,6 @@ export const RecipeView: React.FC<Recipe> = ({
           </InstructionsList>
         </Instructions>
       )}
-
-      <Footer>
-        <Link to="edit">Edit recipe</Link>
-      </Footer>
     </Container>
   );
 };
@@ -95,12 +90,13 @@ const Container = styled.div`
 
   @media (min-width: ${BREAKPOINTS.medium}) {
     grid-template-columns: 16rem auto 16rem;
+    grid-template-rows: [row1-start] auto [row1-end row2-start] minmax(1rem, 1fr) [row2-end row3-start] auto [row3-end];
     grid-row-gap: 1em;
     grid-column-gap: 2em;
     grid-template-areas:
       'header header picture'
-      'description description picture'
       'tags tags picture'
+      'description description picture'
       'ingredients instructions instructions'
       'footer footer footer';
   }
@@ -125,6 +121,7 @@ const Tags = styled.section`
   display: flex;
   align-items: flex-start;
   gap: 1rem;
+  margin-bottom: 1rem;
 `;
 
 const Picture = styled.img`
@@ -169,10 +166,4 @@ const InstructionTip = styled.div`
   border: 1px dashed var(--color-primary);
   background-color: var(--color-background);
   transition: background var(--theme-transition);
-`;
-
-const Footer = styled.div`
-  grid-area: footer;
-  display: flex;
-  justify-content: center;
 `;

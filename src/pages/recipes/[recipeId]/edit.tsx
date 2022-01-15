@@ -6,7 +6,7 @@ import { useRootStore } from 'contexts/RootStoreContext';
 import { Recipe } from 'types/recipe';
 import { RecipeEditView } from 'views/RecipeEditView';
 
-const RecipePage: React.FC<PageProps> = ({ params }) => {
+const RecipeEditPage: React.FC<PageProps> = ({ params }) => {
   const id = params.recipeId;
   const [recipe, saveRecipe] = useState<Recipe | null>(null);
   const { recipeStore } = useRootStore();
@@ -28,4 +28,4 @@ const RecipePage: React.FC<PageProps> = ({ params }) => {
   return null;
 };
 
-export default RecipePage;
+export default RecipeEditPage;

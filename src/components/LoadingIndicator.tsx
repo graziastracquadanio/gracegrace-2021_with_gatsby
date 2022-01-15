@@ -18,8 +18,8 @@ const ProgressBar = styled.div`
   left: 0;
   width: 100%;
   height: 8px;
-  /* height: ${(props) => (props.isLoading ? '8px' : 0)}; */
-  /* transition: height 0.2s ease-in; */
+  // height: ${(props) => (props.isLoading ? '8px' : 0)};
+  // transition: height 0.2s ease-in;
   background-color: var(--color-primary);
   z-index: ${ZINDEX.progressBar};
 

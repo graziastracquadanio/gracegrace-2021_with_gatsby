@@ -7,7 +7,6 @@ import { printError } from 'utils/others';
 
 export class TagsStore {
   tags: Tag[] | null = null;
-  error: string | null = null;
 
   private uiStore;
   private tagService;
@@ -30,7 +29,7 @@ export class TagsStore {
     } catch (error) {
       printError(error);
       runInAction(() => {
-        this.error = 'Something went wrong fetching the data';
+        this.uiStore.addFailNotification('Something went wrong fetching the data');
       });
     } finally {
       runInAction(() => {
@@ -70,7 +69,7 @@ export class TagsStore {
     } catch (error) {
       printError(error);
       runInAction(() => {
-        this.error = 'Something went wrong saving the data';
+        this.uiStore.addFailNotification('Something went wrong saving the data');
       });
     } finally {
       runInAction(() => {

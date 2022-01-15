@@ -7,6 +7,11 @@ import { FONTS, LAYOUT, THEME, ZINDEX } from 'constants/css-variables';
 const GlobalStyle = createGlobalStyle`
   // variables (except colors which are dynamically updated in the ThemeContext)
   :root {
+    // EXTRA COLORS
+    --color-success: #C8E6C9;
+    --color-info: #B3E5FC;
+    --color-danger: #F8BBD0;
+
     // FONTS
     --font-primary: ${FONTS.primary};
     --font-secondary: ${FONTS.secondary};
