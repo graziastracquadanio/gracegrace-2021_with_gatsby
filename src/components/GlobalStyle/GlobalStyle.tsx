@@ -44,6 +44,11 @@ const GlobalStyle = createGlobalStyle`
   ::selection {
     background: var(--color-highlight);
   }
+
+  ::placeholder {
+    color: var(--color-gray);
+    font-weight: 300;
+  }
 `;
 
 export default GlobalStyle;

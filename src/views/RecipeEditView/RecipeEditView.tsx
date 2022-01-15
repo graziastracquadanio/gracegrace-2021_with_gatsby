@@ -10,7 +10,6 @@ import { Checkbox, DraggableList, Input, Textarea } from 'components/form';
 import { MarkdownEditor } from 'components/form/MarkdownEditor';
 import { IngredientsListCss } from 'components/recipe';
 import { BREAKPOINTS } from 'constants/css-variables';
-import { useThemeContext } from 'contexts/ThemeContext';
 import { Recipe } from 'types/recipe';
 import { useFormikArray } from 'utils/formik';
 
@@ -21,8 +20,6 @@ interface Props {
 }
 
 export const RecipeEditView: React.FC<Props> = ({ recipe, saveRecipe, deleteRecipe }) => {
-  const { colorMode } = useThemeContext();
-
   const [details, setDetails] = useState<Pick<Recipe, 'createdAt' | 'lastEdit'> | undefined>();
 
   const initialValues = useMemo(
@@ -104,7 +101,7 @@ export const RecipeEditView: React.FC<Props> = ({ recipe, saveRecipe, deleteReci
           />
         </FormControl>
       </Description>
-      <Details colorMode={colorMode}>
+      <Details>
         <Checkbox
           id="published"
           name="published"
@@ -119,7 +116,7 @@ export const RecipeEditView: React.FC<Props> = ({ recipe, saveRecipe, deleteReci
           {details?.lastEdit && <p>Last edit: {new Date(details.lastEdit).toLocaleString()}</p>}
         </div>
       </Details>
-      <Tags colorMode={colorMode}>
+      <Tags>
         <TagsEditor
           initialSelection={recipe?.tags}
           onChange={(selection: string[]) => {
@@ -164,7 +161,6 @@ export const RecipeEditView: React.FC<Props> = ({ recipe, saveRecipe, deleteReci
           />
         </FormControl>
       </Instructions>
-      {JSON.stringify(formikProps.values)}
       <Footer>
         <Button onClick={formikProps.submitForm} variant="primary" size="medium">
           Save recipe
@@ -225,20 +221,20 @@ const Ingredients = styled.div`
   grid-area: ingredients;
 `;
 
-const Details = styled.div<{ colorMode?: string | null }>`
+const Details = styled.div`
   grid-area: details;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   gap: 1rem;
   height: 100%;
-  background-color: var(--color-${(props) => (props.colorMode === 'light' ? 'gray-light' : 'muted')});
+  background-color: var(--color-background-dark);
   padding: 2rem;
 `;
 
-const Tags = styled.div<{ colorMode?: string | null }>`
+const Tags = styled.div`
   grid-area: tags;
-  background-color: var(--color-${(props) => (props.colorMode === 'light' ? 'gray-light' : 'muted')});
+  background-color: var(--color-background-dark);
   padding: 2rem;
 `;
 

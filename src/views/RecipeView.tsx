@@ -7,7 +7,6 @@ import { IngredientsListCss } from 'components/recipe';
 import { Tag } from 'components/Tag';
 import { BREAKPOINTS } from 'constants/css-variables';
 import { useRootStore } from 'contexts/RootStoreContext';
-import { useThemeContext } from 'contexts/ThemeContext';
 import { Recipe } from 'types/recipe';
 import { Tag as TagType } from 'types/tag';
 
@@ -21,7 +20,6 @@ export const RecipeView: React.FC<Recipe> = ({
   instructions,
   tags: tagIds,
 }) => {
-  const { colorMode } = useThemeContext();
   const { tagsStore } = useRootStore();
   const [tags, setTags] = useState<TagType[] | null | undefined>();
 
@@ -61,7 +59,7 @@ export const RecipeView: React.FC<Recipe> = ({
       {instructions && (
         <Instructions>
           <h4>Instructions</h4>
-          <InstructionsList colorMode={colorMode}>
+          <ul>
             {instructions.map((instruction, i) => (
               <InstructionsListItem key={`instruction-${instruction.slice(5)}`}>
                 {instruction.startsWith('TIP: ') ? (
@@ -76,7 +74,7 @@ export const RecipeView: React.FC<Recipe> = ({
             <InstructionsListItem>
               <p>Enjoy it! ❤</p>
             </InstructionsListItem>
-          </InstructionsList>
+          </ul>
         </Instructions>
       )}
     </Container>
@@ -146,17 +144,12 @@ const Instructions = styled.div`
   gap: 1em;
 `;
 
-const InstructionsList = styled.ul<{ colorMode?: string | null }>`
-  background-color: ${(props) => (props.colorMode === 'light' ? 'var(--color-gray-light);' : 'transparent')};
-  transition: background var(--theme-transition);
-`;
-
 const InstructionsListItem = styled.li`
   padding: 0.5em;
   transition: background var(--theme-transition);
 
-  &:nth-last-child(odd) {
-    background-color: var(--color-muted);
+  &:nth-last-child(even) {
+    background-color: var(--color-background-dark);
   }
 `;
 

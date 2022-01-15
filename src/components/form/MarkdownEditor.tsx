@@ -57,7 +57,7 @@ const Column = styled.div`
 
 const Preview = styled(ReactMarkdown)`
   word-break: break-all;
-  background-color: var(--color-muted);
+  background-color: var(--color-background-light);
   padding: 0.5rem;
   flex: 1;
 `;

@@ -30,13 +30,13 @@ export const Tag: React.FC<Props> = ({ linkTo, tag, onClick, className, variant 
 
 const TagStyle = css<{ variant?: string }>`
   font-family: var(--font-secondary);
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   background-color: var(--color-${(props) => (props.variant ? props.variant : 'highlight')});
   color: var(--color-text);
   text-transform: uppercase;
-  padding: 0.35em 0.75em;
+  padding: 0.25em 0.75em;
   border-radius: 3px;
-  transition: background var(--theme-transition);
+  transition: all var(--theme-transition);
   position: relative;
 
   &:before {

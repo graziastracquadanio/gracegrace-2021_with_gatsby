@@ -9,8 +9,8 @@ export type Color = {
 // https://mycolor.space/?hex=%23BF538D&sub=1
 export const PALETTE: { [key: string]: Color } = {
   'primary-dark': {
-    light: '#9377A3',
-    dark: '#9377A3',
+    light: '#8F71A0',
+    dark: '#8F71A0',
   },
   primary: {
     light: '#BF538D',
@@ -40,13 +40,18 @@ export const COLORS: { [key: string]: Color } = {
     light: PALETTE['gray-dark'].light,
     dark: PALETTE['gray-light'].light,
   },
+  'background-dark': {
+    // light: PALETTE['gray-light'].light,
+    light: 'rgba(0, 25, 25, 0.05)',
+    dark: 'rgba(0, 25, 25, 0.4)',
+  },
   background: {
     light: '#f4f1f1',
     dark: '#2A0647',
   },
-  muted: {
+  'background-light': {
     light: 'rgba(255, 250, 250, 0.6)',
-    dark: 'rgba(0, 25, 25, 0.4)',
+    dark: 'rgba(255, 250, 250, 0.05)',
   },
   highlight: {
     light: PALETTE['primary-light'].light,

@@ -14,7 +14,7 @@ export const Section: React.FC<Props> = ({ title, children }) => (
 );
 
 const Container = styled.section`
-  background-color: var(--color-muted);
+  background-color: var(--color-background-light);
   transition: background var(--theme-transition);
   padding: 1em;
 `;

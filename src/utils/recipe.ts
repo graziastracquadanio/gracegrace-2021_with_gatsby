@@ -1,4 +1,5 @@
 import { StorageReference, getDownloadURL } from 'firebase/storage';
+import { intersection } from 'lodash';
 
 import { Recipe, RecipeBase, RecipeDetails } from 'types/recipe';
 
@@ -49,4 +50,16 @@ export const getRecipeForSaving = ({
       instructions,
     },
   };
+};
+
+export const filterRecipes = (list: Recipe[], s?: string, t?: string[]): Recipe[] => {
+  let filteredRecipes = list || [];
+  if (s?.length) {
+    const search = s.toLowerCase();
+    filteredRecipes = filteredRecipes.filter(({ title }) => title?.toLowerCase().includes(search)) ?? [];
+  }
+  if (t?.length) {
+    filteredRecipes = filteredRecipes.filter(({ id, tags }) => intersection(tags, t).length === t.length);
+  }
+  return filteredRecipes;
 };

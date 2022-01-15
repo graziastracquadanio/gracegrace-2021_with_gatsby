@@ -74,7 +74,7 @@ const Form = styled.form`
   padding: 2rem;
   max-width: 20rem;
   width: 100%;
-  background-color: var(--color-muted);
+  background-color: var(--color-background-light);
   transition: background var(--theme-transition);
 `;
 

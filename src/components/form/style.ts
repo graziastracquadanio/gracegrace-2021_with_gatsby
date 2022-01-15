@@ -11,7 +11,7 @@ export const CommonFormControlStyle = css`
   font-size: 1rem;
   color: var(--color-text);
   line-height: 1.5;
-  background-color: var(--color-muted);
+  background-color: var(--color-background-light);
   transition: all var(--theme-transition);
 
   &:focus {
