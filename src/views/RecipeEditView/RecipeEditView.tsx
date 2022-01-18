@@ -196,7 +196,7 @@ const FormControl = styled.div`
 
 const Label = styled.label`
   font-family: var(--font-primary);
-  font-weight: 400;
+  font-weight: var(--font-weight-primary);
   font-size: 1.2rem;
 `;
 

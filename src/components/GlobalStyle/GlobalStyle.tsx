@@ -18,6 +18,9 @@ const GlobalStyle = createGlobalStyle`
     --font-base-font-size: ${FONTS.baseFontSize};
     --font-base-font-size-m: ${FONTS.baseFontSizeM};
     --font-base-font-size-l: ${FONTS.baseFontSizeL};
+    --font-weight-primary: ${FONTS.weightPrimary};
+    --font-weight-normal: ${FONTS.weightNormal};
+    --font-weight-bold: ${FONTS.weightBold};
 
     // LAYOUT
     --layout-content-max-width: ${LAYOUT.contentMaxWidth};
@@ -47,7 +50,7 @@ const GlobalStyle = createGlobalStyle`
 
   ::placeholder {
     color: var(--color-gray);
-    font-weight: 300;
+    font-weight: var(--font-weight-normal);
   }
 `;
 

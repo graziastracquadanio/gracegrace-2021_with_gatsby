@@ -18,7 +18,7 @@ const NavigationLink = styled(Link)`
 
   position: relative;
   font-family: var(--font-primary);
-  font-weight: bold;
+  font-weight: var(--font-weight-primary);
   font-size: 1rem;
   text-decoration: none;
   text-transform: uppercase;

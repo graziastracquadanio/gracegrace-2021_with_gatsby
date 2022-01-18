@@ -33,6 +33,8 @@ const getCssBySize = (size: Size) => {
 
 const StyledButton = styled.button<Props>`
   ${(props) => getCssBySize(props.size)};
+  font-family: var(--font-secondary);
+  font-weight: var(--font-weight-bold);
   border: none;
   border-radius: 3rem;
   color: var(--color-background);

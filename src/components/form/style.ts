@@ -7,7 +7,7 @@ export const CommonFormControlStyle = css`
   outline: none;
   width: 100%;
   font-family: var(--fonts-secondary);
-  font-weight: 300;
+  font-weight: var(--font-weight-normal);
   font-size: 1rem;
   color: var(--color-text);
   line-height: 1.5;

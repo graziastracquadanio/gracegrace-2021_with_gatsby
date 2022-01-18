@@ -23,6 +23,9 @@ export const FONTS = {
   baseFontSize: '14px',
   baseFontSizeM: '16px',
   baseFontSizeL: '18px',
+  weightPrimary: 400,
+  weightNormal: 300,
+  weightBold: 500,
 };
 
 export const HEADINGS = {

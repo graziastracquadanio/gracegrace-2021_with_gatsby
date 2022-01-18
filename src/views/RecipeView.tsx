@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from 'react';
 
-import ReactMarkdown from 'react-markdown';
 import styled from 'styled-components';
 
 import { IngredientsViewer } from 'components/IngredientsViewer';
-import { IngredientsListCss } from 'components/recipe';
 import { Tag } from 'components/Tag';
 import { BREAKPOINTS } from 'constants/css-variables';
 import { useRootStore } from 'contexts/RootStoreContext';
 import { Recipe } from 'types/recipe';
 import { Tag as TagType } from 'types/tag';
-
-// const ingredientsRegex = /^\[(.*)\]$/g;
 
 export const RecipeView: React.FC<Recipe> = ({
   title,

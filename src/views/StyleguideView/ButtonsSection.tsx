@@ -28,11 +28,11 @@ export const ButtonsSection = () => {
         <ListItem>
           <div>
             <p>Tag as link</p>
-            <Tag tag={tag} linkTo="#" />
+            <Tag tag={tag} />
           </div>
           <div>
             <p>Tag as button</p>
-            <Tag tag={tag} />
+            <Tag tag={tag} onClick={() => console.log('are you hungry?')} />
           </div>
         </ListItem>
       </List>
