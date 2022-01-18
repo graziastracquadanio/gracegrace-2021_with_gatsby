@@ -10,7 +10,6 @@ interface RecipesPageState {
 
 const RecipesPage: React.FC<PageProps<null, null, RecipesPageState>> = ({ location }) => (
   <>
-    {JSON.stringify(location?.state)}
     <h5>This is a collection of my favorite recipes. Work in progress!</h5>
     <RecipesListView preselectedTags={location?.state?.selectedTags} />
   </>

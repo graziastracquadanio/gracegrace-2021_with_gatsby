@@ -102,18 +102,32 @@ export const RecipeEditView: React.FC<Props> = ({ recipe, saveRecipe, deleteReci
         </FormControl>
       </Description>
       <Details>
-        <Checkbox
-          id="published"
-          name="published"
-          type="checkbox"
-          checked={formikProps.values.published}
-          onChange={formikProps.handleChange}
-          label="published"
-        />
         <div>
-          {formikProps.values.id && <p>id: {formikProps.values.id}</p>}
-          {details?.createdAt && <p>Created: {new Date(details.createdAt).toLocaleString()}</p>}
-          {details?.lastEdit && <p>Last edit: {new Date(details.lastEdit).toLocaleString()}</p>}
+          <Checkbox
+            id="published"
+            name="published"
+            type="checkbox"
+            checked={formikProps.values.published}
+            onChange={formikProps.handleChange}
+            label="published"
+          />
+        </div>
+        <div>
+          {formikProps.values.id && (
+            <p>
+              id: <em>{formikProps.values.id}</em>
+            </p>
+          )}
+          {details?.createdAt && (
+            <p>
+              Created: <em>{new Date(details.createdAt).toLocaleString()}</em>
+            </p>
+          )}
+          {details?.lastEdit && (
+            <p>
+              Last edit: <em>{new Date(details.lastEdit).toLocaleString()}</em>
+            </p>
+          )}
         </div>
       </Details>
       <Tags>
@@ -225,7 +239,7 @@ const Details = styled.div`
   grid-area: details;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   gap: 1rem;
   height: 100%;
   background-color: var(--color-background-dark);

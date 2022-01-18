@@ -16,11 +16,11 @@ export const Checkbox: React.FC<Props> = ({ label, ...props }) => {
 };
 
 const Label = styled.label`
-  font-weight: 500;
-  line-height: 1.1;
   display: grid;
   grid-template-columns: 1em auto;
   gap: 0.5em;
+  font-weight: 500;
+  line-height: 1.1;
   cursor: pointer;
 `;
 

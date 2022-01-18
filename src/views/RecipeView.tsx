@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import styled from 'styled-components';
 
+import { IngredientsViewer } from 'components/IngredientsViewer';
 import { IngredientsListCss } from 'components/recipe';
 import { Tag } from 'components/Tag';
 import { BREAKPOINTS } from 'constants/css-variables';
@@ -52,7 +53,7 @@ export const RecipeView: React.FC<Recipe> = ({
       {ingredients && (
         <Ingredients>
           <h4>Ingredients</h4>
-          <IngredientsList>{ingredients}</IngredientsList>
+          <IngredientsViewer ingredients={ingredients} />
         </Ingredients>
       )}
 
@@ -131,10 +132,6 @@ const Ingredients = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1em;
-`;
-
-const IngredientsList = styled(ReactMarkdown)`
-  ${IngredientsListCss}
 `;
 
 const Instructions = styled.div`

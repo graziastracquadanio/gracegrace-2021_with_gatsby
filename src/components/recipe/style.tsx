@@ -11,12 +11,8 @@ export const IngredientsListCss = css`
     }
   }
 
-  b {
-    text-decoration: underline;
-  }
-
-  h6 {
-    text-transform: capitalize;
+  strong {
+    font-weight: 600;
   }
 
   ul + h6 {
