@@ -2,7 +2,6 @@ import React, { useEffect, useMemo, useState } from 'react';
 
 import { Link } from 'gatsby';
 import { debounce } from 'lodash';
-import { toJS } from 'mobx';
 import { observer } from 'mobx-react-lite';
 import styled from 'styled-components';
 
@@ -14,7 +13,11 @@ import { useRootStore } from 'contexts/RootStoreContext';
 import { Recipe } from 'types/recipe';
 import { filterRecipes } from 'utils/recipe';
 
-export const RecipesListView: React.FC = observer(function RecipesListView() {
+interface Props {
+  preselectedTags?: string[];
+}
+
+export const RecipesListView: React.FC<Props> = observer(function RecipesListView({ preselectedTags = [] }) {
   const {
     authStore: { isLoggedIn: superMode },
     recipeStore,
@@ -22,11 +25,16 @@ export const RecipesListView: React.FC = observer(function RecipesListView() {
   } = useRootStore();
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [search, setSearch] = useState('');
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [selectedTags, setSelectedTags] = useState<string[]>(preselectedTags);
 
   useEffect(() => {
-    setRecipes(recipeStore.recipes);
-  }, [recipeStore.recipes]);
+    if (search.length || selectedTags.length) {
+      const result = filterRecipes(recipeStore.recipes, search, selectedTags);
+      setRecipes(result);
+    } else {
+      setRecipes(recipeStore.recipes);
+    }
+  }, [search, selectedTags, recipeStore.recipes]);
 
   const fakeRecipe = {
     title: 'This is a fake recipe',
@@ -40,24 +48,12 @@ export const RecipesListView: React.FC = observer(function RecipesListView() {
 
   const onSearch = debounce((value: string) => {
     setSearch(value);
-    if (value.length || selectedTags) {
-      const result = filterRecipes(recipeStore.recipes, value, selectedTags);
-      setRecipes(result);
-    } else {
-      setRecipes(recipeStore.recipes);
-    }
   }, 500);
 
   const onTagToggle = (id: string) => {
     const isSelected = selectedTags.includes(id);
     const nextSelection = isSelected ? selectedTags.filter((t) => t !== id) : [...selectedTags, id];
     setSelectedTags(nextSelection);
-    if (nextSelection.length || search) {
-      const result = filterRecipes(recipeStore.recipes, search, nextSelection);
-      setRecipes(result);
-    } else {
-      setRecipes(recipeStore.recipes);
-    }
   };
 
   return (

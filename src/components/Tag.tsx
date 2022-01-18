@@ -8,23 +8,22 @@ import { Tag as TagType } from 'types/tag';
 interface Props {
   className?: string;
   tag: TagType;
-  linkTo?: string;
   onClick?: () => void;
   variant?: string;
 }
 
-export const Tag: React.FC<Props> = ({ linkTo, tag, onClick, className, variant }) => {
-  if (linkTo) {
+export const Tag: React.FC<Props> = ({ tag, onClick, className, variant }) => {
+  if (onClick) {
     return (
-      <TagLink to={linkTo} className={className} variant={variant}>
+      <TagButton onClick={onClick} className={className} variant={variant}>
         {tag.name}
-      </TagLink>
+      </TagButton>
     );
   }
   return (
-    <TagButton onClick={onClick} className={className} variant={variant}>
+    <TagLink to="/recipes" state={{ selectedTags: [tag.id] }} className={className} variant={variant}>
       {tag.name}
-    </TagButton>
+    </TagLink>
   );
 };
 

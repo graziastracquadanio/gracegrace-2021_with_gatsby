@@ -8,17 +8,17 @@ import { RecipeEditView } from 'views/RecipeEditView';
 
 const RecipeEditPage: React.FC<PageProps> = ({ params }) => {
   const id = params.recipeId;
-  const [recipe, saveRecipe] = useState<Recipe | null>(null);
+  const [recipe, setRecipe] = useState<Recipe | null>(null);
   const { recipeStore } = useRootStore();
 
   useEffect(() => {
     const fetchRecipe = async () => {
       const data = await recipeStore.getRecipe(id);
-      saveRecipe(data);
+      setRecipe(data);
     };
 
     fetchRecipe();
-  }, [id, recipeStore, saveRecipe]);
+  }, [id, recipeStore, setRecipe]);
 
   if (recipe && recipe.id === id) {
     return (

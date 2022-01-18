@@ -44,7 +44,7 @@ export const RecipeView: React.FC<Recipe> = ({
       {tags && (
         <Tags>
           {tags.map((tag) => (
-            <Tag key={tag.id} tag={tag} linkTo={`/ingredients/${tag.id}`} />
+            <Tag key={tag.id} tag={tag} />
           ))}
         </Tags>
       )}

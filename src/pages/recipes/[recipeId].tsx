@@ -10,7 +10,7 @@ import { RecipeView } from 'views/RecipeView';
 
 const RecipePage: React.FC<PageProps> = observer(function RecipePage({ params }) {
   const id = params.recipeId;
-  const [recipe, saveRecipe] = useState<Recipe | null>(null);
+  const [recipe, setRecipe] = useState<Recipe | null>(null);
   const {
     authStore,
     recipeStore: { getRecipe },
@@ -19,11 +19,11 @@ const RecipePage: React.FC<PageProps> = observer(function RecipePage({ params })
   useEffect(() => {
     const fetchRecipe = async () => {
       const data = await getRecipe(id);
-      saveRecipe(data);
+      setRecipe(data);
     };
 
     fetchRecipe();
-  }, [id, getRecipe, saveRecipe]);
+  }, [id, getRecipe, setRecipe]);
 
   if (recipe && recipe.id === id) {
     return (

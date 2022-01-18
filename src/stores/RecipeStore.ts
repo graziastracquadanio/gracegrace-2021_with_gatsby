@@ -3,7 +3,6 @@ import { makeAutoObservable, runInAction } from 'mobx';
 import type { RootStore } from './RootStore';
 import { RecipeService } from 'services/RecipeService';
 import { Recipe, RecipeBase } from 'types/recipe';
-import { Tag } from 'types/tag';
 import { printError } from 'utils/others';
 
 export class RecipeStore {
