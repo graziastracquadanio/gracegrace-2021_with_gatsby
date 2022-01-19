@@ -70,10 +70,10 @@ export class RecipeStore {
     this.uiStore.loading = true;
     try {
       id = await this.recipeService.save(data);
-    } catch (error) {
+    } catch (error: any) {
       printError(error);
       runInAction(() => {
-        this.uiStore.addFailNotification('Something went wrong saving the data');
+        this.uiStore.addFailNotification(`Something went wrong saving the data: ${error?.message}`);
       });
     } finally {
       runInAction(() => {

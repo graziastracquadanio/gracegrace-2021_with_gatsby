@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { observer } from 'mobx-react-lite';
 import styled from 'styled-components';
 
+import { ZINDEX } from 'constants/css-variables';
 import { useRootStore } from 'contexts/RootStoreContext';
 import { Message, MessageType } from 'types/message';
 
@@ -39,6 +40,7 @@ export const Notificator: React.FC = observer(function Notificator() {
 
 const NotificationPopup = styled(motion.p)<{ type?: MessageType }>`
   position: fixed;
+  z-index: ${ZINDEX.notifications};
   bottom: 0;
   right: 3rem;
   max-width: 15rem;

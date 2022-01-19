@@ -176,7 +176,7 @@ export const RecipeEditView: React.FC<Props> = ({ recipe, saveRecipe, deleteReci
         </FormControl>
       </Instructions>
       <Footer>
-        <Button onClick={formikProps.submitForm} variant="primary" size="medium">
+        <Button onClick={formikProps.submitForm} variant="primary" size="medium" disabled={!formikProps.dirty}>
           Save recipe
         </Button>
         <Button onClick={onDelete} variant="gray" size="medium">

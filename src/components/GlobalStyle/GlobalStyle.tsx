@@ -27,10 +27,6 @@ const GlobalStyle = createGlobalStyle`
 
     // THEME
     --theme-transition: ${THEME.transition};
-
-    // Z-INDEX
-    --zindex-progress-bar: ${ZINDEX.progressBar};
-    --zindex-navigation-menu: ${ZINDEX.navigationMenu};
   }
 
   ${ResetStyle}

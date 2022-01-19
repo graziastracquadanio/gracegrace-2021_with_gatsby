@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import { LogoutButton } from './LogoutButton';
 import NavigationItemLink from './NavigationItemLink';
 import ThemeToggle from './ThemeToggle';
+import { ZINDEX } from 'constants/css-variables';
 import { useRootStore } from 'contexts/RootStoreContext';
 
 const Navigation: React.FC = observer(() => {
@@ -45,7 +46,7 @@ const NavigationContainer = styled.nav`
   top: 0;
   display: flex;
   justify-content: center;
-  z-index: var(--zindex-navigation-menu);
+  z-index: ${ZINDEX.navigationMenu};
   overflow: hidden;
 
   &:before {

@@ -47,6 +47,7 @@ export const LAYOUT = {
 export const ZINDEX = {
   progressBar: 1001,
   navigationMenu: 1000,
+  notifications: 1001,
 };
 
 export const THEME = {
