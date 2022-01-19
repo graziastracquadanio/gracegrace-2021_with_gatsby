@@ -1,3 +1,4 @@
+import { navigate } from 'gatsby';
 import { makeAutoObservable, runInAction } from 'mobx';
 
 import type { RootStore } from './RootStore';
@@ -47,6 +48,9 @@ export class RecipeStore {
     let data: Recipe | null = null;
     try {
       data = await this.recipeService.get(id);
+      if (data === null) {
+        navigate('/404', { replace: true, state: { message: 'Recipe not found' } });
+      }
     } catch (error) {
       printError(error);
       runInAction(() => {

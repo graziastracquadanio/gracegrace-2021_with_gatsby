@@ -22,7 +22,6 @@ export const App: React.FC = ({ children }) => {
       <ThemeProvider>
         <RootStoreProvider db={db} storage={storage}>
           <LoadingIndicator />
-
           <LayoutContainer>
             <ContentLimiterContainer>
               <Navigation />

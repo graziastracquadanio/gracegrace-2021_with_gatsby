@@ -38,7 +38,7 @@ export const getRecipeForSaving = ({
       id,
       title,
       createdAt,
-      imageName: imageName || id,
+      imageName: imageName || `${id}.jpeg`,
       lastEdit: Date.now(),
       published,
       tags,

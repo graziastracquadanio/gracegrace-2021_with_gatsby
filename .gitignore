@@ -2,5 +2,8 @@ node_modules/
 .cache/
 public
 **/temp.*
-.env*
+.env
+.env.development
+.env.production
+.firebase/
 .firebaserc

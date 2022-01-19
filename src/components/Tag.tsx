@@ -28,7 +28,6 @@ export const Tag: React.FC<Props> = ({ tag, onClick, className, variant }) => {
 };
 
 const TagStyle = css<{ variant?: string }>`
-  display: flex;
   font-family: var(--font-secondary);
   font-size: 0.9rem;
   font-weight: var(--font-weight-bold);

@@ -7,9 +7,6 @@ import React from 'react';
 import { initializeApp } from 'firebase/app';
 
 import { App } from './src/app';
-import { FallbackStyles, MagicScriptTag } from './theme-utils';
-
-// import { AnimatePresence } from 'framer-motion';
 
 const firebaseCredentials = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -23,13 +20,6 @@ const firebaseCredentials = {
 
 initializeApp(firebaseCredentials);
 
-export const wrapPageElement = ({ element }) => <App>{element}</App>;
-
-export const onRenderBody = ({ setHeadComponents, setPreBodyComponents }) => {
-  setHeadComponents(<FallbackStyles key="fallback-styles" />);
-  setPreBodyComponents([<MagicScriptTag key="magic-script-tag" />]);
-};
-
-// export function wrapPageElement({ element }) {
-//   return <AnimatePresence exitBeforeEnter>{element}</AnimatePresence>;
-// }
+export function wrapPageElement({ element }) {
+  return <App>{element}</App>;
+}

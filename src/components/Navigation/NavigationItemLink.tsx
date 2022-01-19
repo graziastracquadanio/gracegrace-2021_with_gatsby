@@ -5,8 +5,8 @@ import styled from 'styled-components';
 
 type Props = Omit<GatsbyLinkProps<{}>, 'ref'>;
 
-const NavigationItemLink: React.FC<Props> = ({ to, children }) => (
-  <NavigationLink to={to} activeClassName="mod-active" partiallyActive>
+const NavigationItemLink: React.FC<Props> = ({ children, ...props }) => (
+  <NavigationLink activeClassName="mod-active" {...props}>
     {children}
   </NavigationLink>
 );

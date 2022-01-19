@@ -18,8 +18,8 @@ export const BREAKPOINTS = {
 
 // prefix `--font-`
 export const FONTS = {
-  primary: 'Zilla Slab',
-  secondary: 'Open Sans',
+  primary: `'Zilla Slab', sans-serif`,
+  secondary: `'Open Sans', sans-serif`,
   baseFontSize: '14px',
   baseFontSizeM: '16px',
   baseFontSizeL: '18px',

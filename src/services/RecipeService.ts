@@ -18,7 +18,9 @@ export class RecipeService {
     const images = await Promise.all(
       querySnap.docs.map((docSnap) => {
         const { id, imageName } = docSnap.data() as RecipeBase;
-        const thumbRef = ref(this.storage, `recipes/${imageName || id}-thumb.jpg`);
+        const fileName = imageName ?? `${id}.jpeg`;
+        const [name, extension] = fileName.split('.');
+        const thumbRef = ref(this.storage, `recipes/${name}-thumb.${extension || 'jpeg'}`);
         return imageFetcher(thumbRef);
       }),
     );
@@ -39,7 +41,9 @@ export class RecipeService {
     ]);
     if (recipeBaseSnap.exists() && recipeDetailsSnap.exists()) {
       const recipeBase = recipeBaseSnap.data() as RecipeBase;
-      const imageRef = ref(this.storage, `recipes/${recipeBase.imageName || id}.jpg`);
+      const fileName = recipeBase.imageName ?? `${id}.jpeg`;
+      const [name, extension] = fileName.split('.');
+      const imageRef = ref(this.storage, `recipes/${name}.${extension || 'jpeg'}`);
       const cover = await imageFetcher(imageRef);
       data = {
         ...recipeBase,

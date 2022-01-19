@@ -23,9 +23,11 @@ const Navigation: React.FC = observer(() => {
           delay: 1,
         }}
       >
-        <NavigationItemLink to="/about">About</NavigationItemLink>
+        <NavigationItemLink to="/">About</NavigationItemLink>
+        <NavigationItemLink to="/recipes" partiallyActive>
+          Recipes
+        </NavigationItemLink>
         <NavigationItemLink to="/styleguide">Styleguide</NavigationItemLink>
-        <NavigationItemLink to="/recipes">Recipes</NavigationItemLink>
         <NavigationItemLink to="/contact">Contact</NavigationItemLink>
         <NavigationSpacer />
         {authStore.isLoggedIn && <StyledLogoutButton onClick={authStore.logout} />}

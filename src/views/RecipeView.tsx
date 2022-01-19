@@ -115,6 +115,7 @@ const Tags = styled.section`
   grid-area: tags;
   display: flex;
   align-items: flex-start;
+  flex-wrap: wrap;
   gap: 1rem;
   margin-bottom: 1rem;
 `;
