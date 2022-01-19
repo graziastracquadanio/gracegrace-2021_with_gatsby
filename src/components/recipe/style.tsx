@@ -12,7 +12,7 @@ export const IngredientsListCss = css`
   }
 
   strong {
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-primary-bold);
   }
 
   ul + h6 {

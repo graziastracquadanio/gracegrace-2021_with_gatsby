@@ -113,7 +113,7 @@ const SearchControl = styled(motion.div)`
 const SearchInput = styled(Input)`
   padding-right: 3rem;
   border: none;
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-secondary-bold);
 `;
 
 const SearchIcon = styled.button`

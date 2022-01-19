@@ -19,8 +19,9 @@ const GlobalStyle = createGlobalStyle`
     --font-base-font-size-m: ${FONTS.baseFontSizeM};
     --font-base-font-size-l: ${FONTS.baseFontSizeL};
     --font-weight-primary: ${FONTS.weightPrimary};
-    --font-weight-normal: ${FONTS.weightNormal};
-    --font-weight-bold: ${FONTS.weightBold};
+    --font-weight-primary-bold: ${FONTS.weightPrimaryBold};
+    --font-weight-secondary: ${FONTS.weightSecondary};
+    --font-weight-secondary-bold: ${FONTS.weightSecondaryBold};
 
     // LAYOUT
     --layout-content-max-width: ${LAYOUT.contentMaxWidth};
@@ -46,7 +47,7 @@ const GlobalStyle = createGlobalStyle`
 
   ::placeholder {
     color: var(--color-gray);
-    font-weight: var(--font-weight-normal);
+    font-weight: var(--font-weight-secondary);
   }
 `;
 

@@ -63,7 +63,7 @@ const StyledList = styled.ul`
 
 const StyledH6 = styled.h6`
   font-family: var(--font-secondary);
-  font-weight: var(--font-weight-normal);
+  font-weight: var(--font-weight-secondary);
   line-height: 1.5;
 `;
 

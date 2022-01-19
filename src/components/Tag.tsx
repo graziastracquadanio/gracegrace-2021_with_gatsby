@@ -30,7 +30,7 @@ export const Tag: React.FC<Props> = ({ tag, onClick, className, variant }) => {
 const TagStyle = css<{ variant?: string }>`
   font-family: var(--font-secondary);
   font-size: 0.9rem;
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-secondary-bold);
   background-color: var(--color-${(props) => (props.variant ? props.variant : 'highlight')});
   color: var(--color-text);
   text-transform: uppercase;

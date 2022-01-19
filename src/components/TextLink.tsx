@@ -30,7 +30,7 @@ const LinkStyle = css`
 const LinkStyleLightTheme = css`
   color: inherit;
   text-decoration: none;
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-secondary-bold);
   background: linear-gradient(120deg, var(--color-highlight) 0%, var(--color-highlight) 100%);
   background-repeat: no-repeat;
   background-size: 100% 40%;
@@ -63,7 +63,7 @@ const LinkStyleDarkTheme = css`
   padding-right: 0.25rem;
   color: var(--color-primary);
   -webkit-tap-highlight-color: transparent;
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-secondary-bold);
   transition: all 0s linear;
 
   &:hover {

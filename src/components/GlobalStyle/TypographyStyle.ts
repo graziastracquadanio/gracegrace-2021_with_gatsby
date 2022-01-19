@@ -10,7 +10,7 @@ const sizes = {
 const TypographyStyle = css`
   body {
     font-size: var(--font-base-font-size);
-    font-weight: var(--font-weight-normal);
+    font-weight: var(--font-weight-secondary);
     line-height: 1.3;
     color: var(--color-text);
 
@@ -25,7 +25,7 @@ const TypographyStyle = css`
 
   p {
     font-family: var(--fonts-secondary);
-    font-weight: var(--font-weight-normal);
+    font-weight: var(--font-weight-secondary);
     font-size: ${sizes.p}em;
     color: inherit;
     transition: color var(--theme-transition);
@@ -75,7 +75,7 @@ const TypographyStyle = css`
 
   b,
   strong {
-    font-weight: var(--font-weight-bold); // Add the correct font weight in Chrome, Edge, and Safari
+    font-weight: var(--font-weight-secondary-bold); // Add the correct font weight in Chrome, Edge, and Safari
   }
 
   mark {

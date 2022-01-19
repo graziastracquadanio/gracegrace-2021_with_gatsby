@@ -19,7 +19,7 @@ const Label = styled.label`
   display: grid;
   grid-template-columns: 1em auto;
   gap: 0.5em;
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-secondary-bold);
   line-height: 1.1;
   cursor: pointer;
 `;

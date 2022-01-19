@@ -1,6 +1,7 @@
 import '@fontsource/open-sans/300.css';
 import '@fontsource/open-sans/500.css';
 import '@fontsource/zilla-slab/400.css';
+import '@fontsource/zilla-slab/600.css';
 
 import React from 'react';
 
