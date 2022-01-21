@@ -1,4 +1,4 @@
-import { deleteDoc, doc, Firestore, getDoc, setDoc, collection, getDocs } from 'firebase/firestore';
+import { deleteDoc, doc, Firestore, getDoc, setDoc, collection, getDocs, query, where } from 'firebase/firestore';
 import { FirebaseStorage, ref } from 'firebase/storage';
 
 import { getRecipeForSaving, imageFetcher } from '../utils/recipe';
@@ -12,6 +12,17 @@ export class RecipeService {
     this.db = db;
     this.storage = storage;
   }
+
+  // query = async (search: string): Promise<Recipe[]> => {
+  query = async (search: string) => {
+    const q = query(collection(this.db, 'recipes-with-details'), where('ingredients', 'array-contains', search));
+    const querySnapshot = await getDocs(q);
+    console.log(querySnapshot);
+    querySnapshot.forEach((d) => {
+      // doc.data() is never undefined for query doc snapshots
+      console.log(d.id, ' => ', d.data());
+    });
+  };
 
   getAll = async (): Promise<Recipe[]> => {
     const querySnap = await getDocs(collection(this.db, 'recipes'));
@@ -69,6 +80,7 @@ export class RecipeService {
   };
 
   delete = async (id: string): Promise<void> => {
-    return deleteDoc(doc(this.db, 'recipes', id));
+    await Promise.all([deleteDoc(doc(this.db, 'recipes', id)), deleteDoc(doc(this.db, 'recipes-with-details', id))]);
+    return Promise.resolve();
   };
 }

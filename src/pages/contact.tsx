@@ -59,12 +59,7 @@ const LayoutContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2em;
-`;
-
-const Social = styled.div`
-  min-height: 20em;
-  background: blue;
-  grid-area: social;
+  line-height: 2;
 `;
 
 export default ContactPage;

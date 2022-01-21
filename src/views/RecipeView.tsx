@@ -82,6 +82,7 @@ const Container = styled.div`
   display: grid;
   grid-row-gap: 2em;
   grid-template-areas: 'header' 'tags' 'picture' 'description' 'ingredients' 'instructions' 'footer';
+  align-items: flex-start;
 
   @media (min-width: ${BREAKPOINTS.medium}) {
     grid-template-columns: 16rem auto 16rem;
@@ -118,6 +119,7 @@ const Tags = styled.section`
   flex-wrap: wrap;
   gap: 1rem;
   margin-bottom: 1rem;
+  padding-right: 3rem;
 `;
 
 const Picture = styled.img`
@@ -151,6 +153,6 @@ const InstructionTip = styled.div`
   padding: 0.5em;
   color: var(--color-primary);
   border: 1px dashed var(--color-primary);
-  background-color: var(--color-background);
+  background-color: var(--color-background-light);
   transition: background var(--theme-transition);
 `;

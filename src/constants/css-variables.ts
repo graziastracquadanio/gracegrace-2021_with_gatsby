@@ -40,8 +40,8 @@ export const HEADINGS = {
 
 // prefix `--layout-`
 export const LAYOUT = {
-  contentMaxWidth: '1200px',
-  // contentMaxWidth: '1024px',
+  // contentMaxWidth: '1200px',
+  contentMaxWidth: '1024px',
   scrollbarWidth: '0.5rem',
 };
 

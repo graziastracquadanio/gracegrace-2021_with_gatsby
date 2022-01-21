@@ -48,6 +48,9 @@ export const RecipesListView: React.FC<Props> = observer(function RecipesListVie
 
   const onSearch = debounce((value: string) => {
     setSearch(value);
+    if (value.length) {
+      recipeStore.queryRecipes(value);
+    }
   }, 500);
 
   const onTagToggle = (id: string) => {
@@ -58,7 +61,11 @@ export const RecipesListView: React.FC<Props> = observer(function RecipesListVie
 
   return (
     <Container>
-      <Search onSearch={onSearch} />
+      <Header>
+        <h5>This is a collection of my favorite recipes. Work in progress!</h5>
+        <RecipesSearch onSearch={onSearch} />
+      </Header>
+
       {list && (
         <List>
           {[...list, fakeRecipe].map((recipe: Recipe) => (
@@ -83,6 +90,13 @@ export const RecipesListView: React.FC<Props> = observer(function RecipesListVie
           </Tags>
         )}
       </Sidebar>
+      <Tip>
+        <p>
+          Buying <mark>seasonal products</mark> has a <mark>positive effect</mark> on the{' '}
+          <mark>ecological balance</mark>, particularly because they are not transported by plane or grown in
+          greenhouses heated with fossil fuels.
+        </p>
+      </Tip>
     </Container>
   );
 });
@@ -90,17 +104,26 @@ export const RecipesListView: React.FC<Props> = observer(function RecipesListVie
 const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-areas: 'search' 'sidebar' 'list';
+  grid-template-areas: 'header' 'sidebar' 'list' 'tip';
   grid-gap: 1em;
 
   @media (min-width: ${BREAKPOINTS.large}) {
     grid-template-columns: auto 16rem;
-    grid-template-areas: 'search .' 'list sidebar';
+    grid-template-areas: 'header .' 'tip sidebar' 'list sidebar';
   }
 `;
 
-const Search = styled(RecipesSearch)`
-  grid-area: search;
+const Header = styled.section`
+  grid-area: header;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+`;
+
+const Tip = styled.section`
+  grid-area: tip;
+  padding: 0.5rem 3rem;
+  text-align: center;
 `;
 
 const Sidebar = styled.aside`

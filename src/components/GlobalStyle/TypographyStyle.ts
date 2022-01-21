@@ -44,7 +44,7 @@ const TypographyStyle = css`
     margin: 0;
     font-family: var(--font-primary);
     font-weight: var(--font-weight-primary);
-    line-height: 1;
+    line-height: 1.3;
     transition: color var(--theme-transition);
     margin-bottom: 0.5rem;
   }
@@ -80,8 +80,11 @@ const TypographyStyle = css`
 
   mark {
     color: inherit;
+    font-weight: var(--font-weight-secondary-bold);
     background-color: var(--color-highlight);
     transition: background var(--theme-transition);
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
   }
 
   code {
