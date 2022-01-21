@@ -75,10 +75,10 @@ const LayoutContainer = styled.div`
   background-color: var(--color-background);
   transition: background var(--theme-transition);
 
-  padding: 0 1em;
+  padding: 0 1.5em;
 
   @media (min-width: ${BREAKPOINTS.medium}) {
-    padding: 0 1.5em;
+    padding: 0 3em;
   }
 `;
 

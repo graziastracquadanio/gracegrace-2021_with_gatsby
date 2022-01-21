@@ -89,11 +89,11 @@ export const RecipesListView: React.FC<Props> = observer(function RecipesListVie
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: auto;
-  grid-template-areas: 'search' 'list';
+  grid-template-columns: 1fr;
+  grid-template-areas: 'search' 'sidebar' 'list';
   grid-gap: 1em;
 
-  @media (min-width: ${BREAKPOINTS.medium}) {
+  @media (min-width: ${BREAKPOINTS.large}) {
     grid-template-columns: auto 16rem;
     grid-template-areas: 'search .' 'list sidebar';
   }
@@ -108,6 +108,7 @@ const Sidebar = styled.aside`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  margin-bottom: 2rem;
 `;
 
 const Tags = styled.section`
@@ -123,8 +124,12 @@ const StyledTag = styled(Tag)<{ active: boolean }>`
 
 const List = styled.ul`
   grid-area: list;
-  column-width: 18rem;
+  column-width: 100%;
   column-gap: 2rem;
+
+  @media (min-width: ${BREAKPOINTS.medium}) {
+    column-width: 14rem;
+  }
 `;
 
 const ListItem = styled.li<{ pending: boolean }>`

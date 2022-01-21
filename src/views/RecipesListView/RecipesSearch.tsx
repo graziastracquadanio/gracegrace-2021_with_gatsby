@@ -83,8 +83,7 @@ export const RecipesSearch: React.FC<Props> = ({ onSearch }) => {
 
   return (
     <Container>
-      <h5>Are you looking for inspiration?</h5>
-      <h6>Try typing some ingredients separated by comma</h6>
+      <h6>Are you looking for inspiration?</h6>
       <SearchControl animate={search.length ? 'filled' : 'empty'} initial="empty" variants={iconSteps.input}>
         <SearchInput value={search} onChange={handleSearch} type="text" placeholder="Type something..." />
         <SearchIcon onClick={clearSearch} disabled={!search.length}>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { motion } from 'framer-motion';
 import { observer } from 'mobx-react-lite';
@@ -6,11 +6,12 @@ import styled from 'styled-components';
 
 import { LogoutButton } from './LogoutButton';
 import NavigationItemLink from './NavigationItemLink';
+import { NavigationMobileLink } from './NavigationMobileLink';
 import ThemeToggle from './ThemeToggle';
-import { ZINDEX } from 'constants/css-variables';
+import { BREAKPOINTS, ZINDEX } from 'constants/css-variables';
 import { useRootStore } from 'contexts/RootStoreContext';
 
-const Navigation: React.FC = observer(() => {
+export const Navigation: React.FC = observer(() => {
   const { authStore } = useRootStore();
 
   return (
@@ -28,10 +29,16 @@ const Navigation: React.FC = observer(() => {
         <NavigationItemLink to="/recipes" partiallyActive>
           Recipes
         </NavigationItemLink>
-        <NavigationItemLink to="/styleguide">Styleguide</NavigationItemLink>
-        <NavigationItemLink to="/contact">Contact</NavigationItemLink>
+        <OnlyDesktopLink to="/styleguide" partiallyActive>
+          Styleguide
+        </OnlyDesktopLink>
+        <OnlyDesktopLink to="/contact" partiallyActive>
+          Contact
+        </OnlyDesktopLink>
         <NavigationSpacer />
+
         {authStore.isLoggedIn && <StyledLogoutButton onClick={authStore.logout} />}
+        <NavigationMobileLink icon="code" to="/styleguide" partiallyActive />
         <StyledThemeToggle />
       </NavigationList>
     </NavigationContainer>
@@ -63,6 +70,12 @@ const NavigationContainer = styled.nav`
   }
 `;
 
+const OnlyDesktopLink = styled(NavigationItemLink)`
+  @media (max-width: ${BREAKPOINTS.medium}) {
+    display: none;
+  }
+`;
+
 const NavigationList = styled(motion.div)`
   width: 100%;
   display: flex;
@@ -81,5 +94,3 @@ const StyledLogoutButton = styled(LogoutButton)`
 const StyledThemeToggle = styled(ThemeToggle)`
   height: 2rem;
 `;
-
-export default Navigation;

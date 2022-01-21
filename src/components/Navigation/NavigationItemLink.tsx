@@ -3,10 +3,12 @@ import React from 'react';
 import { GatsbyLinkProps, Link } from 'gatsby';
 import styled from 'styled-components';
 
-type Props = Omit<GatsbyLinkProps<{}>, 'ref'>;
+interface Props extends Omit<GatsbyLinkProps<{}>, 'ref'> {
+  className?: string;
+}
 
-const NavigationItemLink: React.FC<Props> = ({ children, ...props }) => (
-  <NavigationLink activeClassName="mod-active" {...props}>
+const NavigationItemLink: React.FC<Props> = ({ className, children, ...props }) => (
+  <NavigationLink className={className} activeClassName="mod-active" {...props}>
     {children}
   </NavigationLink>
 );
