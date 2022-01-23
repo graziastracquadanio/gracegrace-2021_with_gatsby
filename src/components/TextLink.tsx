@@ -1,7 +1,9 @@
 import React from 'react';
 
 import { GatsbyLinkProps, Link } from 'gatsby';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
+
+import { LinkStyle } from './GlobalStyle/LinkStyle';
 
 type Props = Omit<GatsbyLinkProps<{}>, 'ref'>;
 // & React.HTMLProps<HTMLAnchorElement>;
@@ -22,63 +24,10 @@ export const TextLink: React.FC<Props> = ({ to, activeClassName, partiallyActive
   );
 };
 
-const LinkStyle = css`
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
-`;
-
-const LinkStyleLightTheme = css`
-  color: inherit;
-  text-decoration: none;
-  font-weight: var(--font-weight-secondary-bold);
-  background: linear-gradient(120deg, var(--color-highlight) 0%, var(--color-highlight) 100%);
-  background-repeat: no-repeat;
-  background-size: 100% 40%;
-  background-position: 0 90%;
-
-  /* background: linear-gradient(to bottom, var(--color-accent) 0%, var(--color-accent) 100%);
-  background-position: 0 100%;
-  background-repeat: repeat-x;
-  background-size: 4px 4px; */
-  transition: background-size 0.3s ease;
-
-  &:hover {
-    /* background-size: 4px 50px; */
-    transition: background 0.2s linear;
-    color: var(--color-secondary);
-    background: linear-gradient(120deg, var(--color-gray-light) 0%, var(--color-gray-light) 100%);
-    background-repeat: no-repeat;
-    background-size: 100% 40%;
-    background-position: 50% 90%;
-  }
-
-  small & {
-    color: var(--color-primary);
-    background: none;
-  }
-`;
-
-const LinkStyleDarkTheme = css`
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
-  color: var(--color-primary);
-  -webkit-tap-highlight-color: transparent;
-  font-weight: var(--font-weight-secondary-bold);
-  transition: all 0s linear;
-
-  &:hover {
-    color: var(--color-background);
-    background-color: var(--color-primary);
-    transition: all 0.1s linear 0.05s;
-  }
-`;
-
 const StyledLink = styled(Link)`
   ${LinkStyle};
-  ${(props) => (props.theme.colorMode === 'dark' ? LinkStyleDarkTheme : LinkStyleLightTheme)}
 `;
 
 const StyledAnchor = styled.a`
   ${LinkStyle};
-  ${(props) => (props.theme.colorMode === 'dark' ? LinkStyleDarkTheme : LinkStyleLightTheme)}
 `;

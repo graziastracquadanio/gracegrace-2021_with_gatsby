@@ -37,7 +37,7 @@ export const RecipesListView: React.FC<Props> = observer(function RecipesListVie
   }, [search, selectedTags, recipeStore.recipes]);
 
   const fakeRecipe = {
-    title: 'This is a fake recipe',
+    title: 'This is a fake recipe (click me!)',
     id: 'this-is-a-fake-recipe',
   };
 
@@ -48,9 +48,6 @@ export const RecipesListView: React.FC<Props> = observer(function RecipesListVie
 
   const onSearch = debounce((value: string) => {
     setSearch(value);
-    // if (value.length) {
-    //   recipeStore.queryRecipes(value);
-    // }
   }, 500);
 
   const onTagToggle = (id: string) => {
@@ -62,11 +59,11 @@ export const RecipesListView: React.FC<Props> = observer(function RecipesListVie
   return (
     <Container>
       <Header>
-        <h5>This is a collection of my favorite recipes. Work in progress!</h5>
+        <h5>This is a collection of my favorite recipes and notes. Work in progress!</h5>
         <RecipesSearch onSearch={onSearch} />
       </Header>
 
-      {list && (
+      {list.length && (
         <List>
           {[...list, fakeRecipe].map((recipe: Recipe) => (
             <ListItem key={recipe.id} pending={superMode && !recipe.published}>
@@ -75,6 +72,7 @@ export const RecipesListView: React.FC<Props> = observer(function RecipesListVie
           ))}
         </List>
       )}
+
       <Sidebar>
         {superMode && <Link to="new">Add new recipe</Link>}
         {tags && (

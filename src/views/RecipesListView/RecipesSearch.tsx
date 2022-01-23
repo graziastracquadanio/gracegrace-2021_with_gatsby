@@ -124,7 +124,7 @@ const SearchIcon = styled.button`
   position: absolute;
   right: 1rem;
   top: 50%;
-  transform: translate(0, -50%);
+  transform: translate(0, -50%) scale(0.8);
 
   &:disabled {
     pointer-events: none;

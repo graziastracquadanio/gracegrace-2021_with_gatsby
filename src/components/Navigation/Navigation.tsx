@@ -25,7 +25,9 @@ export const Navigation: React.FC = observer(() => {
           delay: 1,
         }}
       >
-        <NavigationItemLink to="/">About</NavigationItemLink>
+        <NavigationItemLink to="/about" partiallyActive>
+          About
+        </NavigationItemLink>
         <NavigationItemLink to="/recipes" partiallyActive>
           Recipes
         </NavigationItemLink>

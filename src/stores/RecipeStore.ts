@@ -99,19 +99,19 @@ export class RecipeStore {
     }
   };
 
-  queryRecipes = async (s: string) => {
-    this.uiStore.loading = true;
-    try {
-      await this.recipeService.query(s);
-    } catch (error) {
-      printError(error);
-      runInAction(() => {
-        this.uiStore.addFailNotification('Something went wrong deleting the data');
-      });
-    } finally {
-      runInAction(() => {
-        this.uiStore.loading = false;
-      });
-    }
-  };
+  // queryRecipes = async (s: string) => {
+  //   this.uiStore.loading = true;
+  //   try {
+  //     await this.recipeService.query(s);
+  //   } catch (error) {
+  //     printError(error);
+  //     runInAction(() => {
+  //       this.uiStore.addFailNotification('Something went wrong deleting the data');
+  //     });
+  //   } finally {
+  //     runInAction(() => {
+  //       this.uiStore.loading = false;
+  //     });
+  //   }
+  // };
 }

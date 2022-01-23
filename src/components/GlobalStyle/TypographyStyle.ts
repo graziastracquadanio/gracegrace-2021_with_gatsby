@@ -1,5 +1,6 @@
 import { css } from 'styled-components';
 
+import { LinkStyle } from './LinkStyle';
 import { BREAKPOINTS, HEADINGS } from 'constants/css-variables';
 
 const sizes = {
@@ -16,6 +17,13 @@ const TypographyStyle = css`
 
     @media (min-width: ${BREAKPOINTS.large}) {
       font-size: var(--font-base-font-size-l);
+    }
+  }
+
+  // prettier-ignore
+  h1, h2, h3, h4, h5, h6, p {
+    a {
+      ${LinkStyle}
     }
   }
 
@@ -40,7 +48,7 @@ const TypographyStyle = css`
     margin: 0;
     font-family: var(--font-primary);
     font-weight: var(--font-weight-primary);
-    line-height: 1.3;
+    line-height: 1.5;
     transition: color var(--theme-transition);
     margin-bottom: 0.5rem;
   }
