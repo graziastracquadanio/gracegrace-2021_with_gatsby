@@ -3,9 +3,11 @@ import { navigate } from 'gatsby';
 import { makeAutoObservable, runInAction } from 'mobx';
 
 import type { RootStore } from './RootStore';
-import { printError } from 'utils/others';
+import { generateRandomValue, printError } from 'utils/others';
 
+const SESSION_KEY = 'session';
 export class AuthStore {
+  session = '';
   isLoggedIn = false;
 
   private uiStore;
@@ -13,6 +15,16 @@ export class AuthStore {
   constructor({ uiStore }: RootStore) {
     makeAutoObservable(this);
     this.uiStore = uiStore;
+    this.init();
+  }
+
+  init() {
+    let session = localStorage.getItem(SESSION_KEY);
+    if (!session) {
+      session = generateRandomValue();
+      localStorage.setItem(SESSION_KEY, session);
+    }
+    this.session = session;
   }
 
   loggedIn = getAuth().onAuthStateChanged((user) => {

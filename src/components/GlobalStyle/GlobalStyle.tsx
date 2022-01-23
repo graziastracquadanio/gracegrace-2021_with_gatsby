@@ -16,7 +16,6 @@ const GlobalStyle = createGlobalStyle`
     --font-primary: ${FONTS.primary};
     --font-secondary: ${FONTS.secondary};
     --font-base-font-size: ${FONTS.baseFontSize};
-    --font-base-font-size-m: ${FONTS.baseFontSizeM};
     --font-base-font-size-l: ${FONTS.baseFontSizeL};
     --font-weight-primary: ${FONTS.weightPrimary};
     --font-weight-primary-bold: ${FONTS.weightPrimaryBold};

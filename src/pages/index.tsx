@@ -12,16 +12,25 @@ const AboutPage: React.FC = () => {
       </section>
       <section>
         <StyledH6>
-          I am a front-end developer who loves building cool user-friendly web apps, enjoys discover best practices and
-          loves learning and experiment new things. I also really like{' '}
-          <TextLink to="https://codepen.io/graziastrax" target="_blank" rel="noreferrer">
-            drawing with code
-          </TextLink>
-          .
+          I am a front-end developer who loves building cool user-friendly web apps, enjoys discovering best practices
+          and loves learning and experimenting with new things.
         </StyledH6>
         <StyledH6>
           In the last {new Date().getFullYear() - 2012} years have been building web apps using Angular and React and
-          many other libraries and tools. I also love animations.
+          many other libraries and tools, working in various countries with different types of teams. Are you interested
+          in my <TextLink to="/about">work experience</TextLink>?
+        </StyledH6>
+        <StyledH6>
+          Sometimes{' '}
+          <TextLink to="https://codepen.io/graziastrax" target="_blank" rel="noreferrer">
+            I like drawing with code
+          </TextLink>
+          , some other times{' '}
+          <TextLink to="https://www.instagram.com/sialokesia/" target="_blank" rel="noreferrer">
+            I whittle little weirdos
+          </TextLink>
+          .<br />
+          In any case, I always love to have fun!
         </StyledH6>
       </section>
 
@@ -29,13 +38,13 @@ const AboutPage: React.FC = () => {
         <h4>But I&apos;m also...</h4>
         <StyledList>
           <li>
+            <StyledH6>building my van</StyledH6>
+          </li>
+          <li>
+            <StyledH6>doing lot of running and yoga</StyledH6>
+          </li>
+          <li>
             <StyledH6>learning to play guitar</StyledH6>
-          </li>
-          <li>
-            <StyledH6>learning surfing in order to be a veeery-small-waves-pro-surfer</StyledH6>
-          </li>
-          <li>
-            <StyledH6>doing lot of running</StyledH6>
           </li>
           <li>
             <StyledH6>

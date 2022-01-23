@@ -2,6 +2,8 @@ import React from 'react';
 
 import styled, { css } from 'styled-components';
 
+import { BREAKPOINTS } from 'constants/css-variables';
+
 type Size = 'small' | 'medium' | undefined;
 
 interface Props extends React.ComponentPropsWithoutRef<'button'> {
@@ -26,7 +28,12 @@ const getCssBySize = (size: Size) => {
     default:
       return css`
         font-size: 1rem;
-        padding: 0.5rem 1rem;
+        padding: 0.2rem 0.5rem;
+
+        @media (min-width: ${BREAKPOINTS.medium}) {
+          font-size: 0.8rem;
+          padding: 0.5rem 1rem;
+        }
       `;
   }
 };

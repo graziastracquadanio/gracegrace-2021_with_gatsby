@@ -7,11 +7,10 @@ import { Textarea } from './Textarea';
 import { BREAKPOINTS } from 'constants/css-variables';
 
 interface Props extends TextareaHTMLAttributes<HTMLTextAreaElement> {
-  label?: React.ReactNode;
   customCSS?: CSSProp;
 }
 
-export const MarkdownEditor: React.FC<Props> = ({ value, label, customCSS, ...textareaProps }) => {
+export const MarkdownEditor: React.FC<Props> = ({ value, customCSS, ...textareaProps }) => {
   const [preview, setPreview] = useState<string>('');
 
   useEffect(() => {
@@ -21,19 +20,16 @@ export const MarkdownEditor: React.FC<Props> = ({ value, label, customCSS, ...te
   }, [value, setPreview]);
 
   return (
-    <>
-      {label}
-      <MarkdownEditorContainer customCSS={customCSS}>
-        <Column>
-          <span>Edit</span>
-          <StyledTextarea value={value} {...textareaProps} />
-        </Column>
-        <Column>
-          <span>Preview</span>
-          <Preview>{preview}</Preview>
-        </Column>
-      </MarkdownEditorContainer>
-    </>
+    <MarkdownEditorContainer customCSS={customCSS}>
+      <Column>
+        <span>Edit</span>
+        <StyledTextarea value={value} {...textareaProps} />
+      </Column>
+      <Column>
+        <span>Preview</span>
+        <Preview>{preview}</Preview>
+      </Column>
+    </MarkdownEditorContainer>
   );
 };
 

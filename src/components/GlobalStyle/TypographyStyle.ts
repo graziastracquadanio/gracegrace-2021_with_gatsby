@@ -14,10 +14,6 @@ const TypographyStyle = css`
     line-height: 1.3;
     color: var(--color-text);
 
-    @media (min-width: ${BREAKPOINTS.medium}) {
-      font-size: var(--font-base-font-size-m);
-    }
-
     @media (min-width: ${BREAKPOINTS.large}) {
       font-size: var(--font-base-font-size-l);
     }

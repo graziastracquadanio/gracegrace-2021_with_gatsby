@@ -4,11 +4,15 @@ import styled from 'styled-components';
 
 import { CommonFormControlStyle } from './style';
 
-export const Textarea: React.FC<TextareaHTMLAttributes<HTMLTextAreaElement>> = (props) => {
+interface Props extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+  hasError?: boolean;
+}
+
+export const Textarea: React.FC<Props> = (props) => {
   return <StyledTextarea {...props} />;
 };
 
-const StyledTextarea = styled.textarea`
+const StyledTextarea = styled.textarea<Props>`
   ${CommonFormControlStyle}
   resize: vertical;
 `;

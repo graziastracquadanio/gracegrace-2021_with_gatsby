@@ -4,10 +4,14 @@ import styled from 'styled-components';
 
 import { CommonFormControlStyle } from './style';
 
-export const Input: React.FC<InputHTMLAttributes<HTMLInputElement>> = (props) => {
+interface Props extends InputHTMLAttributes<HTMLInputElement> {
+  hasError?: boolean;
+}
+
+export const Input: React.FC<Props> = (props) => {
   return <StyledInput {...props} />;
 };
 
-const StyledInput = styled.input`
+const StyledInput = styled.input<Props>`
   ${CommonFormControlStyle}
 `;

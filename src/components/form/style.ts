@@ -1,8 +1,8 @@
 import { css } from 'styled-components';
 
-export const CommonFormControlStyle = css`
+export const CommonFormControlStyle = css<{ hasError?: boolean }>`
   padding: 0.5rem 1rem;
-  border: 1px solid var(--color-gray);
+  border: 1px solid var(--color-${(props) => (props.hasError ? 'danger' : 'gray')});
   border-radius: 0;
   outline: none;
   width: 100%;

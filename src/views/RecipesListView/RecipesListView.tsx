@@ -48,9 +48,9 @@ export const RecipesListView: React.FC<Props> = observer(function RecipesListVie
 
   const onSearch = debounce((value: string) => {
     setSearch(value);
-    if (value.length) {
-      recipeStore.queryRecipes(value);
-    }
+    // if (value.length) {
+    //   recipeStore.queryRecipes(value);
+    // }
   }, 500);
 
   const onTagToggle = (id: string) => {

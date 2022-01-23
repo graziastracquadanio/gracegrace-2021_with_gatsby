@@ -20,8 +20,7 @@ export const BREAKPOINTS = {
 export const FONTS = {
   primary: `'Zilla Slab', sans-serif`,
   secondary: `'Open Sans', sans-serif`,
-  baseFontSize: '14px',
-  baseFontSizeM: '16px',
+  baseFontSize: '16px',
   baseFontSizeL: '18px',
   weightPrimary: 400,
   weightPrimaryBold: 600,

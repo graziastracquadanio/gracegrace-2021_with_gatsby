@@ -41,7 +41,7 @@ export const Notificator: React.FC = observer(function Notificator() {
 const NotificationPopup = styled(motion.p)<{ type?: MessageType }>`
   position: fixed;
   z-index: ${ZINDEX.notifications};
-  bottom: 0;
+  bottom: 1rem;
   right: 3rem;
   max-width: 15rem;
   text-align: center;

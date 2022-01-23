@@ -70,5 +70,6 @@ const TagButton = styled.button`
 
 const TagLink = styled(Link)`
   ${TagStyle};
+  display: inline-block;
   text-decoration: none;
 `;

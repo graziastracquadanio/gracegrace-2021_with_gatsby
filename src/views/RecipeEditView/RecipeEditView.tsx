@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 import { TagsEditor } from './TagsEditor';
 import { Button } from 'components/Button';
-import { Checkbox, DraggableList, Input, Textarea } from 'components/form';
+import { Checkbox, DraggableList, FormControl, Input, Textarea } from 'components/form';
 import { MarkdownEditor } from 'components/form/MarkdownEditor';
 import { IngredientsListCss } from 'components/recipe';
 import { BREAKPOINTS } from 'constants/css-variables';
@@ -77,8 +77,7 @@ export const RecipeEditView: React.FC<Props> = ({ recipe, saveRecipe, deleteReci
   return (
     <Container>
       <Header>
-        <FormControl>
-          <Label htmlFor="title">Title</Label>
+        <FormControl label="Title" htmlFor="title">
           <Input
             id="title"
             name="title"
@@ -89,8 +88,7 @@ export const RecipeEditView: React.FC<Props> = ({ recipe, saveRecipe, deleteReci
         </FormControl>
       </Header>
       <Description>
-        <FormControl>
-          <Label htmlFor="description">Description</Label>
+        <FormControl label="Description" htmlFor="description">
           <Textarea
             id="description"
             name="description"
@@ -139,8 +137,7 @@ export const RecipeEditView: React.FC<Props> = ({ recipe, saveRecipe, deleteReci
         />
       </Tags>
       <Picture>
-        <FormControl>
-          <Label htmlFor="image-name">Image name</Label>
+        <FormControl label="Image name" htmlFor="image-name">
           <Input
             id="image-name"
             name="imageName"
@@ -151,9 +148,8 @@ export const RecipeEditView: React.FC<Props> = ({ recipe, saveRecipe, deleteReci
         </FormControl>
       </Picture>
       <Ingredients>
-        <FormControl>
+        <FormControl label="Ingredients" htmlFor="ingredients">
           <MarkdownEditor
-            label={<Label htmlFor="ingredients">Ingredients</Label>}
             id="ingredients"
             value={formikProps.values.ingredients}
             onChange={formikProps.handleChange}
@@ -162,8 +158,7 @@ export const RecipeEditView: React.FC<Props> = ({ recipe, saveRecipe, deleteReci
         </FormControl>
       </Ingredients>
       <Instructions>
-        <FormControl>
-          <Label htmlFor="instructions">Instructions</Label>
+        <FormControl label="Instructions" htmlFor="instructions">
           <DraggableList
             name="instructions"
             values={formikProps.values.instructions}
@@ -187,33 +182,20 @@ export const RecipeEditView: React.FC<Props> = ({ recipe, saveRecipe, deleteReci
   );
 };
 
-const FormControl = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-bottom: 2rem;
-`;
-
-const Label = styled.label`
-  font-family: var(--font-primary);
-  font-weight: var(--font-weight-primary);
-  font-size: 1.2rem;
-`;
-
 const Container = styled.div`
   display: grid;
   grid-row-gap: 2em;
-  grid-template-areas: 'header' 'picture' 'description' 'ingredients' 'instructions' 'details' 'footer';
+  grid-template-areas: 'header' 'picture' 'description' 'ingredients' 'instructions' 'tags' 'details' 'footer';
 
   @media (min-width: ${BREAKPOINTS.medium}) {
     grid-template-columns: 16rem auto 16rem;
     grid-row-gap: 1em;
     grid-column-gap: 2em;
     grid-template-areas:
-      'header header details'
-      'picture picture details'
+      'header header tags'
+      'picture picture tags'
       'description description tags'
-      'ingredients ingredients tags'
+      'ingredients ingredients details'
       'instructions instructions instructions'
       'footer footer footer';
   }

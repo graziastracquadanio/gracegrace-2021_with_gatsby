@@ -12,6 +12,10 @@ export class UiStore {
     makeAutoObservable(this);
   }
 
+  setLoading = (value: boolean) => {
+    this.loading = value;
+  };
+
   addNotification = (text: string, type?: MessageType, life: number = 2000) => {
     if (this.currentTimerId) {
       window.clearTimeout(this.currentTimerId);
