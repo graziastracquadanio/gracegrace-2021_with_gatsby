@@ -48,7 +48,7 @@ const TypographyStyle = css`
     margin: 0;
     font-family: var(--font-primary);
     font-weight: var(--font-weight-primary);
-    line-height: 1.5;
+    line-height: 1.2;
     transition: color var(--theme-transition);
     margin-bottom: 0.5rem;
   }

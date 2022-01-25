@@ -59,7 +59,7 @@ export const filterRecipes = (list: Recipe[], s?: string, t?: string[]): Recipe[
     filteredRecipes = filteredRecipes.filter(({ title }) => title?.toLowerCase().includes(search)) ?? [];
   }
   if (t?.length) {
-    filteredRecipes = filteredRecipes.filter(({ id, tags }) => intersection(tags, t).length === t.length);
+    filteredRecipes = filteredRecipes.filter(({ tags }) => intersection(tags, t).length === t.length);
   }
   return filteredRecipes;
 };

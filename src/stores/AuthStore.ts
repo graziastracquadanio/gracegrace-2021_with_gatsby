@@ -19,12 +19,14 @@ export class AuthStore {
   }
 
   init() {
-    let session = localStorage.getItem(SESSION_KEY);
-    if (!session) {
-      session = generateRandomValue();
-      localStorage.setItem(SESSION_KEY, session);
+    if (typeof window !== 'undefined') {
+      let session = window.localStorage.getItem(SESSION_KEY);
+      if (!session) {
+        session = generateRandomValue();
+        window.localStorage.setItem(SESSION_KEY, session);
+      }
+      this.session = session;
     }
-    this.session = session;
   }
 
   loggedIn = getAuth().onAuthStateChanged((user) => {

@@ -36,10 +36,10 @@ export const RecipesListView: React.FC<Props> = observer(function RecipesListVie
     }
   }, [search, selectedTags, recipeStore.recipes]);
 
-  const fakeRecipe = {
-    title: 'This is a fake recipe (click me!)',
-    id: 'this-is-a-fake-recipe',
-  };
+  // const fakeRecipe = {
+  //   title: 'This is a fake recipe (click me!)',
+  //   id: 'this-is-a-fake-recipe',
+  // };
 
   const list = useMemo(
     () => (superMode ? recipes : recipes?.filter((recipe) => recipe.published)),
@@ -50,24 +50,33 @@ export const RecipesListView: React.FC<Props> = observer(function RecipesListVie
     setSearch(value);
   }, 500);
 
-  const onTagToggle = (id: string) => {
-    const isSelected = selectedTags.includes(id);
-    const nextSelection = isSelected ? selectedTags.filter((t) => t !== id) : [...selectedTags, id];
+  const onTagToggle = (id: string, single?: boolean) => {
+    let nextSelection;
+    if (single) {
+      nextSelection = [id];
+    } else {
+      const isSelected = selectedTags.includes(id);
+      nextSelection = isSelected ? selectedTags.filter((t) => t !== id) : [...selectedTags, id];
+    }
     setSelectedTags(nextSelection);
   };
 
   return (
     <Container>
       <Header>
-        <h5>This is a collection of my favorite recipes and notes. Work in progress!</h5>
+        <h5>
+          This is a collection of my favorite recipes and notes.
+          <br />
+          Work in progress!
+        </h5>
         <RecipesSearch onSearch={onSearch} />
       </Header>
 
-      {list.length && (
+      {!!list.length && (
         <List>
-          {[...list, fakeRecipe].map((recipe: Recipe) => (
+          {list.map((recipe: Recipe) => (
             <ListItem key={recipe.id} pending={superMode && !recipe.published}>
-              <RecipesListItem {...recipe} />
+              <RecipesListItem recipe={recipe} onTagClick={onTagToggle} />
             </ListItem>
           ))}
         </List>
@@ -102,6 +111,7 @@ export const RecipesListView: React.FC<Props> = observer(function RecipesListVie
 const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr;
+  grid-template-rows: min-content;
   grid-template-areas: 'header' 'sidebar' 'list' 'tip';
   grid-gap: 1em;
 
@@ -136,6 +146,11 @@ const Tags = styled.section`
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+
+  @media (min-width: ${BREAKPOINTS.medium}) {
+    position: sticky;
+    top: 6rem;
+  }
 `;
 
 const StyledTag = styled(Tag)<{ active: boolean }>`
@@ -149,7 +164,7 @@ const List = styled.ul`
   column-gap: 2rem;
 
   @media (min-width: ${BREAKPOINTS.medium}) {
-    column-width: 14rem;
+    column-width: 16rem;
   }
 `;
 

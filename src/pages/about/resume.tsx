@@ -101,7 +101,7 @@ const Resume: React.FC = () => (
         <span>#angularjs</span> <span>#less</span> <span>#jquery</span>
       </h6>
       <p>
-        <em>Italy, February 2014 – June 2015</em>
+        <em>ITALY, February 2014 – June 2015</em>
       </p>
       <p>
         Working as a frontend developer with web/graphics design abilities, using HTML5, CSS3 (LESS), Twig, Bootstrap
@@ -112,7 +112,7 @@ const Resume: React.FC = () => (
     <li>
       <h5>Web developer/iOS developer/Graphic designer @ Neperia Group / PaperCopy Design / Freelance</h5>
       <p>
-        <em>Italy, February 2012 – January 2014</em>
+        <em>ITALY, February 2012 – January 2014</em>
       </p>
       <p>
         Designed and developed several Wordpress based websites for small local businesses. Worked on projects like
@@ -130,6 +130,10 @@ const Container = styled.ul`
 
   li {
     padding: 2rem 0;
+  }
+
+  h6 {
+    color: var(--color-primary-dark);
   }
 `;
 export default Resume;

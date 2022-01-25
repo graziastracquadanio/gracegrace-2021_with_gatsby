@@ -39,26 +39,6 @@ export class TagsStore {
     }
   };
 
-  // getTag = async (id: string): Promise<Tag | null> => {
-  //   this.uiStore.loading = true;
-  //   let data: Tag | null = null;
-  //   try {
-  //     data = await this.tagService.get(id);
-  //   } catch (error) {
-  //     runInAction(() => {
-  //       printError(error);
-  //       this.error = 'Something went wrong fetching the data';
-  //       this.uiStore.loading = false;
-  //     });
-  //   } finally {
-  //     runInAction(() => {
-  //       this.uiStore.loading = false;
-  //     });
-  //   }
-
-  //   return Promise.resolve(data);
-  // };
-
   addTag = async (data: Tag): Promise<string | null> => {
     this.uiStore.loading = true;
     try {
