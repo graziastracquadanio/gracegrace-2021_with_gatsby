@@ -9,14 +9,17 @@ export type Color = {
 // https://mycolor.space/?hex=%23BF538D&sub=1
 export const PALETTE: { [key: string]: Color } = {
   'primary-dark': {
+    // light: '#00243e',
     light: '#8F71A0',
     dark: '#8F71A0',
   },
   primary: {
+    // light: '#10c1a0',
     light: '#BF538D',
     dark: '#BF538D',
   },
   'primary-light': {
+    // light: '#ceeb9f',
     light: '#D8BFD8',
     dark: '#D8BFD8',
   },
@@ -55,7 +58,7 @@ export const COLORS: { [key: string]: Color } = {
   },
   highlight: {
     light: PALETTE['primary-light'].light,
-    dark: PALETTE['primary-dark'].light,
+    dark: PALETTE['primary-dark'].dark,
   },
 };
 

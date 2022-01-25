@@ -36,20 +36,20 @@ const AboutPage: React.FC = () => {
       </section>
 
       <section>
-        <h4>But I&apos;m also...</h4>
+        <h4>But I am also ...</h4>
         <StyledList>
           <li>
-            <StyledH6>building my van</StyledH6>
+            <StyledH6>in the process of building my own van</StyledH6>
           </li>
           <li>
-            <StyledH6>doing lot of running and yoga</StyledH6>
+            <StyledH6>in love with yoga, running, climbing, skating and some other stuff</StyledH6>
           </li>
           <li>
-            <StyledH6>learning to play guitar</StyledH6>
+            <StyledH6>learning to play guitar and speak new languages</StyledH6>
           </li>
           <li>
             <StyledH6>
-              in love with <TextLink to="/recipes">healthy vegan food</TextLink>
+              in love with healthy plant-based food and <TextLink to="/recipes">collecting recipes</TextLink>
             </StyledH6>
           </li>
         </StyledList>

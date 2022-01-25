@@ -55,6 +55,19 @@ const ThumbContainer = styled(Link)`
   background-color: var(--color-gray-light);
   background-image: url('/assets/fallback.png');
   background-size: contain;
+  position: relative;
+
+  &:after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: ${(props) => (props.theme.colorMode === 'light' ? 0 : 0.6)};
+    background-color: var(--color-background-dark);
+    z-index: 2;
+  }
 `;
 
 const Thumb = styled.img`
