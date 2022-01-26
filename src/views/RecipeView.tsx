@@ -69,7 +69,7 @@ export const RecipeView: React.FC<Recipe> = ({
               </InstructionsListItem>
             ))}
             <InstructionsListItem>
-              <p>Enjoy it! ❤</p>
+              <p>Enjoy it! ♥️</p>
             </InstructionsListItem>
           </ul>
         </Instructions>

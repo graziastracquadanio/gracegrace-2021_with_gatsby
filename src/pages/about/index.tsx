@@ -22,9 +22,9 @@ const AboutPage: React.FC = () => {
           Are you interested in my <TextLink to="/about/resume">work experience</TextLink>?
         </StyledH6>
         <StyledH6>
-          Sometimes{' '}
+          Sometimes I like{' '}
           <TextLink to="https://codepen.io/graziastrax" target="_blank" rel="noreferrer">
-            I like drawing with code
+            drawing with code
           </TextLink>
           , some other times{' '}
           <TextLink to="https://www.instagram.com/sialokesia/" target="_blank" rel="noreferrer">

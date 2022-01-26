@@ -64,7 +64,7 @@ const ThumbContainer = styled(Link)`
     position: absolute;
     top: 0;
     right: 0;
-    opacity: ${(props) => (props.theme.colorMode === 'light' ? 0 : 0.6)};
+    opacity: ${(props) => (props.theme.colorMode === 'light' ? 0 : 0.2)};
     background-color: var(--color-background-dark);
     z-index: 2;
   }

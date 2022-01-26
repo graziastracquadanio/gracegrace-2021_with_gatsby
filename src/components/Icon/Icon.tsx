@@ -2,32 +2,23 @@ import React from 'react';
 
 import styled from 'styled-components';
 
+import { IconProps } from './IconProps';
 import { icons } from './icons';
 
-interface Props {
+interface Props extends IconProps {
   icon: string;
-  activeClass?: string;
 }
 
-export const Icon: React.FC<Props> = ({ icon: name, activeClass }) => {
+const IconSelector: React.FC<Props> = ({ icon: name, className, activeClass }) => {
   const IconSvg = icons[name];
 
   if (!IconSvg) {
     throw new Error('You must select an existing icon or add a new one');
   }
 
-  return (
-    <Container>
-      <IconSvg activeClass={activeClass} />
-    </Container>
-  );
+  return <IconSvg className={className} activeClass={activeClass} />;
 };
 
-const Container = styled.span`
-  --color-icon: var(--color-text);
-  --color-icon-active: var(--color-primary);
-
-  display: block;
-  width: auto;
-  height: 2.5em;
+export const Icon = styled(IconSelector)`
+  height: 2rem;
 `;

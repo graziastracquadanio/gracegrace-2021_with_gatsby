@@ -34,13 +34,17 @@ export const Navigation: React.FC = observer(() => {
         <OnlyDesktopLink to="/styleguide" partiallyActive>
           Styleguide
         </OnlyDesktopLink>
-        <OnlyDesktopLink to="/contact" partiallyActive>
+        <NavigationItemLink to="/contact" partiallyActive>
           Contact
-        </OnlyDesktopLink>
+        </NavigationItemLink>
         <NavigationSpacer />
 
-        {authStore.isLoggedIn && <StyledLogoutButton onClick={authStore.logout} />}
-        <NavigationMobileLink icon="code" to="/styleguide" partiallyActive />
+        {authStore.isLoggedIn && (
+          <>
+            <StyledLogoutButton onClick={authStore.logout} />
+            <NavigationMobileLink icon="code" to="/styleguide" partiallyActive />
+          </>
+        )}
         <StyledThemeToggle />
       </NavigationList>
     </NavigationContainer>

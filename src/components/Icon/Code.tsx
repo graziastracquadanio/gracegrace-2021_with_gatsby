@@ -2,15 +2,13 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-export interface CodeProps {
-  activeClass?: string;
-}
+import { IconProps } from './IconProps';
 
-export const Code: React.FC<CodeProps> = ({ activeClass = 'active' }) => (
-  <Svg activeClass={activeClass} viewBox="0 0 24 24">
-    <Path d="M6.5 8.5L3 12L6.5 15.5" />
-    <Path d="M13.5 6L10 18.5" />
-    <Path d="M17.5 8.5L21 12L17.5 15.5" />
+export const Code: React.FC<IconProps> = ({ className, activeClass = 'active' }) => (
+  <Svg className={className} activeClass={activeClass} viewBox="0 0 30 24">
+    <Path d="M 9.896 5.826 L 2.181 12 L 9.272 18.173" />
+    <Path d="M 18.187 1.976 L 11.814 22.023" />
+    <Path d="M 20.725 5.826 L 27.819 12 L 20.101 18.173" />
   </Svg>
 );
 
@@ -19,7 +17,7 @@ const Path = styled.path`
   transition: all 0.2s ease-in;
 `;
 
-const Svg = styled.svg<CodeProps>`
+const Svg = styled.svg<IconProps>`
   height: 100%;
   width: auto;
 
@@ -36,16 +34,11 @@ const Svg = styled.svg<CodeProps>`
 
   &:hover {
     ${Path}:first-child {
-      transform: translateX(-3px);
-    }
-
-    ${Path}:nth-child(2) {
-      transform-origin: center;
-      transform: scale(1, 1.3);
+      transform: translateX(-2px);
     }
 
     ${Path}:last-child {
-      transform: translateX(3px);
+      transform: translateX(2px);
     }
   }
 `;

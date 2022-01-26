@@ -22,6 +22,10 @@ const GlobalStyle = createGlobalStyle`
     --font-weight-secondary: ${FONTS.weightSecondary};
     --font-weight-secondary-bold: ${FONTS.weightSecondaryBold};
 
+    // ICONS
+    --color-icon: var(--color-text);
+    --color-icon-active: var(--color-primary);
+
     // LAYOUT
     --layout-content-max-width: ${LAYOUT.contentMaxWidth};
 
